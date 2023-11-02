@@ -11,3 +11,15 @@
     @apply bg-background_dark;
   }
 }
+
+.inputform {
+  @apply h-11 px-2 bg-secondary border-2 border-primary text-white;
+}
+
+.btn-primary {
+  @apply bg-primary dark:bg-secondary_dark border-none text-lg rounded-md font-semibold md:px-10 px-8 py-2 md:text-lg normal-case hover:-translate-y-1 hover:translate-x-1 hover:origin-top text-ellipsis;
+}
+
+.btn-secondary {
+  @apply bg-secondary_dark dark:bg-secondary_dark text-lg border-none rounded-md font-semibold md:px-10 px-7 md:text-lg normal-case hover:-translate-y-1 hover:translate-x-1;
+}

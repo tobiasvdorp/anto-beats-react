@@ -11,7 +11,7 @@ const AuthLayout = () => {
         <>
           <div className="flex">
             {/* Login */}
-            <section className="flex flex-col justify-center items-center py-10 w-1/2">
+            <section className="flex flex-col justify-center items-center py-10 md:w-1/2 w-full">
               <Outlet />
             </section>
             {/* Image */}
