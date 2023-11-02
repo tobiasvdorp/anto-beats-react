@@ -24,14 +24,14 @@ export default function Navbar() {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52 "
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52 text-black dark:text-white"
             >
               <li>
-                <a className="text-lg">Home</a>
+                <a className="text-lg text-black dark:text-white">Home</a>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-white opacity-90 normal-case text-2xl">
+          <a className="btn btn-ghost text-black dark:text-white opacity-90 normal-case text-2xl">
             Anto
           </a>
         </div>
@@ -45,7 +45,6 @@ export default function Navbar() {
 
         <div className="navbar-end">
           <ModeToggle />
-          <a>Ha</a>
         </div>
       </div>
     </>
