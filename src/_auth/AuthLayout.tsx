@@ -16,7 +16,7 @@ const AuthLayout = () => {
             </section>
             {/* Image */}
             <img
-              src="/public/login-bg.png"
+              src="/public/login-bg.jpg"
               alt="wallpaper"
               className="hidden md:block h-screen w-1/2 object-cover bg-no-repeat"
             ></img>

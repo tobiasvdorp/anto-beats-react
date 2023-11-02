@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SignupForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -12,34 +14,46 @@ const SignupForm = () => {
         className="h-screen flex flex-col gap-4 items-center justify-center p-5 w-96 pb-8"
         onSubmit={handleSubmit}
       >
-        <h1 className="dark:text-white text-black text-3xl font-semibold mb-8">
+        <h1 className="dark:text-white text-black text-4xl font-semibold mb-8">
           Sign up
         </h1>
 
         <label htmlFor="email" className="w-full text-black dark:text-white">
-          E-mail adress <br />
+          E-mail adress* <br />
           <input
             type="email"
             id="email"
-            className="w-[100%] mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            required
+            className="w-[100%] mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
           />
         </label>
         <label htmlFor="password" className="w-full text-black dark:text-white">
-          Password <br />
+          Password* <br />
           <input
             type="password"
             id="password"
-            className="w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            required
+            className="w-full mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
           />
         </label>
         <label htmlFor="password" className="w-full text-black dark:text-white">
-          Confirm password <br />
+          Confirm password* <br />
           <input
             type="password"
-            id="password"
-            className="w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            id="confirm-password"
+            required
+            className="w-full mt-1 border  rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
           />
         </label>
+        <p className="dark:text-white text-black">
+          Already have an account?{" "}
+          <Link
+            to="/sign-in"
+            className="underline dark:text-blue-500 text-blue-700 "
+          >
+            Sign in
+          </Link>
+        </p>
         <button type="submit" className="btn-secondary btn">
           Sign up
         </button>
