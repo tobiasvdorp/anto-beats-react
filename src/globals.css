@@ -11,7 +11,3 @@
     @apply bg-background_dark;
   }
 }
-
-body {
-  @apply h-96;
-}
