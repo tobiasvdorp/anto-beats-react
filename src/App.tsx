@@ -1,7 +1,7 @@
 import "./globals.css";
 
 const App = () => {
-  return <div>App</div>;
+  return <button className="btn">Hello world!</button>;
 };
 
 export default App;
