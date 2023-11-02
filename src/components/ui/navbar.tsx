@@ -27,7 +27,7 @@ export default function Navbar() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52 "
             >
               <li>
-                <a className="text-lg text-black">Home</a>
+                <a className="hover:bg-primary hover:text-black">Home</a>
               </li>
             </ul>
           </div>
@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-black dark:text-white">
             <li>
-              <a href="#" className="">
+              <a href="#" className="hover:bg-primary hover:text-black">
                 Home
               </a>
             </li>
