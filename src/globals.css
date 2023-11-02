@@ -1,34 +1,17 @@
+/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Lightmode variabelen */
-    --background: 246, 98%, 99%; /* #F6FAFE */
-    --primary: 58, 78%, 49%; /* #3A97DF */
-    --secondary: 212, 100%, 20%; /* #072640 */
-    --accent: 208, 100%, 36%; /* #1F69B2 */
-    --black: 240, 100%, 5%; /* #00000F */
-    --white: 210, 100%, 98%; /* #F6FAFE */
+  body {
+    @apply bg-background;
   }
-
-  .dark {
-    /* Darkmode variabelen */
-    --background: 0, 0%, 6%; /* #00000F */
-    --primary: 203, 100%, 39%; /* #207EC5 */
-    --secondary: 212, 100%, 20%; /* #072640 */
-    --accent: 214, 100%, 49%; /* #4D96E0 */
-    --black: 240, 100%, 5%; /* #00000F */
-    --white: 210, 100%, 98%; /* #F6FAFE */
+  .dark body {
+    @apply bg-background_dark;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+body {
+  @apply h-96;
 }

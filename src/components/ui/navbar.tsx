@@ -3,7 +3,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 export default function Navbar() {
   return (
     <>
-      <div className="navbar bg-background fixed z-10">
+      <div className="navbar bg-background dark:bg-background_dark fixed z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -24,10 +24,10 @@ export default function Navbar() {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52 text-black dark:text-white"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52 "
             >
               <li>
-                <a className="text-lg text-black dark:text-white">Home</a>
+                <a className="text-lg text-black">Home</a>
               </li>
             </ul>
           </div>
@@ -36,9 +36,11 @@ export default function Navbar() {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 text-black dark:text-white">
             <li>
-              <a href="#">Home</a>
+              <a href="#" className="">
+                Home
+              </a>
             </li>
           </ul>
         </div>
