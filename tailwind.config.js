@@ -24,6 +24,12 @@ module.exports = {
         black: "#00000F",
         white: "#F6FAFE",
       },
+
+      fontFamily: {
+        main: ["Montserrat", "sans-serif", "Arial", "Helvetica"], // Fallback fonts toegevoegd
+        second: ["Open Sans", "sans-serif", "Arial", "Helvetica"], // Fallback fonts toegevoegd
+        para: ["Hind Madurai", "sans-serif", "Georgia", "Times New Roman"], // Fallback fonts toegevoegd
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("daisyui")],

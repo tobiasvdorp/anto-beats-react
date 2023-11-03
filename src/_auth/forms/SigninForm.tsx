@@ -31,32 +31,38 @@ const SigninForm = () => {
   return (
     <>
       <form
-        className="h-screen flex flex-col gap-4 items-center justify-center p-5 w-96 pb-8"
+        className="h-screen flex flex-col gap-4 items-center justify-center p-5 w-96 max-w-full pb-8 "
         onSubmit={handleSubmit}
       >
-        <h1 className="dark:text-white text-black text-4xl font-semibold mb-8">
-          Sign in
+        <h1 className="dark:text-white text-black text-4xl font-bold font-main">
+          Sign in <br />
         </h1>
 
-        <label htmlFor="email" className="w-full text-black dark:text-white">
-          E-mailadres* <br />
+        <label
+          htmlFor="email"
+          className="w-full text-black dark:text-white font-second"
+        >
+          E-mail adress <br />
           <input
             type="email"
             id="email"
             required
-            className="w-full mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            className="inputform"
             onChange={(e) =>
               setCredentials({ ...credentials, email: e.target.value })
             }
           />
         </label>
-        <label htmlFor="password" className="w-full text-black dark:text-white">
-          Wachtwoord* <br />
+        <label
+          htmlFor="password"
+          className="w-full text-black dark:text-white font-second"
+        >
+          Password <br />
           <input
             type="password"
             id="password"
             required
-            className="w-full mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            className="inputform"
             onChange={(e) =>
               setCredentials({ ...credentials, password: e.target.value })
             }
@@ -66,12 +72,12 @@ const SigninForm = () => {
         {error && <p className="text-red-600 -mt-3">{error}</p>}
 
         <p className="dark:text-white text-black">
-          Heb je nog geen account?{" "}
+          Don't have an account?{" "}
           <Link
             to="/sign-up"
             className="underline dark:text-blue-500 text-blue-700"
           >
-            Registreren
+            Sign up
           </Link>
         </p>
         <button type="submit" className="btn-secondary btn w-full">

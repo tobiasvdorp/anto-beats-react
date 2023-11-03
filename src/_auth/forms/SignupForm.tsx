@@ -52,41 +52,49 @@ const SignupForm = () => {
   return (
     <>
       <form
-        className="h-screen flex flex-col gap-4 items-center justify-center p-5 w-96 pb-8"
+        className="h-screen flex flex-col gap-4 items-center justify-center p-5 w-96 max-w-full pb-8 "
         onSubmit={handleSubmit}
       >
-        <h1 className="dark:text-white text-black text-4xl font-semibold mb-8">
-          Sign up
+        <h1 className="dark:text-white text-black text-4xl font-bold text-center font-main">
+          Sign up <br />
         </h1>
-
-        <label htmlFor="name" className="w-full text-black dark:text-white">
-          Name* <br />
+        <label
+          htmlFor="name"
+          className="w-full text-black dark:text-white font-second"
+        >
+          Name <br />
           <input
             type="name"
             id="name"
             required
-            className="w-[100%] mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            className="inputform"
             onChange={(e) => setValues({ ...values, name: e.target.value })}
           />
         </label>
         {nameError && <p className="text-red-600 -mt-3">{nameError}</p>}
-        <label htmlFor="email" className="w-full text-black dark:text-white">
-          E-mail adress* <br />
+        <label
+          htmlFor="email"
+          className="w-full text-black dark:text-white font-second"
+        >
+          E-mail adress <br />
           <input
             type="email"
             id="email"
             required
-            className="w-[100%] mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            className="inputform"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
         </label>
-        <label htmlFor="password" className="w-full text-black dark:text-white">
-          Password* <br />
+        <label
+          htmlFor="password"
+          className="w-full text-black dark:text-white font-second"
+        >
+          Password <br />
           <input
             type="password"
             id="password"
             required
-            className="w-full mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary inputform"
+            className="inputform"
             onChange={(e) => setValues({ ...values, password: e.target.value })}
           />
         </label>
@@ -101,7 +109,7 @@ const SignupForm = () => {
             Sign in
           </Link>
         </p>
-        <button type="submit" className="btn-secondary btn w-full">
+        <button type="submit" className="btn-secondary btn w-full font-bold">
           Sign up
         </button>
       </form>
