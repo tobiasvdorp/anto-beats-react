@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, FormEvent } from "react";
 import { createUserAccount } from "@/lib/appwrite/api";
+import { AppwriteException } from "appwrite";
 
 const SignupForm = () => {
   // State for storing form values
@@ -14,33 +15,40 @@ const SignupForm = () => {
   const [nameError, setnameError] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); // Prevent the default form submit action
-    setpasswordError(""); // Reset password error message
-    setnameError(""); // Reset name error message
+    event.preventDefault();
 
-    if (values.password.length < 8) {
-      setpasswordError("Password must be at least 8 characters long");
-      return;
-    }
+    // Reset error messages
+    setpasswordError("");
+    setnameError("");
 
-    if (values.name.length < 5) {
-      setnameError("Name must be at least 5 characters long");
-      return;
-    }
+    // Validate form inputs...
 
     try {
-      // Destructure the values object to pass to createUserAccount
-      const { ...newUserValues } = values;
-      // Attempt to create a new user account with the form values
-      const newUser = await createUserAccount(newUserValues);
+      const newUser = await createUserAccount(values);
+      // Handle success (e.g., redirect to dashboard)
     } catch (error) {
-      // Log an error if there's a problem creating the user
-      console.error(
-        "Er is een fout opgetreden bij het aanmaken van de gebruiker",
-        error
-      );
+      let errorMessage = "Something went wrong. Please try again later."; // Default error message
+
+      if (error instanceof AppwriteException) {
+        // Check for specific error messages
+        if (
+          error.message.includes(
+            "user with the same id, email, or phone already exists"
+          )
+        ) {
+          errorMessage = "You already have an account.";
+        } else if (error.message.includes("Rate limit")) {
+          errorMessage = "Server is too busy... Try again later.";
+        }
+        // Set the error message based on the specific error
+        setpasswordError(errorMessage);
+      } else {
+        // If the error is not an instance of AppwriteException, use the default error message
+        setpasswordError(errorMessage);
+      }
     }
   }
+
   return (
     <>
       <form

@@ -5,9 +5,6 @@ export const appwriteConfig = {
   url: import.meta.env.VITE_APP_APPWRITE_URL,
 };
 
-console.log("Project ID:", appwriteConfig.projectId);
-console.log("Appwrite URL:", appwriteConfig.url);
-
 export const client = new Client();
 
 client.setProject(appwriteConfig.projectId);

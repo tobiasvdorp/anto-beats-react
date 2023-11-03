@@ -1,5 +1,5 @@
 import { ID } from "appwrite";
-import { INewUser } from "@/types";
+import { INewUser, ILoginCredentials } from "@/types";
 import { account } from "./config";
 
 export async function createUserAccount(user: INewUser) {
@@ -12,6 +12,19 @@ export async function createUserAccount(user: INewUser) {
     );
 
     return newAccount;
+  } catch (error) {
+    console.error("Error in createUserAccount:", error);
+    throw error; // Gooi de fout zodat deze kan worden opgevangen door de aanroepende code
+  }
+}
+
+export async function loginUser(credentials: ILoginCredentials) {
+  try {
+    const session = await account.createEmailSession(
+      credentials.email,
+      credentials.password
+    );
+    return session;
   } catch (error) {
     console.log(error);
     return error;
