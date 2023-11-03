@@ -9,14 +9,28 @@ const SignupForm = () => {
     password: "",
   });
 
+  const [passwordError, setpasswordError] = useState("");
+  const [nameError, setnameError] = useState("");
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setpasswordError("");
+    setnameError("");
+
+    if (values.password.length < 8) {
+      setpasswordError("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (values.name.length < 5) {
+      setnameError("Name must be at least 5 characters long");
+      return;
+    }
 
     try {
       // Zorg ervoor dat je alleen de velden doorgeeft die INewUser verwacht
       const { ...newUserValues } = values;
       const newUser = await createUserAccount(newUserValues);
-      console.log(newUser);
     } catch (error) {
       console.error(
         "Er is een fout opgetreden bij het aanmaken van de gebruiker",
@@ -44,6 +58,7 @@ const SignupForm = () => {
             onChange={(e) => setValues({ ...values, name: e.target.value })}
           />
         </label>
+        {nameError && <p className="text-red-600 -mt-3">{nameError}</p>}
         <label htmlFor="email" className="w-full text-black dark:text-white">
           E-mail adress* <br />
           <input
@@ -64,6 +79,7 @@ const SignupForm = () => {
             onChange={(e) => setValues({ ...values, password: e.target.value })}
           />
         </label>
+        {passwordError && <p className="text-red-600 -mt-3">{passwordError}</p>}
 
         <p className="dark:text-white text-black">
           Already have an account?{" "}
