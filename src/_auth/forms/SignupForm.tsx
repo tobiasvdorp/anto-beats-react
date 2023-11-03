@@ -3,6 +3,7 @@ import { useState, FormEvent } from "react";
 import { createUserAccount } from "@/lib/appwrite/api";
 
 const SignupForm = () => {
+  // State for storing form values
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -13,9 +14,9 @@ const SignupForm = () => {
   const [nameError, setnameError] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setpasswordError("");
-    setnameError("");
+    event.preventDefault(); // Prevent the default form submit action
+    setpasswordError(""); // Reset password error message
+    setnameError(""); // Reset name error message
 
     if (values.password.length < 8) {
       setpasswordError("Password must be at least 8 characters long");
@@ -28,10 +29,12 @@ const SignupForm = () => {
     }
 
     try {
-      // Zorg ervoor dat je alleen de velden doorgeeft die INewUser verwacht
+      // Destructure the values object to pass to createUserAccount
       const { ...newUserValues } = values;
+      // Attempt to create a new user account with the form values
       const newUser = await createUserAccount(newUserValues);
     } catch (error) {
+      // Log an error if there's a problem creating the user
       console.error(
         "Er is een fout opgetreden bij het aanmaken van de gebruiker",
         error
