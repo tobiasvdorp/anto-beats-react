@@ -3,12 +3,12 @@ import "./globals.css";
 import SigninForm from "./_auth/forms/SigninForm";
 import SignupForm from "./_auth/forms/SignupForm";
 import AuthLayout from "./_auth/AuthLayout";
-import RootLayout from "./_root/RootLayout";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/ui/navbar";
 import AccountCreated from "./_auth/forms/AccountCreated";
-import Home from "./_root/pages/Home";
+import Home from "@/pages/Home";
 import { UserProvider } from "@/lib/appwrite/user";
+import Dashboard from "@/pages/Dashboard";
 
 const App = () => {
   return (
@@ -27,10 +27,8 @@ const App = () => {
 
               <Route path="/" element={<Home />}></Route>
 
-              <Route element={<RootLayout />}></Route>
-
               {/* Private routes */}
-              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </main>
         </ThemeProvider>

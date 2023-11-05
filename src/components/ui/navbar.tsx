@@ -40,6 +40,16 @@ export default function Navbar() {
                 >
                   Home
                 </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/dashboard"}
+                  className="hover:bg-primary hover:text-black text-lg"
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
                 {user.current ? (
                   <>
                     <button
@@ -61,15 +71,26 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-black dark:text-white opacity-90 normal-case text-3xl">
+          <Link
+            to={"/"}
+            className="btn btn-ghost text-black dark:text-white opacity-90 normal-case text-3xl"
+          >
             Anto
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-black dark:text-white">
             <li>
               <Link to="/" className="hover:bg-primary hover:text-black">
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={"/dashboard"}
+                className="hover:bg-primary hover:text-black"
+              >
+                Dashboard
               </Link>
             </li>
           </ul>
