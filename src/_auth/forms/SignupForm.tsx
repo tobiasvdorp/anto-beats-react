@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { useState, FormEvent } from "react";
 import { createUserAccount } from "@/lib/appwrite/api";
 import { AppwriteException } from "appwrite";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+
   // State for storing form values
   const [values, setValues] = useState({
     name: "",
@@ -25,7 +28,7 @@ const SignupForm = () => {
 
     try {
       const newUser = await createUserAccount(values);
-      // Handle success (e.g., redirect to dashboard)
+      navigate("/account-created");
     } catch (error) {
       let errorMessage = "Something went wrong. Please try again later."; // Default error message
 
@@ -52,7 +55,7 @@ const SignupForm = () => {
   return (
     <>
       <form
-        className="min-h-screen flex flex-col gap-4 items-center justify-center p-5 w-96 max-w-full pt-32 "
+        className="h-full flex flex-col gap-4 items-center justify-center px-5 w-96 max-w-full "
         onSubmit={handleSubmit}
       >
         <h1 className="dark:text-white text-black text-4xl font-bold text-center font-main">

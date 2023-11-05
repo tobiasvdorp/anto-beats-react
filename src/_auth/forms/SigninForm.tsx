@@ -28,7 +28,7 @@ const SigninForm = () => {
   return (
     <>
       <form
-        className="h-screen flex flex-col gap-4 items-center justify-center p-5 w-96 max-w-full pb-8 "
+        className="h-full flex flex-col gap-4 items-center justify-center px-5 w-96 max-w-full "
         onSubmit={handleSubmit}
       >
         <h1 className="dark:text-white text-black text-4xl font-bold font-main">

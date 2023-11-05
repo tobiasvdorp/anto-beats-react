@@ -14,7 +14,7 @@ export async function createUserAccount(user: INewUser) {
     return newAccount;
   } catch (error) {
     console.error("Error in createUserAccount:", error);
-    throw error; // Gooi de fout zodat deze kan worden opgevangen door de aanroepende code
+    throw error; // Pass error to caller
   }
 }
 
