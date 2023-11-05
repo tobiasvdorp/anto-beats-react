@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { loginUser } from "@/lib/appwrite/api";
 import { ILoginCredentials } from "@/types"; // Zorg ervoor dat dit pad klopt
 
 const SigninForm = () => {
-  const navigate = useNavigate();
   // State voor het opslaan van inloggegevens
   const [credentials, setCredentials] = useState<ILoginCredentials>({
     email: "",
@@ -21,10 +20,8 @@ const SigninForm = () => {
     try {
       const session = await loginUser(credentials);
       console.log(session);
-      navigate("/dashboard");
     } catch (error) {
-      console.error("Er is een fout opgetreden bij het inloggen", error);
-      setError("Inloggen mislukt. Controleer uw e-mailadres en wachtwoord.");
+      setError("Failed to log in. Try again later.");
     }
   }
 
@@ -80,6 +77,7 @@ const SigninForm = () => {
             Sign up
           </Link>
         </p>
+
         <button type="submit" className="btn-secondary btn w-full">
           Inloggen
         </button>
