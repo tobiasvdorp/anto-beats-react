@@ -7,28 +7,34 @@ import RootLayout from "./_root/RootLayout";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/ui/navbar";
 import AccountCreated from "./_auth/forms/AccountCreated";
+import Home from "./_root/pages/Home";
+import { UserProvider } from "@/lib/appwrite/user";
 
 const App = () => {
   return (
     <>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <Navbar />
-        <main className="h-screen w-screen">
-          <Routes>
-            {/* Public routes */}
-            <Route element={<AuthLayout />}>
-              <Route path="/sign-in" element={<SigninForm />} />
-              <Route path="/sign-up" element={<SignupForm />} />
-              <Route path="/account-created" element={<AccountCreated />} />
-            </Route>
+      <UserProvider>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <Navbar />
+          <main className="h-screen w-screen">
+            <Routes>
+              {/* Public routes */}
+              <Route element={<AuthLayout />}>
+                <Route path="/sign-in" element={<SigninForm />} />
+                <Route path="/sign-up" element={<SignupForm />} />
+                <Route path="/account-created" element={<AccountCreated />} />
+              </Route>
 
-            <Route element={<RootLayout />}></Route>
+              <Route path="/" element={<Home />}></Route>
 
-            {/* Private routes */}
-            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          </Routes>
-        </main>
-      </ThemeProvider>
+              <Route element={<RootLayout />}></Route>
+
+              {/* Private routes */}
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+            </Routes>
+          </main>
+        </ThemeProvider>
+      </UserProvider>
     </>
   );
 };

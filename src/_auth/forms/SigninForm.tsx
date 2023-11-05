@@ -19,7 +19,7 @@ const SigninForm = () => {
 
     try {
       const session = await loginUser(credentials);
-      console.log(session);
+      alert("Logged in!");
     } catch (error) {
       setError("Failed to log in. Try again later.");
     }
@@ -78,8 +78,8 @@ const SigninForm = () => {
           </Link>
         </p>
 
-        <button type="submit" className="btn-secondary btn w-full">
-          Inloggen
+        <button type="submit" className="btn-secondary btn w-full text-lg">
+          Sign in
         </button>
       </form>
     </>

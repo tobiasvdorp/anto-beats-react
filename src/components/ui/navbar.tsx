@@ -1,6 +1,10 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { Link } from "react-router-dom";
+import { useUser } from "@/lib/appwrite/user";
+
 export default function Navbar() {
+  const user = useUser();
+
   return (
     <>
       <div className="navbar bg-background dark:bg-background_dark fixed z-10">
@@ -36,6 +40,24 @@ export default function Navbar() {
                 >
                   Home
                 </Link>
+                {user.current ? (
+                  <>
+                    <button
+                      type="button"
+                      className="hover:bg-primary hover:text-black text-lg"
+                      onClick={() => user.logout()}
+                    >
+                      Sign out
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    to="/sign-in"
+                    className="hover:bg-primary hover:text-black text-lg"
+                  >
+                    Sign in
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
@@ -55,6 +77,26 @@ export default function Navbar() {
 
         <div className="navbar-end">
           <ModeToggle />
+          <div className="lg:block hidden">
+            {user.current ? (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-secondary ml-2 text-normal w-20 p-0"
+                  onClick={() => user.logout()}
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/sign-in"
+                className="btn btn-secondary ml-2 text-lg px-3 min-h-0 h-10"
+              >
+                Sign in
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </>

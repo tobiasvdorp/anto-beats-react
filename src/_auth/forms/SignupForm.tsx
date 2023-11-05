@@ -24,7 +24,15 @@ const SignupForm = () => {
     setpasswordError("");
     setnameError("");
 
-    // Validate form inputs...
+    // Validate form inputs
+    if (values.password.length < 8) {
+      setpasswordError("Password must be at least 8 characters long");
+      return;
+    }
+    if (values.name.length < 5) {
+      setnameError("Name must be at least 5 characters long");
+      return;
+    }
 
     try {
       const newUser = await createUserAccount(values);
@@ -112,7 +120,10 @@ const SignupForm = () => {
             Sign in
           </Link>
         </p>
-        <button type="submit" className="btn-secondary btn w-full font-bold">
+        <button
+          type="submit"
+          className="btn-secondary btn w-full font-bold text-lg"
+        >
           Sign up
         </button>
       </form>

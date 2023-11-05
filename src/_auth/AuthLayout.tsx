@@ -1,11 +1,12 @@
 import { Outlet, Navigate } from "react-router-dom";
+import { useUser } from "@/lib/appwrite/user";
 
 const AuthLayout = () => {
-  const isAuthenticated = false;
+  const user = useUser();
 
   return (
     <>
-      {isAuthenticated ? (
+      {user.current ? (
         <Navigate to="/" />
       ) : (
         <>
