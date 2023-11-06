@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { useState, FormEvent } from "react";
 
 import { loginUser } from "@/lib/appwrite/api";
-import { ILoginCredentials } from "@/types"; // Zorg ervoor dat dit pad klopt
+import { ILoginCredentials } from "@/types";
+import { useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
-  // State voor het opslaan van inloggegevens
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState<ILoginCredentials>({
     email: "",
     password: "",
@@ -19,9 +20,14 @@ const SigninForm = () => {
 
     try {
       const session = await loginUser(credentials);
-      alert("Logged in!");
     } catch (error) {
-      setError("Failed to log in. Try again later.");
+      // If error says "invalid credentials", show "invalid credentials" error
+      // Otherwise, show "Something went wrong. Please try again later."
+      if (error.message.includes("invalid credentials")) {
+        setError("Invalid credentials");
+      } else {
+        setError("Something went wrong. Please try again later.");
+      }
     }
   }
 

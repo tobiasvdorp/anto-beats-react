@@ -10,9 +10,19 @@ export function useUser() {
 export function UserProvider(props) {
   const [user, setUser] = useState(null);
 
+  async function login(email, password) {
+    const loggedIn = await account.createEmailSession(email, password);
+    setUser(loggedIn);
+  }
+
   async function logout() {
     await account.deleteSession("current");
     setUser(null);
+  }
+
+  async function register(email, password, name) {
+    await account.create(email, password, name);
+    await login(email, password);
   }
 
   async function init() {
@@ -29,7 +39,7 @@ export function UserProvider(props) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ current: user, logout }}>
+    <UserContext.Provider value={{ current: user, login, logout, register }}>
       {props.children}
     </UserContext.Provider>
   );
