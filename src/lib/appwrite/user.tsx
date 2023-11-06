@@ -22,7 +22,6 @@ export function UserProvider(props) {
   }
 
   async function register(email: string, password: string, name: string) {
-    // Gebruik de 'name' parameter om de gebruikersnaam op te slaan in de voorkeuren
     const response = await account.create("unique()", email, password, name);
   }
 

@@ -4,10 +4,11 @@
 @tailwind utilities;
 
 @layer base {
-  body {
+  body,
+  html {
     @apply bg-background dark:bg-background_dark;
   }
-  .dark body {
+  html.dark body {
     @apply bg-background_dark;
   }
 }
@@ -22,4 +23,8 @@
 
 .btn-secondary {
   @apply border-white dark:border-background_dark bg-secondary_dark dark:bg-accent_dark hover:bg-primary_dark dark:hover:border-primary hover:border-2 hover:border-secondary_dark hover:shadow-lg dark:hover:bg-secondary dark:text-black text-white dark:hover:text-white rounded-md font-semibold normal-case hover:-translate-y-1 hover:translate-x-1 font-main;
+}
+
+html {
+  background-color: rgb(0 0 15 / var(--tw-bg-opacity)) !important;
 }

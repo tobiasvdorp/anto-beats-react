@@ -33,10 +33,10 @@ const SignupForm = () => {
     }
 
     // if name contains spaces, return error
-    if (name.includes(" ")) {
-      setError("Name must not contain spaces");
-      return;
-    }
+    // if (name.includes(" ")) {
+    //   setError("Name must not contain spaces");
+    //   return;
+    // }
     try {
       await user.register(email, password, name);
       navigate("/account-created");
