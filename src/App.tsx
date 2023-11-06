@@ -9,6 +9,7 @@ import AccountCreated from "./_auth/forms/AccountCreated";
 import Home from "@/pages/Home";
 import { UserProvider } from "@/lib/appwrite/user";
 import Dashboard from "@/pages/Dashboard";
+import AdminPanel from "./pages/AdminPanel";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
 
               {/* Private routes */}
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/admin" element={<AdminPanel />} />
             </Routes>
           </main>
         </ThemeProvider>
