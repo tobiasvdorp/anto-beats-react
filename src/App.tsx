@@ -16,7 +16,7 @@ const App = () => {
     <>
       <UserProvider>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          {/* <Navbar /> */}
+          <Navbar />
           <main className="">
             <Routes>
               {/* Public routes */}

@@ -63,8 +63,6 @@ const AdminPanel = () => {
         [], // Lees rechten
         [] // Schrijf rechten
       );
-
-      console.log("Nummer toegevoegd:", songResult);
     } catch (error) {
       console.error(
         "Er is een fout opgetreden bij het toevoegen van het nummer:",
