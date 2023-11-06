@@ -10,7 +10,7 @@ export function useUser() {
 export function UserProvider(props) {
   const [user, setUser] = useState(null);
 
-  async function login(email, password) {
+  async function login(email: string, password: string) {
     const loggedIn = await account.createEmailSession(email, password);
     setUser(loggedIn);
   }
@@ -18,11 +18,12 @@ export function UserProvider(props) {
   async function logout() {
     await account.deleteSession("current");
     setUser(null);
+    window.location.reload();
   }
 
-  async function register(email, password, name) {
-    await account.create(email, password, name);
-    await login(email, password);
+  async function register(email: string, password: string, name: string) {
+    // Gebruik de 'name' parameter om de gebruikersnaam op te slaan in de voorkeuren
+    const response = await account.create("unique()", email, password, name);
   }
 
   async function init() {

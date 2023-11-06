@@ -9,6 +9,7 @@ import AccountCreated from "./_auth/forms/AccountCreated";
 import Home from "@/pages/Home";
 import { UserProvider } from "@/lib/appwrite/user";
 import Dashboard from "@/pages/Dashboard";
+import AdminPanel from "./pages/AdminPanel";
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
       <UserProvider>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <Navbar />
-          <main className="h-screen w-screen">
+          <main className="">
             <Routes>
               {/* Public routes */}
               <Route element={<AuthLayout />}>
@@ -29,6 +30,7 @@ const App = () => {
 
               {/* Private routes */}
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/admin" element={<AdminPanel />} />
             </Routes>
           </main>
         </ThemeProvider>
