@@ -97,7 +97,11 @@ const AdminPanel = () => {
             />
           </label>
         </div>
-        <button type="button" disabled={loading} onClick={addSong}>
+        <button
+          type="button"
+          disabled={loading}
+          onClick={() => addSong(title, image, audio)}
+        >
           {loading ? "Laden..." : "Voeg Toe"}
         </button>
       </form>
