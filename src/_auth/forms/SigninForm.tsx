@@ -18,7 +18,6 @@ const SigninForm = () => {
     }
     try {
       const session = await user.login(email, password);
-      alert("Logged in!");
     } catch (err) {
       if (
         // error message includes "Invalid credentials" or "at least 8 characters, say "Invalid credentials"

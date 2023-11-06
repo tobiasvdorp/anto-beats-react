@@ -16,7 +16,7 @@ const App = () => {
       <UserProvider>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <Navbar />
-          <main className="h-screen w-screen">
+          <main className="">
             <Routes>
               {/* Public routes */}
               <Route element={<AuthLayout />}>

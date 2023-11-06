@@ -18,11 +18,13 @@ export function UserProvider(props) {
   async function logout() {
     await account.deleteSession("current");
     setUser(null);
+    window.location.reload();
   }
 
   async function register(email, password, name) {
-    await account.create(email, password, name);
-    await login(email, password);
+    // Gebruik de 'name' parameter om de gebruikersnaam op te slaan in de voorkeuren
+    const response = await account.create("unique()", email, password, name);
+    setUser(response);
   }
 
   async function init() {

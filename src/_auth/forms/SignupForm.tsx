@@ -50,7 +50,7 @@ const SignupForm = () => {
           "Password must be at least 8 characters long and should not be one of the commonly used passwords"
         );
       } else {
-        setError("Something went wrong. Try again later.");
+        setError(err.message);
       }
     }
   };
