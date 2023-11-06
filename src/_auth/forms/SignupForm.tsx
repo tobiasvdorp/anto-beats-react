@@ -31,6 +31,12 @@ const SignupForm = () => {
       setError("Name must be at least 5 characters long");
       return;
     }
+
+    // if name contains spaces, return error
+    if (name.includes(" ")) {
+      setError("Name must not contain spaces");
+      return;
+    }
     try {
       await user.register(name, email, password);
       navigate("/account-created");
@@ -50,7 +56,7 @@ const SignupForm = () => {
           "Password must be at least 8 characters long and should not be one of the commonly used passwords"
         );
       } else {
-        setError("Something went wrong. Try again later.");
+        setError(err.message);
       }
     }
   };
