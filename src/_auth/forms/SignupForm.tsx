@@ -9,58 +9,6 @@ import { useNavigate } from "react-router-dom";
 const SignupForm = () => {
   const navigate = useNavigate();
 
-  // // State for storing form values
-  // const [values, setValues] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const [passwordError, setpasswordError] = useState("");
-  // const [nameError, setnameError] = useState("");
-
-  // async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-
-  //   // Reset error messages
-  //   setpasswordError("");
-  //   setnameError("");
-
-  //   // Validate form inputs
-  //   if (values.password.length < 8) {
-  //     setpasswordError("Password must be at least 8 characters long");
-  //     return;
-  //   }
-  //   if (values.name.length < 5) {
-  //     setnameError("Name must be at least 5 characters long");
-  //     return;
-  //   }
-
-  //   try {
-  //     const newUser = await createUserAccount(values);
-  //     navigate("/account-created");
-  //   } catch (error) {
-  //     let errorMessage = "Something went wrong. Please try again later."; // Default error message
-
-  //     if (error instanceof AppwriteException) {
-  //       // Check for specific error messages
-  //       if (
-  //         error.message.includes(
-  //           "user with the same id, email, or phone already exists"
-  //         )
-  //       ) {
-  //         errorMessage = "You already have an account.";
-  //       } else if (error.message.includes("Rate limit")) {
-  //         errorMessage = "Server is too busy... Try again later.";
-  //       }
-  //       // Set the error message based on the specific error
-  //       setpasswordError(errorMessage);
-  //     } else {
-  //       // If the error is not an instance of AppwriteException, use the default error message
-  //       setpasswordError(errorMessage);
-  //     }
-  //   }
-  // }
   const user = useUser();
   const [error, setError] = useState("");
 
@@ -69,6 +17,7 @@ const SignupForm = () => {
   const [name, setName] = useState("");
 
   const handleSignup = async () => {
+    setError("");
     // Validate email
     if (!validateEmail(email)) {
       setError("Please enter a valid email address");
@@ -106,7 +55,7 @@ const SignupForm = () => {
     }
   };
 
-  // Eenvoudige e-mailvalidatie functie
+  // Email validation function
   function validateEmail(email) {
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

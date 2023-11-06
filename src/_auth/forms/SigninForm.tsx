@@ -3,7 +3,6 @@ import { useState, FormEvent } from "react";
 import { useUser } from "@/lib/appwrite/user";
 
 // import { loginUser } from "@/lib/appwrite/api";
-import { ILoginCredentials } from "@/types";
 
 const SigninForm = () => {
   const user = useUser();
@@ -13,18 +12,33 @@ const SigninForm = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
     try {
-      const session = await user.register(email, password);
-
+      const session = await user.login(email, password);
       alert("Logged in!");
     } catch (err) {
-      if (err.message.includes("invalid credentials")) {
-        setError("Invalid credentials");
+      if (
+        // error message includes "Invalid credentials" or "at least 8 characters, say "Invalid credentials"
+        err.message.includes("Invalid credentials") ||
+        err.message.includes("at least 8 characters")
+      ) {
+        setError("Incorrect credentials.");
+      } else if (err.message.includes("Rate limit")) {
+        setError("Server is too busy... Try again later.");
       } else {
         setError("Something went wrong. Please try again later.");
       }
     }
   };
+
+  function validateEmail(email) {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
 
   return (
     <>
