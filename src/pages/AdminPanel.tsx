@@ -20,45 +20,60 @@ const AdminPanel = () => {
     setAudio(e.target.files[0]);
   };
 
-  const addSong = async (title, imageFile, audioFile) => {
+  // Functie om een afbeeldingsbestand te uploaden
+  async function uploadImage(file) {
     try {
-      // Upload de afbeelding naar de 'images' bucket
-      const imageResult = await storage.createFile(
-        imageBucketId,
-        "unique()",
-        imageFile
-      );
-      const imageUrl = imageResult.$id; // Of de juiste property voor de URL
+      const result = await storage.createFile(imageBucketId, "unique()", file);
+      return result.$id; // De ID van het geüploade bestand
+    } catch (error) {
+      console.error("Fout bij het uploaden van de afbeelding:", error);
+      throw error; // Gooi de fout zodat je deze kunt afhandelen
+    }
+  }
 
-      // Upload het audiobestand naar de 'audiofiles' bucket
-      const audioResult = await storage.createFile(
-        audioBucketId,
-        "unique()",
-        audioFile
-      );
-      const audioUrl = audioResult.$id; // Of de juiste property voor de URL
+  // Functie om een audiobestand te uploaden
+  async function uploadAudio(file) {
+    try {
+      const result = await storage.createFile(audioBucketId, "unique()", file);
+      return result.$id; // De ID van het geüploade bestand
+    } catch (error) {
+      console.error("Fout bij het uploaden van het audiobestand:", error);
+      throw error; // Gooi de fout zodat je deze kunt afhandelen
+    }
+  }
 
-      // Voeg het nieuwe nummer toe aan de 'songs' collectie
+  // Aangepaste addSong functie
+  async function addSong(title, imageFile, audioFile) {
+    setLoading(true); // Zet laden aan het begin van de functie
+    try {
+      // Upload de afbeelding en het audiobestand en krijg hun ID's
+      const imageId = await uploadImage(imageFile);
+      const audiofileId = await uploadAudio(audioFile);
+
+      // Maak nu het document in de collectie met de verkregen ID's
       const songResult = await database.createDocument(
         databaseId,
         collectionId,
-        "unique()",
+        "unique()", // Dit zorgt voor een unieke ID voor het document
         {
-          title,
-          imageUrl,
-          audioUrl,
-        }
+          title: title,
+          "image-id": imageId,
+          "audiofile-id": audiofileId,
+        },
+        [], // Lees rechten
+        [] // Schrijf rechten
       );
 
-      // Hier kun je verder gaan met de verwerking, zoals het weergeven van een succesmelding
+      console.log("Nummer toegevoegd:", songResult);
     } catch (error) {
-      // Verwerk de fout, bijvoorbeeld door een foutmelding weer te geven
       console.error(
         "Er is een fout opgetreden bij het toevoegen van het nummer:",
         error
       );
+    } finally {
+      setLoading(false); // Zet laden uit aan het einde van de functie
     }
-  };
+  }
 
   return (
     <div className=" ">
@@ -100,7 +115,11 @@ const AdminPanel = () => {
         <button
           type="button"
           disabled={loading}
-          onClick={() => addSong(title, image, audio)}
+          onClick={() => {
+            if (!loading) {
+              addSong(title, image, audio);
+            }
+          }}
         >
           {loading ? "Laden..." : "Voeg Toe"}
         </button>
