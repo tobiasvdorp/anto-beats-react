@@ -79,29 +79,33 @@ const AdminPanel = () => {
       <form className="flex flex-col justify-center items-center w-full h-screen gap-4">
         <div>
           <label>
-            Titel:
+            Titel: <br />
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              className="inputform"
             />
           </label>
         </div>
         <div>
           <label>
             Afbeelding:
+            <br />
             <input
               type="file"
               onChange={handleImageChange}
               accept="image/*"
               required
+              className="inputform"
             />
           </label>
         </div>
         <div>
           <label>
             Audio:
+            <br />
             <input
               type="file"
               onChange={handleAudioChange}
@@ -112,6 +116,7 @@ const AdminPanel = () => {
         </div>
         <button
           type="button"
+          className="btn-secondary btn text-lg"
           disabled={loading}
           onClick={() => {
             if (!loading) {
@@ -119,7 +124,7 @@ const AdminPanel = () => {
             }
           }}
         >
-          {loading ? "Laden..." : "Voeg Toe"}
+          {loading ? "Laden..." : "Voeg toe"}
         </button>
       </form>
     </div>
