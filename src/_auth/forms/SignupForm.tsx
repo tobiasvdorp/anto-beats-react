@@ -38,7 +38,7 @@ const SignupForm = () => {
       return;
     }
     try {
-      await user.register(name, email, password);
+      await user.register(email, password, name);
       navigate("/account-created");
     } catch (err) {
       if (
