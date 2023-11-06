@@ -20,6 +20,7 @@ const SigninForm = () => {
 
     try {
       const session = await loginUser(credentials);
+      alert("Logged in!");
     } catch (error) {
       // If error says "invalid credentials", show "invalid credentials" error
       // Otherwise, show "Something went wrong. Please try again later."
