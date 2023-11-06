@@ -1,6 +1,8 @@
+import AudioPlayer from "@/components/AudioPlayer";
 import SongList from "@/components/SongList";
 import AddSong from "@/components/modals/AddSong";
 import { useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const AdminPanel = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -17,12 +19,15 @@ const AdminPanel = () => {
     <div className="flex flex-col justify-center items-center w-full h-screen gap-4 ">
       {modalOpen && <AddSong closeModal={closeModal} />}
 
-      <div>
-        <button className="btn btn-secondary" onClick={openModal}>
-          + Nieuw nummer
-        </button>
-        <SongList />
-      </div>
+      <h1 className="text-center dark:text-white text-black text-4xl font-bold font-main">
+        Music Manager
+      </h1>
+      <button className="btn btn-secondary text-lg" onClick={openModal}>
+        <AiOutlinePlus className="text-xl" /> Nieuw nummer
+      </button>
+
+      <SongList />
+      <AudioPlayer />
     </div>
   );
 };

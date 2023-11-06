@@ -59,9 +59,12 @@ function AddSong({ modalOpen, closeModal }) {
           "image-id": imageId,
           "audiofile-id": audiofileId,
         },
-        [], // Lees rechten
-        [] // Schrijf rechten
+        [],
+        []
       );
+
+      alert("Het nummer is toegevoegd!");
+      window.location.reload();
     } catch (error) {
       console.error(
         "Er is een fout opgetreden bij het toevoegen van het nummer:",

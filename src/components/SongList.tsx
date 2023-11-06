@@ -53,15 +53,12 @@ const SongList = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-center dark:text-white text-black text-4xl font-bold font-main">
-        Music Manager
-      </h1>
-      <ul className="w-full">
+    <>
+      <ul className="w-fit border-2">
         {songs.map((song) => (
           <li
             key={song.$id}
-            className="flex items-center justify-between gap-10 "
+            className="flex items-center justify-between gap-14 border-b-2 p-5 "
           >
             <img
               src={getDownloadableFileURL(imageBucketId, song["image-id"])}
@@ -69,7 +66,9 @@ const SongList = () => {
               className="w-20"
             />
             <div>
-              <h3>{song.title}</h3>
+              <h3 className="text-black dark:text-white text-lg pb-5 font-main font-semibold">
+                {song.title}
+              </h3>
 
               <audio controls>
                 <source
@@ -91,7 +90,7 @@ const SongList = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
