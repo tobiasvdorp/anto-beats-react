@@ -4,10 +4,10 @@ import { useUser } from "@/lib/appwrite/user";
 // import { useState, FormEvent } from "react";
 // import { createUserAccount } from "@/lib/appwrite/api";
 // import { AppwriteException } from "appwrite";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // // State for storing form values
   // const [values, setValues] = useState({
@@ -62,10 +62,56 @@ const SignupForm = () => {
   //   }
   // }
   const user = useUser();
+  const [error, setError] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+  const handleSignup = async () => {
+    // Validate email
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long");
+      return;
+    }
+    if (name.length < 5) {
+      setError("Name must be at least 5 characters long");
+      return;
+    }
+    try {
+      await user.register(name, email, password);
+      navigate("/account-created");
+    } catch (err) {
+      if (
+        err.message.includes(
+          "user with the same id, email, or phone already exists"
+        )
+      ) {
+        setError("You already have an account.");
+      } else if (err.message.includes("Rate limit")) {
+        setError("Server is too busy... Try again later.");
+      } else if (
+        err.message.includes("Password must be at least 8 characters long")
+      ) {
+        setError(
+          "Password must be at least 8 characters long and should not be one of the commonly used passwords"
+        );
+      } else {
+        setError("Something went wrong. Try again later.");
+      }
+    }
+  };
+
+  // Eenvoudige e-mailvalidatie functie
+  function validateEmail(email) {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
   return (
     <>
       <form className="h-full flex flex-col gap-4 items-center justify-center px-5 w-96 max-w-full ">
@@ -121,8 +167,7 @@ const SignupForm = () => {
             }}
           />
         </label>
-        {/* {passwordError && <p className="text-red-600 -mt-3">{passwordError}</p>} */}
-
+        {error && <p className="text-red-600">{error}</p>}
         <p className="dark:text-white text-black">
           Already have an account?{" "}
           <Link
@@ -134,7 +179,7 @@ const SignupForm = () => {
         </p>
         <button
           type="button"
-          onClick={() => user.register(name, email, password)}
+          onClick={handleSignup}
           className="btn-secondary btn w-full font-bold text-lg"
         >
           Sign up
