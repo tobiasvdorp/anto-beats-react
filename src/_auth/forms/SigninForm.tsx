@@ -1,43 +1,34 @@
 import { Link } from "react-router-dom";
 import { useState, FormEvent } from "react";
+import { useUser } from "@/lib/appwrite/user";
 
-import { loginUser } from "@/lib/appwrite/api";
+// import { loginUser } from "@/lib/appwrite/api";
 import { ILoginCredentials } from "@/types";
-import { useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
-  const navigate = useNavigate();
-  const [credentials, setCredentials] = useState<ILoginCredentials>({
-    email: "",
-    password: "",
-  });
+  const user = useUser();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError("");
-
+  const handleLogin = async () => {
     try {
-      const session = await loginUser(credentials);
+      const session = await user.register(email, password);
+
       alert("Logged in!");
-    } catch (error) {
-      // If error says "invalid credentials", show "invalid credentials" error
-      // Otherwise, show "Something went wrong. Please try again later."
-      if (error.message.includes("invalid credentials")) {
+    } catch (err) {
+      if (err.message.includes("invalid credentials")) {
         setError("Invalid credentials");
       } else {
         setError("Something went wrong. Please try again later.");
       }
     }
-  }
+  };
 
   return (
     <>
-      <form
-        className="h-full flex flex-col gap-4 items-center justify-center px-5 w-96 max-w-full "
-        onSubmit={handleSubmit}
-      >
+      <form className="h-full flex flex-col gap-4 items-center justify-center px-5 w-96 max-w-full ">
         <h1 className="dark:text-white text-black text-4xl font-bold font-main">
           Sign in <br />
         </h1>
@@ -52,9 +43,10 @@ const SigninForm = () => {
             id="email"
             required
             className="inputform"
-            onChange={(e) =>
-              setCredentials({ ...credentials, email: e.target.value })
-            }
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
           />
         </label>
         <label
@@ -67,9 +59,9 @@ const SigninForm = () => {
             id="password"
             required
             className="inputform"
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value })
-            }
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
           />
         </label>
 
@@ -85,7 +77,11 @@ const SigninForm = () => {
           </Link>
         </p>
 
-        <button type="submit" className="btn-secondary btn w-full text-lg">
+        <button
+          type="button"
+          className="btn-secondary btn w-full text-lg"
+          onClick={handleLogin}
+        >
           Sign in
         </button>
       </form>
