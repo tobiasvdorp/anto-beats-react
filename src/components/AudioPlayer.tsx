@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { database, storage } from "@/lib/appwrite/config";
+import { useState, useRef, useEffect } from "react";
+import { database, storage, account } from "@/lib/appwrite/config";
 import Song from "./Song"; // Zorg ervoor dat dit pad klopt
 import BottomUI from "./BottomUI"; // Zorg ervoor dat dit pad klopt
 
@@ -10,7 +10,22 @@ const AudioPlayer = () => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [songDurations, setSongDurations] = useState({});
-  const userId = "6544fc6d0f3d1100ed33";
+
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const user = await account.get();
+        setUserId(user.$id);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   const audioRef = useRef(new Audio());
 
   const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
@@ -201,7 +216,7 @@ const AudioPlayer = () => {
             formatTime={formatTime}
             songDurations={songDurations}
             deleteSong={deleteSong}
-            userId={userId} // Voeg de userId prop toe
+            userId={userId}
           />
         ))}
       </div>
