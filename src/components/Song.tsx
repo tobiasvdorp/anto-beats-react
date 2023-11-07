@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { AiOutlineDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai"; // Importeer het harticoon voor de like-knop
-import { likeSong } from "@/lib/appwrite/api";
+import { likeSong, getSong } from "@/lib/appwrite/api"; // Zorg ervoor dat je een functie hebt om een nummer op te halen
 
 const Song = ({
   song,
+  userId,
   index,
   changeSong,
   isPlaying,
@@ -12,28 +13,47 @@ const Song = ({
   songDurations,
   deleteSong,
 }) => {
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [likes, setLikes] = useState(
-    song["liked-by"] ? song["liked-by"].length : 0
-  );
+  const [likes, setLikes] = useState(0);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false); // State om bij te houden of de afbeelding geladen is
+  const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
+  const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
 
-  const [hasLiked, setHasLiked] = useState(
-    song["liked-by"] && song["liked-by"].includes("6544fc6d0f3d1100ed33")
-  );
+  useEffect(() => {
+    const fetchSongData = async () => {
+      try {
+        const fetchedSong = await getSong(
+          databaseId,
+          songsCollectionId,
+          song.id
+        );
+        if (fetchedSong && Array.isArray(fetchedSong["liked-by"])) {
+          setLikes(fetchedSong["liked-by"].length);
+          // Controleer of de gebruiker het nummer al heeft geliket
+          const userHasLiked = fetchedSong["liked-by"].includes(userId);
+          // Gebruik het resultaat van de controle om de hasLiked state in te stellen
+          setHasLiked(userHasLiked);
+        }
+      } catch (error) {
+        console.error("Kon de song data niet ophalen:", error);
+      }
+    };
+
+    fetchSongData();
+  }, [song.id, userId]);
 
   const handleLike = async () => {
     try {
-      // Vervang 'userId' met de daadwerkelijke ID van de ingelogde gebruiker
-      const userId = "6544fc6d0f3d1100ed33"; // Dit moet je ophalen uit de gebruikerssessie of context
-
       if (typeof song.id === "string") {
         const updatedSong = await likeSong(userId, song.id);
         setLikes(updatedSong["liked-by"].length); // Update de likes state met het aantal gebruikers die geliket hebben
-        setHasLiked(updatedSong["liked-by"].includes("6544fc6d0f3d1100ed33"));
+        setHasLiked(updatedSong["liked-by"].includes(userId)); // Gebruik de prop `userId` hier
       } else {
         throw new Error("Song ID is ongeldig of ontbreekt");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error in handleLike:", error);
+    }
   };
 
   return (

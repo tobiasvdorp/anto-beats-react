@@ -3,6 +3,21 @@ import { database } from "@/lib/appwrite/config";
 // Zorg ervoor dat je de juiste environment variabelen hebt geïmporteerd
 const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
 const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
+
+export async function getSong(databaseId, songsCollectionId, songId) {
+  try {
+    const song = await database.getDocument(
+      databaseId,
+      songsCollectionId,
+      songId
+    );
+    return song; // Dit object bevat alle gegevens van het nummer, inclusief de 'liked-by' array
+  } catch (error) {
+    console.error("Error getting song:", error);
+    throw error;
+  }
+}
+
 export async function likeSong(userId, songId) {
   try {
     const song = await database.getDocument(

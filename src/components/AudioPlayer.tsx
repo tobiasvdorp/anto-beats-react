@@ -10,7 +10,7 @@ const AudioPlayer = () => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [songDurations, setSongDurations] = useState({});
-
+  const userId = "6544fc6d0f3d1100ed33";
   const audioRef = useRef(new Audio());
 
   const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
@@ -201,6 +201,7 @@ const AudioPlayer = () => {
             formatTime={formatTime}
             songDurations={songDurations}
             deleteSong={deleteSong}
+            userId={userId} // Voeg de userId prop toe
           />
         ))}
       </div>
