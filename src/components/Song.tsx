@@ -18,8 +18,6 @@ const Song = ({
   );
 
   const handleLike = async () => {
-    console.log("handleLike song.id:", song.id); // Voeg deze regel toe om te debuggen
-
     try {
       // Vervang 'userId' met de daadwerkelijke ID van de ingelogde gebruiker
       const userId = "6544fc6d0f3d1100ed33"; // Dit moet je ophalen uit de gebruikerssessie of context
@@ -30,9 +28,7 @@ const Song = ({
       } else {
         throw new Error("Song ID is ongeldig of ontbreekt");
       }
-    } catch (error) {
-      console.error("Kon het nummer niet liken:", error);
-    }
+    } catch (error) {}
   };
 
   return (
