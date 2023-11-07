@@ -44,7 +44,7 @@ const BottomUI = ({
           max={duration}
           value={currentTime}
           onChange={(e) => setAudioTime(e.target.value)}
-          className="w-full cursor-pointer duration-300 border-none p-1 rounded-full overflow-hidden appearance-none h-[20px]"
+          className="w-full cursor-pointer duration-300 border-none p-1 rounded-full overflow-hidden appearance-none h-[20px] bg-gradient-to-r from-secondary via-primary to-secondary"
         />
       </div>
 

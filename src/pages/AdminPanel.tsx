@@ -1,5 +1,4 @@
 import AudioPlayer from "@/components/AudioPlayer";
-import SongList from "@/components/SongList";
 import AddSong from "@/components/modals/AddSong";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -26,7 +25,6 @@ const AdminPanel = () => {
         <AiOutlinePlus className="text-xl" /> Nieuw nummer
       </button>
 
-      <SongList />
       <AudioPlayer />
     </div>
   );
