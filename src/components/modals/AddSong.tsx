@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { database, storage } from "@/lib/appwrite/config";
 import { AiOutlineClose } from "react-icons/ai";
-
+import Alert from "@/components/ui/alert";
 function AddSong({ modalOpen, closeModal }) {
   const [title, setTitle] = useState("[song title] - Anto");
   const [image, setImage] = useState(null);
   const [audio, setAudio] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
   const collectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
   const audioBucketId = import.meta.env.VITE_APPWRITE_AUDIOFILES_BUCKET_ID;
@@ -65,89 +66,96 @@ function AddSong({ modalOpen, closeModal }) {
         []
       );
 
-      alert("Het nummer is toegevoegd!");
-      window.location.reload();
+      setShowAlert(true);
+      setAlertMessage("Song added successfully! Reload the page to see it.");
+      // hide alert after 3 seconds
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
     } catch (error) {
       console.error(
         "Er is een fout opgetreden bij het toevoegen van het nummer:",
         error
       );
     } finally {
-      setLoading(false); // Zet laden uit aan het einde van de functie
+      setLoading(false);
     }
   }
 
   return (
-    <form className="flex flex-col justify-center items-center gap-4 fixed bg_background dark:bg-background_dark z-10 shadow-lg shadow-primary border-2 rounded-lg p-5">
-      <div className="flex justify-between w-full">
-        <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main">
-          Add song
-        </h2>{" "}
+    <>
+      <form className="flex flex-col justify-center items-center gap-4 fixed bg_background dark:bg-background_dark z-10 shadow-lg shadow-primary border-2 rounded-lg p-5">
+        <div className="flex justify-between w-full">
+          <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main">
+            Add song
+          </h2>{" "}
+          <button
+            onClick={closeModal}
+            className="bg-primary text-black btn btn-secondary p-2 min-h-0 h-8"
+          >
+            <AiOutlineClose />
+          </button>
+        </div>
+        <div className="w-full">
+          <label className="text-white">
+            Title: <br />
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="inputform"
+            />
+          </label>
+        </div>
+        <div>
+          <label className="text-white">
+            Image:
+            <br />
+            <input
+              type="file"
+              onChange={handleImageChange}
+              accept="image/*"
+              required
+              className="bg-secondary p-2 text-white rounded-md"
+            />
+          </label>
+        </div>
+        <div>
+          <label className="text-white">
+            Audio:
+            <br />
+            <input
+              type="file"
+              onChange={handleAudioChange}
+              accept="audio/*"
+              required
+              className="bg-secondary p-2 text-white rounded-md"
+            />
+          </label>
+        </div>
         <button
-          onClick={closeModal}
-          className="bg-primary text-black btn btn-secondary p-2 min-h-0 h-8"
+          type="button"
+          className="btn-secondary btn text-normal"
+          disabled={loading}
+          onClick={() => {
+            if (!loading) {
+              addSong(title, image, audio);
+            }
+          }}
         >
-          <AiOutlineClose />
+          {loading ? (
+            <>
+              <span className="loading loading-spinner loading-xs"></span>
+              Loading...
+            </>
+          ) : (
+            "Add song"
+          )}
         </button>
-      </div>
-      <div className="w-full">
-        <label>
-          Titel: <br />
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            className="inputform"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Afbeelding:
-          <br />
-          <input
-            type="file"
-            onChange={handleImageChange}
-            accept="image/*"
-            required
-            className="bg-secondary p-2 text-white rounded-md"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Audio:
-          <br />
-          <input
-            type="file"
-            onChange={handleAudioChange}
-            accept="audio/*"
-            required
-            className="bg-secondary p-2 text-white rounded-md"
-          />
-        </label>
-      </div>
-      <button
-        type="button"
-        className="btn-secondary btn text-normal"
-        disabled={loading}
-        onClick={() => {
-          if (!loading) {
-            addSong(title, image, audio);
-          }
-        }}
-      >
-        {loading ? (
-          <>
-            <span class="loading loading-spinner loading-xs"></span>
-            Loading...
-          </>
-        ) : (
-          "Add song"
-        )}
-      </button>
-    </form>
+      </form>
+      {showAlert && <Alert showAlert={showAlert} alertMessage={alertMessage} />}
+    </>
   );
 }
 

@@ -187,7 +187,7 @@ const AudioPlayer = () => {
   };
 
   return (
-    <div className="w-[100vw] mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5">
+    <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5">
       {" "}
       <div className="bg-black w-full overflow-y-scroll max-h-80">
         {songs.map((song, index) => (
@@ -205,9 +205,14 @@ const AudioPlayer = () => {
         ))}
       </div>
       <h3 className="text-white text-xl font-normal mt-5">
-        {songs.length > 0
-          ? `${songs[currentSongIndex].title} - Anto`
-          : "Geen nummer afspelend"}
+        {songs.length > 0 ? (
+          `${songs[currentSongIndex].title}`
+        ) : (
+          <>
+            <span className="loading loading-spinner loading-xs"></span> Loading
+            songs...
+          </>
+        )}
       </h3>
       <BottomUI
         togglePlay={togglePlay}

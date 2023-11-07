@@ -15,8 +15,8 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="flex justify-center h-screen pt-16">
-      <div className="flex flex-col items-center justify-center mt-auto mb-auto overflow-auto gap-2">
+    <div className="flex justify-center h-screen w-screen pt-16 px-2">
+      <div className="flex flex-col items-center justify-center mt-auto mb-auto overflow-auto gap-2 w-full">
         {modalOpen && <AddSong closeModal={closeModal} />}
 
         <h1 className="text-center dark:text-white text-black text-4xl font-bold font-main">

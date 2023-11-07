@@ -16,7 +16,7 @@ const Song = ({
         <button
           key={song.id}
           onClick={() => changeSong(index)}
-          className={`flex flex-row items-center text-white justify-between w-full p-4 border-2 border-primary hover:bg-primary duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold ${
+          className={`flex flex-row items-center text-white justify-between w-full px-4 py-3 border-2 border-primary hover:bg-primary duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold ${
             currentSongIndex === index && isPlaying ? "playing" : ""
           }`}
         >
@@ -24,7 +24,7 @@ const Song = ({
           <img
             src={song.image}
             alt={`Cover van ${song.title}`}
-            className="w-12 h-12 mr-4 object-cover rounded-full" // Stel de gewenste afmetingen in
+            className="w-16 h-16 mr-4 object-cover rounded-md"
           />
 
           <span className="text-black dark:text-white ">{song.title}</span>

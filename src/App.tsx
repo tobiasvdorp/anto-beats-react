@@ -10,6 +10,7 @@ import Home from "@/pages/Home";
 import { UserProvider } from "@/lib/appwrite/user";
 import Dashboard from "@/pages/Dashboard";
 import AdminPanel from "./pages/AdminPanel";
+import "animate.css";
 
 const App = () => {
   return (
