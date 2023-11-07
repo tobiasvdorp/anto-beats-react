@@ -42,7 +42,10 @@ const Song = ({
     fetchSongData();
   }, [song.id, userId]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleLike = async () => {
+    setIsLoading(true); // Start de loading state
     try {
       if (typeof song.id === "string") {
         const updatedSong = await likeSong(userId, song.id);
@@ -53,6 +56,8 @@ const Song = ({
       }
     } catch (error) {
       console.error("Error in handleLike:", error);
+    } finally {
+      setIsLoading(false); // Eindig de loading state ongeacht het resultaat
     }
   };
 
@@ -102,8 +107,10 @@ const Song = ({
             }}
             className="flex items-center gap-1"
           >
-            {/* Gebruik de hasLiked state om te bepalen welk icoon getoond moet worden */}
-            {hasLiked ? (
+            {isLoading ? (
+              // Toon een loader icoon of animatie
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : hasLiked ? (
               <AiFillHeart className="text-red-500 " />
             ) : (
               <AiOutlineHeart className="text-red-500 " />
