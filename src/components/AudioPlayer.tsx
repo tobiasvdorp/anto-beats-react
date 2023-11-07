@@ -9,7 +9,7 @@ const AudioPlayer = () => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [songDurations, setSongDurations] = useState({}); // Als dit een object is met song ID's als keys en durations als values
+  const [songDurations, setSongDurations] = useState({});
 
   const audioRef = useRef(new Audio());
 
@@ -206,11 +206,10 @@ const AudioPlayer = () => {
       </div>
       <h3 className="text-white text-xl font-normal mt-5">
         {songs.length > 0 ? (
-          `${songs[currentSongIndex].title}`
+          `${songs[currentSongIndex].title} - Anto`
         ) : (
           <>
-            <span className="loading loading-spinner loading-xs"></span> Loading
-            songs...
+            <span className="loading loading-spinner loading-xs"></span>
           </>
         )}
       </h3>

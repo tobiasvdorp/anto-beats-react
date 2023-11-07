@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { database, storage } from "@/lib/appwrite/config";
 import { AiOutlineClose } from "react-icons/ai";
+
 import Alert from "@/components/ui/alert";
-function AddSong({ modalOpen, closeModal }) {
+function AddSong({ className, closeModal }) {
   const [title, setTitle] = useState("[song title] - Anto");
   const [image, setImage] = useState(null);
   const [audio, setAudio] = useState(null);
@@ -46,17 +47,15 @@ function AddSong({ modalOpen, closeModal }) {
 
   // Aangepaste addSong functie
   async function addSong(title, imageFile, audioFile) {
-    setLoading(true); // Zet laden aan het begin van de functie
+    setLoading(true);
     try {
-      // Upload de afbeelding en het audiobestand en krijg hun ID's
       const imageId = await uploadImage(imageFile);
       const audiofileId = await uploadAudio(audioFile);
 
-      // Maak nu het document in de collectie met de verkregen ID's
       const songResult = await database.createDocument(
         databaseId,
         collectionId,
-        "unique()", // Dit zorgt voor een unieke ID voor het document
+        "unique()",
         {
           title: title,
           "image-id": imageId,
@@ -73,10 +72,7 @@ function AddSong({ modalOpen, closeModal }) {
         setShowAlert(false);
       }, 5000);
     } catch (error) {
-      console.error(
-        "Er is een fout opgetreden bij het toevoegen van het nummer:",
-        error
-      );
+      alert(error.message);
     } finally {
       setLoading(false);
     }
@@ -84,7 +80,7 @@ function AddSong({ modalOpen, closeModal }) {
 
   return (
     <>
-      <form className="flex flex-col justify-center items-center gap-4 fixed bg_background dark:bg-background_dark z-10 shadow-lg shadow-primary border-2 rounded-lg p-5">
+      <form className="flex flex-col justify-center items-center gap-4 fixed bg_background dark:bg-background_dark z-10 shadow-lg shadow-primary border-2 rounded-lg p-5 animate__fadeIn animate__animated animate__faster">
         <div className="flex justify-between w-full">
           <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main">
             Add song

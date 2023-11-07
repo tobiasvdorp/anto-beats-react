@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const Song = ({
@@ -10,6 +11,8 @@ const Song = ({
   songDurations,
   deleteSong,
 }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
   return (
     <>
       <div className="flex items-center gap-1">
@@ -20,11 +23,29 @@ const Song = ({
             currentSongIndex === index && isPlaying ? "playing" : ""
           }`}
         >
-          {/* Afbeelding */}
+          {/* Placeholder afbeelding */}
+          {!isImageLoaded && (
+            <div
+              role="status"
+              className="flex items-center justify-center h-full max-w-sm bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700"
+            >
+              <svg
+                className="w-16 h-16 text-gray-200 dark:text-gray-600"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 16 20"
+              ></svg>
+            </div>
+          )}
+          {/* Echte afbeelding */}
           <img
             src={song.image}
             alt={`Cover van ${song.title}`}
-            className="w-16 h-16 mr-4 object-cover rounded-md"
+            className={`w-16 h-16 mr-4 object-cover rounded-md ${
+              !isImageLoaded ? "hidden" : ""
+            }`} // Verberg de afbeelding tot deze geladen is
+            onLoad={() => setIsImageLoaded(true)} // Zet de state op true wanneer de afbeelding geladen is
           />
 
           <span className="text-black dark:text-white ">{song.title}</span>
