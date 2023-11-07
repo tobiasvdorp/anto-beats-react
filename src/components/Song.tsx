@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AiOutlineDelete, AiOutlineHeart } from "react-icons/ai"; // Importeer het harticoon voor de like-knop
+import { AiOutlineDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai"; // Importeer het harticoon voor de like-knop
 import { likeSong } from "@/lib/appwrite/api";
 
 const Song = ({
@@ -17,6 +17,10 @@ const Song = ({
     song["liked-by"] ? song["liked-by"].length : 0
   );
 
+  const [hasLiked, setHasLiked] = useState(
+    song["liked-by"] && song["liked-by"].includes("6544fc6d0f3d1100ed33")
+  );
+
   const handleLike = async () => {
     try {
       // Vervang 'userId' met de daadwerkelijke ID van de ingelogde gebruiker
@@ -25,6 +29,7 @@ const Song = ({
       if (typeof song.id === "string") {
         const updatedSong = await likeSong(userId, song.id);
         setLikes(updatedSong["liked-by"].length); // Update de likes state met het aantal gebruikers die geliket hebben
+        setHasLiked(updatedSong["liked-by"].includes("6544fc6d0f3d1100ed33"));
       } else {
         throw new Error("Song ID is ongeldig of ontbreekt");
       }
@@ -70,10 +75,20 @@ const Song = ({
           <span className="text-black dark:text-white">
             {songDurations[song.id] && formatTime(songDurations[song.id])}
           </span>
-          {/* Like knop en aantal likes */}
-          <div onClick={handleLike} className="flex items-center gap-1">
-            <AiOutlineHeart className="text-red-500" /> {/* Like icoon */}
-            <span>{likes} likes</span> {/* Toon het aantal likes */}
+          <div
+            onClick={(e) => {
+              e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
+              handleLike();
+            }}
+            className="flex items-center gap-1"
+          >
+            {/* Gebruik de hasLiked state om te bepalen welk icoon getoond moet worden */}
+            {hasLiked ? (
+              <AiFillHeart className="text-red-500 " />
+            ) : (
+              <AiOutlineHeart className="text-red-500 " />
+            )}
+            <span>{likes}</span>
           </div>
         </div>
       </button>
