@@ -29,6 +29,6 @@ html {
   background-color: rgb(0 0 15 / var(--tw-bg-opacity)) !important;
 }
 
-button.playing {
-  @apply bg-primary text-white border-none rounded-md font-semibold px-10 text-lg normal-case;
+.playing {
+  @apply bg-primary_dark text-white border-none rounded-md font-semibold px-8 text-lg normal-case;
 }

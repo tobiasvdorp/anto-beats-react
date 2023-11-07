@@ -203,32 +203,6 @@ const AudioPlayer = () => {
             deleteSong={deleteSong}
           />
         ))}
-        {songs.map((song, index) => (
-          <Song
-            key={song.id}
-            song={song}
-            index={index}
-            changeSong={setCurrentSongIndex}
-            isPlaying={isPlaying}
-            currentSongIndex={currentSongIndex}
-            formatTime={formatTime}
-            songDurations={songDurations}
-            deleteSong={deleteSong}
-          />
-        ))}
-        {songs.map((song, index) => (
-          <Song
-            key={song.id}
-            song={song}
-            index={index}
-            changeSong={setCurrentSongIndex}
-            isPlaying={isPlaying}
-            currentSongIndex={currentSongIndex}
-            formatTime={formatTime}
-            songDurations={songDurations}
-            deleteSong={deleteSong}
-          />
-        ))}
       </div>
       <h3 className="text-white text-xl font-normal mt-5">
         {songs.length > 0
