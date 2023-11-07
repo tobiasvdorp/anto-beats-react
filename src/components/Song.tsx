@@ -13,16 +13,20 @@ const Song = ({
   deleteSong,
 }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [likes, setLikes] = useState(song.likes || 0); // Begin met het aantal likes dat al in de song data staat
+  const [likes, setLikes] = useState(
+    song["liked-by"] ? song["liked-by"].length : 0
+  );
 
   const handleLike = async () => {
     console.log("handleLike song.id:", song.id); // Voeg deze regel toe om te debuggen
 
     try {
-      // Zorg ervoor dat song.id bestaat en een string is
+      // Vervang 'userId' met de daadwerkelijke ID van de ingelogde gebruiker
+      const userId = "6544fc6d0f3d1100ed33"; // Dit moet je ophalen uit de gebruikerssessie of context
+
       if (typeof song.id === "string") {
-        const updatedSong = await likeSong(song.id);
-        setLikes(updatedSong.likes);
+        const updatedSong = await likeSong(userId, song.id);
+        setLikes(updatedSong["liked-by"].length); // Update de likes state met het aantal gebruikers die geliket hebben
       } else {
         throw new Error("Song ID is ongeldig of ontbreekt");
       }
