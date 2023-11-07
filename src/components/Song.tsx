@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { AiOutlineDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai"; // Importeer het harticoon voor de like-knop
 import { likeSong, getSong } from "@/lib/appwrite/api"; // Zorg ervoor dat je een functie hebt om een nummer op te halen
-
+import { useUser } from "@/lib/appwrite/user";
+import { useNavigate } from "react-router-dom";
 const Song = ({
   song,
   userId,
@@ -18,7 +19,7 @@ const Song = ({
   const [isImageLoaded, setIsImageLoaded] = useState(false); // State om bij te houden of de afbeelding geladen is
   const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
   const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchSongData = async () => {
       try {
@@ -46,6 +47,11 @@ const Song = ({
 
   const handleLike = async () => {
     setIsLoading(true); // Start de loading state
+
+    if (!userId) {
+      navigate("/sign-in");
+      return;
+    }
     try {
       if (typeof song.id === "string") {
         const updatedSong = await likeSong(userId, song.id);
