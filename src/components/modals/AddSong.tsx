@@ -81,8 +81,9 @@ function AddSong({ className, closeModal }) {
   return (
     <>
       <form className="flex flex-col justify-center items-center gap-4 fixed bg_background dark:bg-background_dark z-10 shadow-lg shadow-primary border-2 rounded-lg p-5 animate__fadeIn animate__animated animate__faster">
+        {" "}
         <div className="flex justify-between w-full">
-          <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main">
+          <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main pb-5">
             Add song
           </h2>{" "}
           <button
@@ -132,7 +133,7 @@ function AddSong({ className, closeModal }) {
         </div>
         <button
           type="button"
-          className="btn-secondary btn text-normal"
+          className="btn-secondary btn text-normal mt-5"
           disabled={loading}
           onClick={() => {
             if (!loading) {
@@ -150,6 +151,7 @@ function AddSong({ className, closeModal }) {
           )}
         </button>
       </form>
+
       {showAlert && <Alert showAlert={showAlert} alertMessage={alertMessage} />}
     </>
   );
