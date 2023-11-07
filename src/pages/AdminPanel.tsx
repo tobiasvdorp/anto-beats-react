@@ -15,17 +15,22 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen gap-4 ">
-      {modalOpen && <AddSong closeModal={closeModal} />}
+    <div className="flex justify-center h-screen pt-16">
+      <div className="flex flex-col items-center justify-center mt-auto mb-auto overflow-auto gap-2">
+        {modalOpen && <AddSong closeModal={closeModal} />}
 
-      <h1 className="text-center dark:text-white text-black text-4xl font-bold font-main">
-        Music Manager
-      </h1>
-      <button className="btn btn-secondary text-lg" onClick={openModal}>
-        <AiOutlinePlus className="text-xl" /> Nieuw nummer
-      </button>
+        <h1 className="text-center dark:text-white text-black text-4xl font-bold font-main">
+          Music Manager
+        </h1>
+        <button
+          className="btn btn-secondary text-md py-0 min-h-0 h-10"
+          onClick={openModal}
+        >
+          <AiOutlinePlus className="text-lg" /> Add song
+        </button>
 
-      <AudioPlayer />
+        <AudioPlayer />
+      </div>
     </div>
   );
 };

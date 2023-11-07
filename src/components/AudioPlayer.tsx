@@ -187,7 +187,7 @@ const AudioPlayer = () => {
   };
 
   return (
-    <div className="w-[95vw] rounded-lg max-w-xl bg-secondary  items-center justify-center flex flex-col p-5">
+    <div className="w-[100vw] mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5">
       {" "}
       <div className="bg-black w-full overflow-y-scroll max-h-80">
         {songs.map((song, index) => (

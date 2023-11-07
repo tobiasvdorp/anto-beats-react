@@ -37,7 +37,7 @@ const Song = ({
             e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
             deleteSong(song.id);
           }}
-          className="btn btn-secondary p-0 w-12"
+          className="btn btn-secondary p-0 mr-1 w-12"
         >
           <AiOutlineDelete className="text-3xl" />
         </button>

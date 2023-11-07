@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { database, storage } from "@/lib/appwrite/config";
+import { AiOutlineClose } from "react-icons/ai";
+
 function AddSong({ modalOpen, closeModal }) {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("[song title] - Anto");
   const [image, setImage] = useState(null);
   const [audio, setAudio] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -77,11 +79,18 @@ function AddSong({ modalOpen, closeModal }) {
 
   return (
     <form className="flex flex-col justify-center items-center gap-4 fixed bg_background dark:bg-background_dark z-10 shadow-lg shadow-primary border-2 rounded-lg p-5">
-      <button onClick={closeModal}>X</button>
-      <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main">
-        Nieuw nummer
-      </h2>
-      <div>
+      <div className="flex justify-between w-full">
+        <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main">
+          Add song
+        </h2>{" "}
+        <button
+          onClick={closeModal}
+          className="bg-primary text-black btn btn-secondary p-2 min-h-0 h-8"
+        >
+          <AiOutlineClose />
+        </button>
+      </div>
+      <div className="w-full">
         <label>
           Titel: <br />
           <input
@@ -102,7 +111,7 @@ function AddSong({ modalOpen, closeModal }) {
             onChange={handleImageChange}
             accept="image/*"
             required
-            className="inputform"
+            className="bg-secondary p-2 text-white rounded-md"
           />
         </label>
       </div>
@@ -115,12 +124,13 @@ function AddSong({ modalOpen, closeModal }) {
             onChange={handleAudioChange}
             accept="audio/*"
             required
+            className="bg-secondary p-2 text-white rounded-md"
           />
         </label>
       </div>
       <button
         type="button"
-        className="btn-secondary btn text-lg"
+        className="btn-secondary btn text-normal"
         disabled={loading}
         onClick={() => {
           if (!loading) {
@@ -128,7 +138,14 @@ function AddSong({ modalOpen, closeModal }) {
           }
         }}
       >
-        {loading ? "Laden..." : "Voeg toe"}
+        {loading ? (
+          <>
+            <span class="loading loading-spinner loading-xs"></span>
+            Loading...
+          </>
+        ) : (
+          "Add song"
+        )}
       </button>
     </form>
   );
