@@ -49,9 +49,12 @@ const Song = ({
           />
 
           <span className="text-black dark:text-white ">{song.title}</span>
-          <span className="text-black dark:text-white">
-            {songDurations[song.id] && formatTime(songDurations[song.id])}
-          </span>
+          <div className="flex flex-col items-center justify-center">
+            <span className="text-black dark:text-white">
+              {songDurations[song.id] && formatTime(songDurations[song.id])}
+            </span>
+            <span>0 likes</span>
+          </div>
         </button>{" "}
         <button
           onClick={(e) => {
