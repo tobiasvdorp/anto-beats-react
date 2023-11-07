@@ -1,32 +1,37 @@
-import { ID } from "appwrite";
-import { INewUser, ILoginCredentials } from "@/types";
-import { account } from "./config";
+import { database } from "@/lib/appwrite/config";
 
-export async function createUserAccount(user: INewUser) {
+// Zorg ervoor dat je de juiste environment variabelen hebt geïmporteerd
+const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
+const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
+
+export async function likeSong(songId) {
   try {
-    const newAccount = await account.create(
-      ID.unique(),
-      user.email,
-      user.password,
-      user.name
+    // Controleer of songId een geldige waarde heeft
+    if (!songId) {
+      throw new Error("Geen geldig songId opgegeven.");
+    }
+
+    // Haal eerst het huidige nummer op om het aantal likes te krijgen
+    const song = await database.getDocument(
+      databaseId,
+      songsCollectionId,
+      songId
     );
 
-    return newAccount;
-  } catch (error) {
-    console.error("Error in createUserAccount:", error);
-    throw error; // Pass error to caller
-  }
-}
+    // Verhoog het aantal likes met 1
+    const updatedLikes = song.likes + 1;
 
-export async function loginUser(credentials: ILoginCredentials) {
-  try {
-    const session = await account.createEmailSession(
-      credentials.email,
-      credentials.password
+    // Update het document met het nieuwe aantal likes
+    const updatedSong = await database.updateDocument(
+      databaseId,
+      songsCollectionId,
+      songId,
+      { likes: updatedLikes }
     );
-    return session;
+
+    return updatedSong;
   } catch (error) {
-    console.log(error);
-    return error;
+    console.error("Error in likeSong:", error);
+    throw error; // Gooi de fout zodat deze kan worden afgehandeld in de UI
   }
 }
