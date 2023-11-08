@@ -188,9 +188,9 @@ const AudioPlayer = ({ isHome }) => {
   };
 
   return (
-    <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5">
+    <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5 mx-2">
       {" "}
-      <div className="bg-black w-full overflow-y-scroll h-96">
+      <div className="bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[60vh]">
         {songs.map((song, index) => (
           <Song
             key={song.id}

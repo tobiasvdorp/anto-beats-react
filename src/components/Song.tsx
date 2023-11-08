@@ -69,11 +69,11 @@ const Song = ({
   };
 
   return (
-    <div className="flex items-center gap-1 bg-gray-400 dark:bg-background_dark bg-gradient-to-l dark:from-background_dark dark:to-background_dark dark:via-background_dark_secondary">
+    <div className="flex bg-gray-400 dark:bg-background_dark bg-gradient-to-l dark:from-background_dark dark:to-background_dark dark:via-background_dark_secondary">
       <button
         key={song.id}
         onClick={() => changeSong(index)}
-        className={`flex flex-row items-center text-white justify-between w-full px-4 py-3 border-2 border-primary hover:bg-primary duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold ${
+        className={`flex flex-row items-center my-1 text-white justify-between w-full px-4 py-3 border-2 border-primary hover:bg-primary duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold ${
           currentSongIndex === index && isPlaying ? "playing" : ""
         }`}
       >
