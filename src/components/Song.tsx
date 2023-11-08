@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AiOutlineDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai"; // Importeer het harticoon voor de like-knop
 import { likeSong, getSong } from "@/lib/appwrite/api"; // Zorg ervoor dat je een functie hebt om een nummer op te halen
-import { useUser } from "@/lib/appwrite/user";
+
 import { useNavigate } from "react-router-dom";
 const Song = ({
   song,
@@ -13,6 +13,7 @@ const Song = ({
   formatTime,
   songDurations,
   deleteSong,
+  isHome,
 }) => {
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
@@ -125,15 +126,20 @@ const Song = ({
           </div>
         </div>
       </button>
-      <button
-        onClick={(e) => {
-          e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
-          deleteSong(song.id);
-        }}
-        className="btn btn-secondary p-0 mr-1 w-12"
-      >
-        <AiOutlineDelete className="text-3xl" />
-      </button>
+      {
+        // Als de pagina de home pagina is, toon dan de verwijder knop
+        isHome && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
+              deleteSong(song.id);
+            }}
+            className="btn btn-secondary p-0 mr-1 w-12"
+          >
+            <AiOutlineDelete className="text-3xl" />
+          </button>
+        )
+      }
     </div>
   );
 };

@@ -10,9 +10,8 @@ const AudioPlayer = () => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [songDurations, setSongDurations] = useState({});
-  const [isHome, setIsHome] = useState(true);
+  const [isHome, setIsHome] = useState(false);
   const [userId, setUserId] = useState(null);
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
