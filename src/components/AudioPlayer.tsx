@@ -190,7 +190,7 @@ const AudioPlayer = ({ isHome }) => {
   return (
     <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5">
       {" "}
-      <div className="bg-black w-full overflow-y-scroll max-h-96">
+      <div className="bg-black w-full overflow-y-scroll h-96">
         {songs.map((song, index) => (
           <Song
             key={song.id}
@@ -206,6 +206,12 @@ const AudioPlayer = ({ isHome }) => {
             isHome={isHome}
           />
         ))}
+        {/* If there are no songs, show loader */}
+        {songs.length === 0 && (
+          <div className="flex items-center justify-center h-full">
+            <span className="loading loading-lg"></span>
+          </div>
+        )}
       </div>
       <h3 className="text-white text-xl font-normal mt-5">
         {songs.length > 0 ? (
