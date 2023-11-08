@@ -69,7 +69,7 @@ const Song = ({
   };
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1 bg-gray-400 dark:bg-background_dark">
       <button
         key={song.id}
         onClick={() => changeSong(index)}
