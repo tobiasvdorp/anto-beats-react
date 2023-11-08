@@ -43,20 +43,6 @@ const AudioPlayer = () => {
     return storage.getFileDownload(bucketId, fileId);
   };
 
-  const handlePlayClick = () => {
-    // Probeer de audio af te spelen.
-    audioRef.current
-      .play()
-      .then(() => {
-        // Afspelen is gestart.
-        setIsPlaying(true);
-      })
-      .catch((error) => {
-        // Er is een fout opgetreden bij het starten van het afspelen.
-        console.error("Error playing song:", error);
-      });
-  };
-
   // Functie om de huidige tijd van de audio bij te werken
   const setAudioTime = (time) => {
     const audio = audioRef.current;

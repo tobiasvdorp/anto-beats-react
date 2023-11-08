@@ -42,20 +42,6 @@ const AudioPlayer = () => {
     return storage.getFileDownload(bucketId, fileId);
   };
 
-  const handlePlayClick = () => {
-    // Probeer de audio af te spelen.
-    audioRef.current
-      .play()
-      .then(() => {
-        // Afspelen is gestart.
-        setIsPlaying(true);
-      })
-      .catch((error) => {
-        // Er is een fout opgetreden bij het starten van het afspelen.
-        console.error("Error playing song:", error);
-      });
-  };
-
   // Functie om de huidige tijd van de audio bij te werken
   const setAudioTime = (time) => {
     const audio = audioRef.current;
@@ -186,19 +172,6 @@ const AudioPlayer = () => {
       audio.removeEventListener("ended", playNextSong);
     };
   }, [currentSongIndex, songs.length]);
-  const deleteSong = async (songId) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this song?"
-    );
-    if (!confirmed) return;
-
-    try {
-      await database.deleteDocument(databaseId, collectionId, songId);
-      setSongs(songs.filter((song) => song.id !== songId));
-    } catch (err) {
-      console.error("Error deleting song:", err.message);
-    }
-  };
 
   return (
     <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5">
@@ -214,7 +187,6 @@ const AudioPlayer = () => {
             currentSongIndex={currentSongIndex}
             formatTime={formatTime}
             songDurations={songDurations}
-            deleteSong={deleteSong}
             userId={userId}
             isHome={isHome}
           />
