@@ -3,14 +3,14 @@ import { database, storage, account } from "@/lib/appwrite/config";
 import Song from "./Song"; // Zorg ervoor dat dit pad klopt
 import BottomUI from "./BottomUI"; // Zorg ervoor dat dit pad klopt
 
-const AudioPlayer = () => {
+const AudioPlayer = ({ isHome }) => {
   const [songs, setSongs] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [songDurations, setSongDurations] = useState({});
-  const [isHome, setIsHome] = useState(true);
+
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -190,7 +190,7 @@ const AudioPlayer = () => {
   return (
     <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5">
       {" "}
-      <div className="bg-black w-full overflow-y-scroll max-h-80">
+      <div className="bg-black w-full overflow-y-scroll max-h-96">
         {songs.map((song, index) => (
           <Song
             key={song.id}

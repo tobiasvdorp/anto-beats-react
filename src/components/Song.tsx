@@ -69,7 +69,7 @@ const Song = ({
   };
 
   return (
-    <div className="flex items-center gap-1 bg-gray-400 dark:bg-background_dark">
+    <div className="flex items-center gap-1 bg-gray-400 dark:bg-background_dark bg-gradient-to-l dark:from-background_dark dark:to-background_dark dark:via-background_dark_secondary">
       <button
         key={song.id}
         onClick={() => changeSong(index)}
@@ -127,8 +127,8 @@ const Song = ({
         </div>
       </button>
       {
-        // Als de pagina de home pagina is, toon dan de verwijder knop
-        isHome && (
+        // Als de pagina de home pagina niet is, toon dan de verwijder knop
+        !isHome && (
           <button
             onClick={(e) => {
               e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
