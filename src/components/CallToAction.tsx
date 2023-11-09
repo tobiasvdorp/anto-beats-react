@@ -1,7 +1,7 @@
 function CallToAction() {
   return (
     <>
-      <div className="cta-container flex justify-center h-screen bg-[#0c0c2d] px-10">
+      <div className="cta-container flex justify-center h-screen bg-background_dark_secondary px-10">
         {/* Row container */}
         <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between justify-center flex-nowrap flex-shrink">
           <div>
