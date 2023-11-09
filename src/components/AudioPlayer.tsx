@@ -188,11 +188,11 @@ const AudioPlayer = ({ isHome }) => {
   };
 
   return (
-    <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5 mx-2">
+    <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary">
       <h2 className="text-white text-4xl font-main font-bold pb-4">
         MusicPlayer
       </h2>{" "}
-      <div className="bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[60vh]">
+      <div className="bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[60vh] border-2 border-primary px-1  ">
         {" "}
         {songs.map((song, index) => (
           <Song
@@ -218,7 +218,7 @@ const AudioPlayer = ({ isHome }) => {
       </div>
       <h3 className="text-white text-xl font-normal mt-5">
         {songs.length > 0 ? (
-          `${songs[currentSongIndex].title} - Anto`
+          `${songs[currentSongIndex].title}`
         ) : (
           <>
             <span className="loading loading-spinner loading-xs"></span>
