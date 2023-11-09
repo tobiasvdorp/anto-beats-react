@@ -6,8 +6,8 @@ function CallToAction() {
         <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between justify-center flex-nowrap flex-shrink">
           <div>
             {/* Text */}
-            <h1 className="font-semibold text-4xl text-black dark:text-white mb-8">
-              Pr<span className="text-secondary">o</span>d. by <br></br>{" "}
+            <h1 className="font-semibold text-4xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp">
+              Prod. by <br />
               <span className="font-extrabold text-9xl">ANTO</span>
             </h1>
 

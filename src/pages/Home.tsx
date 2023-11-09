@@ -30,7 +30,7 @@ const Home = () => {
         <ParallaxLayer
           offset={0.99}
           speed={2}
-          className="flex items-center justify-center mt-52"
+          className="flex items-center justify-center mt-60"
         >
           <AudioPlayer isHome={isHome} />
         </ParallaxLayer>
