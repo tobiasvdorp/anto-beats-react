@@ -192,7 +192,8 @@ const AudioPlayer = ({ isHome }) => {
       <h2 className="text-white text-4xl font-main font-bold pb-4">
         MusicPlayer
       </h2>{" "}
-      <div className="bg-black w-full  overflow-x-visible min-h-[20vh] max-h-[60vh]">
+      <div className="bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[60vh]">
+        {" "}
         {songs.map((song, index) => (
           <Song
             key={song.id}
