@@ -1,9 +1,9 @@
 function CallToAction() {
   return (
     <>
-      <div className="cta-container flex justify-center h-screen bg-[#000B76]">
+      <div className="cta-container flex justify-center h-screen bg-[#0c0c2d] px-10">
         {/* Row container */}
-        <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center justify-between flex-nowrap flex-shrink">
+        <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between justify-center flex-nowrap flex-shrink">
           <div>
             {/* Text */}
             <h1 className="font-semibold text-4xl text-black dark:text-white mb-8">
@@ -24,7 +24,7 @@ function CallToAction() {
           <img
             src="/astronaut.png"
             alt="astronaut"
-            className="hidden md:block"
+            className="hidden lg:block"
           />
         </div>
       </div>

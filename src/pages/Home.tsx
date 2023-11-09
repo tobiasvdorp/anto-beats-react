@@ -7,27 +7,30 @@ const Home = () => {
     <div className="max-w-7xl">
       <Parallax pages={5} className="dark:bg-background_dark bg-background">
         {/* Background */}
-        <ParallaxLayer offset={0} speed={0.2} factor={5} />
+        <ParallaxLayer offset={0} speed={0} factor={5} />
 
         {/* Call to action */}
-        <ParallaxLayer offset={0} speed={0.1} factor={0.8}>
+        <ParallaxLayer offset={0} speed={0.3} factor={0.8}>
           <CallToAction />
         </ParallaxLayer>
-        <ParallaxLayer
-          offset={0.7}
-          speed={1}
-          factor={0.5}
-          style={{
-            backgroundImage: `url(/background.svg)`,
-            backgroundSize: "cover",
-          }}
-        ></ParallaxLayer>
 
-        {/* About me  */}
+        {/* Waves */}
         <ParallaxLayer
-          offset={0.95}
+          offset={0.8}
           speed={1}
-          className="flex items-center justify-center bg-red-200"
+          factor={1}
+          style={{
+            backgroundImage: `url(/waves.svg)`,
+            backgroundSize: "contain",
+            backgroundRepeat: "repeat",
+          }}
+        />
+
+        {/* Audioplayer */}
+        <ParallaxLayer
+          offset={0.99}
+          speed={2}
+          className="flex items-center justify-center mt-52"
         >
           <AudioPlayer isHome={isHome} />
         </ParallaxLayer>
