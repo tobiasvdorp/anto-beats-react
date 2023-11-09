@@ -3,7 +3,7 @@ import { database, storage } from "@/lib/appwrite/config";
 import { AiOutlineClose } from "react-icons/ai";
 
 import Alert from "@/components/ui/alert";
-function AddSong({ className, closeModal }) {
+function AddSong({ closeModal }) {
   const [title, setTitle] = useState("[song title] - Anto");
   const [image, setImage] = useState(null);
   const [audio, setAudio] = useState(null);

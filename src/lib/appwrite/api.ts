@@ -1,4 +1,4 @@
-import { database } from "@/lib/appwrite/config";
+import { database, account } from "@/lib/appwrite/config";
 
 // Zorg ervoor dat je de juiste environment variabelen hebt geïmporteerd
 const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
@@ -60,3 +60,15 @@ export async function likeSong(userId, songId) {
     throw error;
   }
 }
+
+export const checkIfUserIsAdmin = async () => {
+  try {
+    const user = await account.get();
+
+    // Controleer of de gebruiker het label 'admin' heeft
+    return user.labels && user.labels.includes("admin");
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    return false;
+  }
+};
