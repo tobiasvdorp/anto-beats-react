@@ -11,16 +11,16 @@ module.exports = {
     extend: {
       colors: {
         // Definieer je kleuren in de extend sectie
-        background_dark: "#00000F",
+        background_dark: "#000105",
         background_dark_secondary: "#530084",
         background_dark_third: "#030e44",
         background_dark_4: "#1F69B2",
-        primary_dark: "#207EC5",
-        secondary_dark: "#072640",
-        accent_dark: "#4D96E0",
+        primary_dark: "#8256F0",
+        secondary_dark: "#15053D",
+        accent_dark: "#40D4B1",
 
         background: "#F6FAFE",
-        primary: "#3A97DF",
+        primary: "#8256F0",
         secondary: "#072640",
         accent: "#1F69B2",
 

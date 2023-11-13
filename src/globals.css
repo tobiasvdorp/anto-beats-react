@@ -13,6 +13,18 @@
   }
 }
 
+@font-face {
+  font-family: VTC;
+  src: url("/src/VTC-BadDrip.ttf") format("woff2");
+}
+
+h1 {
+  font-family: VTC;
+  color: red;
+}
+#title {
+  letter-spacing: 0.2em;
+}
 .inputform {
   @apply h-12 px-2 bg-secondary border-black text-white w-full mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary;
 }
