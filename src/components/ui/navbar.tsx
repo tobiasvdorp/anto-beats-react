@@ -103,7 +103,7 @@ export default function Navbar() {
               <>
                 <button
                   type="button"
-                  className="btn btn-secondary ml-2 text-normal w-20 p-0"
+                  className="btn btn-secondary ml-2 text-lg px-2 h-10 min-h-0"
                   onClick={() => user.logout()}
                 >
                   Sign out
@@ -112,7 +112,7 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/sign-in"
-                className="btn btn-secondary ml-2 text-lg px-3 min-h-0 h-10"
+                className="btn btn-secondary ml-2 text-lg px-2 min-h-0 h-10"
               >
                 Sign in
               </Link>
