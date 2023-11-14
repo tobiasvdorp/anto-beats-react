@@ -192,7 +192,7 @@ const AudioPlayer = ({ isHome }) => {
         </h2>{" "}
         <FaAngleRight className="text-2xl -rotate-45" />
       </div>
-      <div className="bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1  ">
+      <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1  ">
         {" "}
         {songs.map((song, index) => (
           <Song

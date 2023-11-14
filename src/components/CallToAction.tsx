@@ -3,17 +3,20 @@ import Atropos from "atropos/react";
 function CallToAction() {
   return (
     <>
-      <div className="cta-container flex justify-center h-screen bg-background_dark_secondary">
+      <div className="cta-container flex justify-center h-screen bg-background_dark_secondary x-10">
         {/* Row container */}
         <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between justify-center flex-nowrap flex-shrink">
-          <div>
+          <div className="ml-10 lg:ml-0 overflow-visible">
             {/* Text */}
             <h1
-              className="font-semibold text-4xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp"
+              className="font-semibold text-4xl md:text-5xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp"
               id="title"
             >
-              Prod. by <br />
-              <span className="font-extrabold text-9xl">ANTO</span>
+              <span id="title1">Prod. by </span>
+              <br />
+              <span className="font-extrabold text-9xl sm:text-[10rem]">
+                ANTO
+              </span>
             </h1>
 
             {/* Buttons */}

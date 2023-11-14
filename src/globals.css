@@ -57,3 +57,11 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
 }
+
+#title1 {
+  text-shadow: 3px 5px #8256f0, 3px 8px #40d4b1;
+}
+
+#title {
+  text-shadow: 10px 20px #8256f0, 20px 30px #40d4b1;
+}
