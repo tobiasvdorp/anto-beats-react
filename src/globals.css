@@ -44,3 +44,7 @@ html {
 .playing {
   @apply bg-primary_dark bg-gradient-to-t from-primary_dark via-background_dark_4 to-primary_dark text-white border-none rounded-md font-semibold px-8 text-lg normal-case !important;
 }
+
+.first-btn {
+  @apply bg-background_dark text-white  !important;
+}

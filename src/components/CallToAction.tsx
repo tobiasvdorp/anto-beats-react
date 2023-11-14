@@ -3,7 +3,7 @@ import Atropos from "atropos/react";
 function CallToAction() {
   return (
     <>
-      <div className="cta-container flex justify-center h-screen bg-background_dark_secondary px-10">
+      <div className="cta-container flex justify-center h-screen bg-background_dark_secondary">
         {/* Row container */}
         <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between justify-center flex-nowrap flex-shrink">
           <div>
@@ -19,13 +19,16 @@ function CallToAction() {
             {/* Buttons */}
             <div className="flex flex-row gap-2 p-1">
               <Atropos className="">
-                <a href="#" className="btn-secondary btn px-8 ">
-                  Listen
+                <a
+                  href="#"
+                  className="btn-secondary btn px-8 text-lg first-btn"
+                >
+                  Contact
                 </a>
               </Atropos>
               <Atropos>
-                <a href="#" className="btn-secondary btn px-10">
-                  Contact
+                <a href="#" className="btn-secondary btn px-10 text-lg">
+                  Listen
                 </a>
               </Atropos>
             </div>
@@ -34,7 +37,7 @@ function CallToAction() {
           <img
             src="/astronaut.png"
             alt="astronaut"
-            className="hidden lg:block"
+            className="hidden md:block w-[40vw] ml-10 max-w-[400px]  "
           />
         </div>
       </div>

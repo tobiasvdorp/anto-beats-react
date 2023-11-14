@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { database, storage, account } from "@/lib/appwrite/config";
 import Song from "./Song";
 import BottomUI from "./BottomUI";
-import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const AudioPlayer = ({ isHome }) => {
   const [songs, setSongs] = useState([]);
@@ -190,7 +190,7 @@ const AudioPlayer = ({ isHome }) => {
         <h2 className="text-white text-4xl font-main font-bold pb-4">
           MusicPlayer
         </h2>{" "}
-        <FaAngleLeft className="text-2xl rotate" />
+        <FaAngleRight className="text-2xl -rotate-45" />
       </div>
       <div className="bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[60vh] border-2 border-primary px-1  ">
         {" "}
