@@ -3,6 +3,7 @@ import { database, storage, account } from "@/lib/appwrite/config";
 import Song from "./Song";
 import BottomUI from "./BottomUI";
 import { FaAngleLeft } from "react-icons/fa";
+import { getSong } from "@/lib/appwrite/api";
 
 const AudioPlayer = ({ isHome }) => {
   const [songs, setSongs] = useState([]);
@@ -56,45 +57,31 @@ const AudioPlayer = ({ isHome }) => {
     const fetchSongs = async () => {
       try {
         const result = await database.listDocuments(databaseId, collectionId);
-        const fetchedSongs = result.documents.map((doc) => ({
-          id: doc.$id,
-          title: doc.title,
-          src: getAudioFileURL(doc["audiofile-id"]),
-          image: doc["image-id"]
-            ? getDownloadableFileURL(imageBucketId, doc["image-id"])
-            : "defaultImageURL", // Voeg een default image URL toe als fallback
+        const songPromises = result.documents.map((doc) =>
+          getSong(databaseId, collectionId, doc.$id)
+        );
+
+        const songsData = await Promise.all(songPromises);
+        const fetchedSongs = songsData.map((songData) => ({
+          ...songData,
+          src: getAudioFileURL(songData["audiofile-id"]),
+          image: songData["image-id"]
+            ? getDownloadableFileURL(imageBucketId, songData["image-id"])
+            : "defaultImageURL",
+          likes: songData["liked-by"] ? songData["liked-by"].length : 0,
+          hasLiked: songData["liked-by"]
+            ? songData["liked-by"].includes(userId)
+            : false,
         }));
 
         setSongs(fetchedSongs);
-
-        Promise.all(
-          fetchedSongs.map((song) => {
-            return new Promise((resolve) => {
-              const audio = new Audio();
-              audio.src = song.src;
-              audio.addEventListener("loadedmetadata", () => {
-                resolve({ id: song.id, duration: audio.duration });
-              });
-            });
-          })
-        )
-          .then((durations) => {
-            const newSongDurations = {};
-            durations.forEach((songDuration) => {
-              newSongDurations[songDuration.id] = songDuration.duration;
-            });
-            setSongDurations(newSongDurations);
-          })
-          .catch((error) => {
-            console.error("Error loading song durations:", error);
-          });
       } catch (error) {
         console.error("Error fetching songs:", error);
       }
     };
 
     fetchSongs();
-  }, [databaseId, collectionId, audioBucketId, imageBucketId]); // Voeg imageBucketId toe aan de dependency array
+  }, [databaseId, collectionId, audioBucketId, imageBucketId, userId]);
 
   // Speel audio af of pauzeer
   const togglePlay = () => {
@@ -212,6 +199,8 @@ const AudioPlayer = ({ isHome }) => {
             deleteSong={deleteSong}
             userId={userId}
             isHome={isHome}
+            likes={song.likes}
+            hasLiked={song.hasLiked}
           />
         ))}
         {/* If there are no songs, show loader */}
