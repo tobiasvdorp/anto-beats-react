@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "@/lib/appwrite/user";
 import Atropos from "atropos/react";
+import { User, AppwriteError } from "@/types/index";
 
 const SigninForm = () => {
-  const user = useUser();
+  const user = useUser() as User;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,14 +18,16 @@ const SigninForm = () => {
     }
     try {
       const session = await user.login(email, password);
+      session();
     } catch (err) {
+      const error = err as AppwriteError;
+
       if (
-        // error message includes "Invalid credentials" or "at least 8 characters, say "Invalid credentials"
-        err.message.includes("Invalid credentials") ||
-        err.message.includes("at least 8 characters")
+        error.message.includes("Invalid credentials") ||
+        error.message.includes("at least 8 characters")
       ) {
         setError("Incorrect credentials.");
-      } else if (err.message.includes("Rate limit")) {
+      } else if (error.message.includes("Rate limit")) {
         setError("Server is too busy... Try again later.");
       } else {
         setError("Something went wrong. Please try again later.");
@@ -34,7 +37,7 @@ const SigninForm = () => {
 
   function validateEmail(email: string) {
     const re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      /^(([^<>()[]\\.,;:\s@"]+(\.[^<>()[]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 

@@ -3,19 +3,19 @@ import { useState } from "react";
 import { useUser } from "@/lib/appwrite/user"; // import { AppwriteException } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import Atropos from "atropos/react";
+import { User, AppwriteError } from "@/types/index";
 
 const SignupForm = () => {
   const navigate = useNavigate();
-
-  const user = useUser();
+  const user = useUser() as User;
   const [error, setError] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
   const handleSignup = async () => {
     setError("");
+
     // Validate email
     if (!validateEmail(email)) {
       setError("Please enter a valid email address");
@@ -34,22 +34,24 @@ const SignupForm = () => {
       await user.register(email, password, name);
       navigate("/account-created");
     } catch (err) {
+      const error = err as AppwriteError;
+
       if (
-        err.message.includes(
+        error.message.includes(
           "user with the same id, email, or phone already exists"
         )
       ) {
         setError("You already have an account.");
-      } else if (err.message.includes("Rate limit")) {
+      } else if (error.message.includes("Rate limit")) {
         setError("Server is too busy... Try again later.");
       } else if (
-        err.message.includes("Password must be at least 8 characters long")
+        error.message.includes("Password must be at least 8 characters long")
       ) {
         setError(
           "Password must be at least 8 characters long and should not be one of the commonly used passwords"
         );
       } else {
-        setError(err.message);
+        setError(error.message);
       }
     }
   };
@@ -57,7 +59,7 @@ const SignupForm = () => {
   // Email validation function
   function validateEmail(email: string) {
     const re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      /^(([^<>()[]\\.,;:\s@"]+(\.[^<>()[]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
   return (
