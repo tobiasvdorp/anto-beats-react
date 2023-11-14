@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { database, storage } from "@/lib/appwrite/config";
 import { AiOutlineClose } from "react-icons/ai";
-
+import { VoidFunction, ChangeEventHandler } from "@/types";
 import Alert from "@/components/ui/alert";
-function AddSong({ closeModal }) {
+
+function AddSong({ closeModal }: { closeModal: VoidFunction }) {
   const [title, setTitle] = useState("[song title] - Anto");
-  const [image, setImage] = useState(null);
-  const [audio, setAudio] = useState(null);
+  const [image, setImage] = useState<File | null>(null);
+  const [audio, setAudio] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -15,16 +16,20 @@ function AddSong({ closeModal }) {
   const audioBucketId = import.meta.env.VITE_APPWRITE_AUDIOFILES_BUCKET_ID;
   const imageBucketId = import.meta.env.VITE_APPWRITE_IMAGES_BUCKET_ID;
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+  const handleImageChange: ChangeEventHandler = (e) => {
+    if (e.target.files) {
+      setImage(e.target.files[0]);
+    }
   };
 
-  const handleAudioChange = (e) => {
-    setAudio(e.target.files[0]);
+  const handleAudioChange: ChangeEventHandler = (e) => {
+    if (e.target.files) {
+      setAudio(e.target.files[0]);
+    }
   };
 
   // Functie om een afbeeldingsbestand te uploaden
-  async function uploadImage(file) {
+  async function uploadImage(file: File) {
     try {
       const result = await storage.createFile(imageBucketId, "unique()", file);
       return result.$id; // De ID van het geüploade bestand
@@ -35,7 +40,7 @@ function AddSong({ closeModal }) {
   }
 
   // Functie om een audiobestand te uploaden
-  async function uploadAudio(file) {
+  async function uploadAudio(file: File) {
     try {
       const result = await storage.createFile(audioBucketId, "unique()", file);
       return result.$id; // De ID van het geüploade bestand
@@ -46,13 +51,13 @@ function AddSong({ closeModal }) {
   }
 
   // Aangepaste addSong functie
-  async function addSong(title, imageFile, audioFile) {
+  async function addSong(title: string, imageFile: File, audioFile: File) {
     setLoading(true);
     try {
       const imageId = await uploadImage(imageFile);
       const audiofileId = await uploadAudio(audioFile);
 
-      const songResult = await database.createDocument(
+      await database.createDocument(
         databaseId,
         collectionId,
         "unique()",
@@ -61,7 +66,6 @@ function AddSong({ closeModal }) {
           "image-id": imageId,
           "audiofile-id": audiofileId,
         },
-        [],
         []
       );
 
@@ -72,7 +76,9 @@ function AddSong({ closeModal }) {
         setShowAlert(false);
       }, 5000);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -136,7 +142,23 @@ function AddSong({ closeModal }) {
           className="btn-secondary btn text-normal mt-5"
           disabled={loading}
           onClick={() => {
-            if (!loading) {
+            if (loading) return;
+
+            if (!title) {
+              alert("Please enter a title for the song.");
+              return;
+            }
+            if (!image) {
+              alert("Please select an image file.");
+              return;
+            }
+            if (!audio) {
+              alert("Please select an audio file.");
+              return;
+            }
+
+            // Voer addSong uit als alle velden ingevuld zijn
+            if (image instanceof File && audio instanceof File) {
               addSong(title, image, audio);
             }
           }}
@@ -152,7 +174,7 @@ function AddSong({ closeModal }) {
         </button>
       </form>
 
-      {showAlert && <Alert showAlert={showAlert} alertMessage={alertMessage} />}
+      {showAlert && <Alert alertMessage={alertMessage} />}
     </>
   );
 }
