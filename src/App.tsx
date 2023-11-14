@@ -11,6 +11,7 @@ import { UserProvider } from "@/lib/appwrite/user";
 import Dashboard from "@/pages/Dashboard";
 import AdminPanel from "./pages/AdminPanel";
 import "animate.css";
+import "atropos/atropos.css";
 
 const App = () => {
   return (
