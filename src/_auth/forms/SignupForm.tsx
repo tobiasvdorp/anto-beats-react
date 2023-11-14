@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useUser } from "@/lib/appwrite/user";
-// import { useState, FormEvent } from "react";
-// import { createUserAccount } from "@/lib/appwrite/api";
-// import { AppwriteException } from "appwrite";
+import { useUser } from "@/lib/appwrite/user"; // import { AppwriteException } from "appwrite";
 import { useNavigate } from "react-router-dom";
+import Atropos from "atropos/react";
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -32,11 +30,6 @@ const SignupForm = () => {
       return;
     }
 
-    // if name contains spaces, return error
-    // if (name.includes(" ")) {
-    //   setError("Name must not contain spaces");
-    //   return;
-    // }
     try {
       await user.register(email, password, name);
       navigate("/account-created");
@@ -132,13 +125,15 @@ const SignupForm = () => {
             Sign in
           </Link>
         </p>
-        <button
-          type="button"
-          onClick={handleSignup}
-          className="btn-secondary btn w-full font-bold text-lg"
-        >
-          Sign up
-        </button>
+        <Atropos className="w-full overflow-visible p-2">
+          <button
+            type="button"
+            onClick={handleSignup}
+            className="btn-secondary btn w-full font-bold text-lg"
+          >
+            Sign up
+          </button>
+        </Atropos>
       </form>
     </>
   );

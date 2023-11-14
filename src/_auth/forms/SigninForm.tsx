@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, FormEvent } from "react";
 import { useUser } from "@/lib/appwrite/user";
-
-// import { loginUser } from "@/lib/appwrite/api";
+import Atropos from "atropos/react";
 
 const SigninForm = () => {
   const user = useUser();
@@ -89,14 +88,15 @@ const SigninForm = () => {
             Sign up
           </Link>
         </p>
-
-        <button
-          type="button"
-          className="btn-secondary btn w-full text-lg"
-          onClick={handleLogin}
-        >
-          Sign in
-        </button>
+        <Atropos className="w-full p-1">
+          <button
+            type="button"
+            className="btn-secondary btn w-full text-lg"
+            onClick={handleLogin}
+          >
+            Sign in
+          </button>
+        </Atropos>
       </form>
     </>
   );

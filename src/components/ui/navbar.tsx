@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { Link } from "react-router-dom";
 import { useUser } from "@/lib/appwrite/user";
+import Atropos from "atropos/react";
 
 export default function Navbar() {
   const user = useUser();
@@ -101,21 +102,25 @@ export default function Navbar() {
           <div className="lg:block hidden">
             {user.current ? (
               <>
-                <button
-                  type="button"
-                  className="btn btn-secondary ml-2 text-lg px-2 h-10 min-h-0"
-                  onClick={() => user.logout()}
-                >
-                  Sign out
-                </button>
+                <Atropos>
+                  <button
+                    type="button"
+                    className="btn btn-secondary ml-2 text-lg px-2 h-10 min-h-0"
+                    onClick={() => user.logout()}
+                  >
+                    Sign out
+                  </button>
+                </Atropos>
               </>
             ) : (
-              <Link
-                to="/sign-in"
-                className="btn btn-secondary ml-2 text-lg px-2 min-h-0 h-10"
-              >
-                Sign in
-              </Link>
+              <Atropos>
+                <Link
+                  to="/sign-in"
+                  className="btn btn-secondary ml-2 text-lg px-2 min-h-0 h-10"
+                >
+                  Sign in
+                </Link>
+              </Atropos>
             )}
           </div>
         </div>

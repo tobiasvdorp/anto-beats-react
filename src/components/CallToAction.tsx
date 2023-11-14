@@ -1,3 +1,5 @@
+import Atropos from "atropos/react";
+
 function CallToAction() {
   return (
     <>
@@ -15,15 +17,20 @@ function CallToAction() {
             </h1>
 
             {/* Buttons */}
-            <div className="flex flex-row gap-2">
-              <a href="#" className="btn-secondary btn px-8">
-                Listen
-              </a>
-              <a href="#" className="btn-secondary btn px-10">
-                Contact
-              </a>
+            <div className="flex flex-row gap-2 p-1">
+              <Atropos className="">
+                <a href="#" className="btn-secondary btn px-8 ">
+                  Listen
+                </a>
+              </Atropos>
+              <Atropos>
+                <a href="#" className="btn-secondary btn px-10">
+                  Contact
+                </a>
+              </Atropos>
             </div>
           </div>
+
           <img
             src="/astronaut.png"
             alt="astronaut"
