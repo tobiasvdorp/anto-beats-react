@@ -11,17 +11,12 @@ const AudioPlayer = ({ isHome }) => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [songDurations, setSongDurations] = useState({});
-
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const user = await account.get();
-        setUserId(user.$id);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
+      const user = await account.get();
+      setUserId(user.$id);
     };
 
     fetchUser();

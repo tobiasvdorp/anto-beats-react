@@ -68,7 +68,6 @@ export const checkIfUserIsAdmin = async () => {
     // Controleer of de gebruiker het label 'admin' heeft
     return user.labels && user.labels.includes("admin");
   } catch (error) {
-    console.error("Error fetching user data:", error);
     return false;
   }
 };
