@@ -116,11 +116,11 @@ const Song = ({
           >
             {isLoading ? (
               // Toon een loader icoon of animatie
-              <span className="loading loading-spinner loading-xs"></span>
+              <span className="loading loading-spinner loading-xs text-accent_dark"></span>
             ) : hasLiked ? (
-              <AiFillHeart className="text-red-500 " />
+              <AiFillHeart className="text-accent_dark " />
             ) : (
-              <AiOutlineHeart className="text-red-500 " />
+              <AiOutlineHeart className="text-accent_dark " />
             )}
             <span>{likes}</span>
           </div>
