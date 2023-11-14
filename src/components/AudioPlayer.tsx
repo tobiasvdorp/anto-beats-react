@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { database, storage, account } from "@/lib/appwrite/config";
-import Song from "./Song"; // Zorg ervoor dat dit pad klopt
-import BottomUI from "./BottomUI"; // Zorg ervoor dat dit pad klopt
+import Song from "./Song";
+import BottomUI from "./BottomUI";
+import { FaAngleLeft } from "react-icons/fa";
 
 const AudioPlayer = ({ isHome }) => {
   const [songs, setSongs] = useState([]);
@@ -36,10 +37,10 @@ const AudioPlayer = ({ isHome }) => {
   const imageBucketId = import.meta.env.VITE_APPWRITE_IMAGES_BUCKET_ID;
 
   // Functie om de URL van het audiobestand te krijgen
-  const getAudioFileURL = (fileId) => {
+  const getAudioFileURL = (fileId: string) => {
     return storage.getFileDownload(audioBucketId, fileId);
   };
-  const getDownloadableFileURL = (bucketId, fileId) => {
+  const getDownloadableFileURL = (bucketId: string, fileId: string) => {
     return storage.getFileDownload(bucketId, fileId);
   };
 
@@ -189,9 +190,13 @@ const AudioPlayer = ({ isHome }) => {
 
   return (
     <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary">
-      <h2 className="text-white text-4xl font-main font-bold pb-4">
-        MusicPlayer
-      </h2>{" "}
+      <div className="flex items-start justify-between w-full">
+        <FaAngleLeft className="text-2xl rotate-45" />
+        <h2 className="text-white text-4xl font-main font-bold pb-4">
+          MusicPlayer
+        </h2>{" "}
+        <FaAngleLeft className="text-2xl rotate" />
+      </div>
       <div className="bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[60vh] border-2 border-primary px-1  ">
         {" "}
         {songs.map((song, index) => (

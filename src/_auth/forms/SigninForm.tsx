@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, FormEvent } from "react";
+import { useState } from "react";
 import { useUser } from "@/lib/appwrite/user";
 import Atropos from "atropos/react";
 
