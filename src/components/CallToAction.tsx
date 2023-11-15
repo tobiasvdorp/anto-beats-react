@@ -3,9 +3,9 @@ import Atropos from "atropos/react";
 function CallToAction() {
   return (
     <>
-      <div className="cta-container flex justify-center h-screen bg-background_dark_secondary x-10">
+      <div className="cta-container flex justify-center h-screen bg-background_dark_secondary ">
         {/* Row container */}
-        <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between justify-center flex-nowrap flex-shrink">
+        <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between lg:m-10 justify-center flex-nowrap flex-shrink">
           <div className="ml-10 lg:ml-0 overflow-visible">
             {/* Text */}
             <h1

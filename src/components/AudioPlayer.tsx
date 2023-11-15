@@ -188,7 +188,7 @@ const AudioPlayer = ({ isHome }) => {
       <div className="flex items-start justify-between w-full">
         <FaAngleLeft className="text-2xl rotate-45" />
         <h2 className="text-white text-4xl font-main font-bold pb-4">
-          MusicPlayer
+          Music player
         </h2>{" "}
         <FaAngleRight className="text-2xl -rotate-45" />
       </div>

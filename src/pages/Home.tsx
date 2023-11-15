@@ -38,8 +38,8 @@ const Home = () => {
 
         {/* Waves */}
         <ParallaxLayer
-          offset={1.1}
-          speed={1.4}
+          offset={1.3}
+          speed={1.7}
           factor={1.3}
           style={{
             backgroundImage: `url(/waves2.svg)`,
@@ -49,11 +49,7 @@ const Home = () => {
           className="flex items-center justify-center "
         ></ParallaxLayer>
         {/* DIV */}
-        <ParallaxLayer offset={1.2} factor={0.8} speed={1}>
-          <div className="bg-red-700 mt-96 flex items-center justify-center w-full">
-            ha
-          </div>
-        </ParallaxLayer>
+        <ParallaxLayer offset={1.2} factor={0.8} speed={1}></ParallaxLayer>
       </Parallax>
     </div>
   );

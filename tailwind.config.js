@@ -1,6 +1,5 @@
-// tailwind.config.js
 module.exports = {
-  darkMode: "class", // Dit zorgt ervoor dat dark mode geactiveerd wordt met een class
+  darkMode: "class",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -10,19 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Definieer je kleuren in de extend sectie
-        background_dark: "#000010",
-        background_dark_secondary: "#15053D",
-        background_dark_third: "#030e44",
-        background_dark_4: "#1F69B2",
-        primary_dark: "#8256F0",
-        secondary_dark: "#15053D",
-        accent_dark: "#40D4B1",
-
-        background: "#F6FAFE",
-        primary: "#8256F0",
-        secondary: "#072640",
-        accent: "#1F69B2",
+        background_dark: "#000010", // Blackish
+        background_dark_secondary: "#15053D", // CTA purple
+        background_dark_4: "#1F69B2", // Blueish for gradient
+        primary_dark: "#8256F0", // light purple
+        secondary_dark: "#15053D", // Dark purple
+        accent_dark: "#40D4B1", // Light green
+        secondary: "#072640", // dark blue
 
         black: "#00000F",
         white: "#F6FAFE",

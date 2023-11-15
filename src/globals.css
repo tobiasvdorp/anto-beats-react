@@ -4,10 +4,10 @@
 @tailwind utilities;
 
 @layer base {
-  body,
+  /* body,
   html {
     @apply bg-background dark:bg-background_dark;
-  }
+  } */
   html.dark body {
     @apply bg-background_dark;
   }
@@ -18,10 +18,12 @@
   src: url("/src/VTC-BadDrip.ttf") format("woff2");
 }
 
-h1 {
+h1,
+h2,
+#anto {
   font-family: VTC;
-  color: red;
 }
+
 #title {
   letter-spacing: 0.2em;
 }

@@ -1,4 +1,3 @@
-import { ModeToggle } from "@/components/mode-toggle";
 import { Link } from "react-router-dom";
 import { useUser } from "@/lib/appwrite/user";
 import Atropos from "atropos/react";
@@ -11,25 +10,27 @@ export default function Navbar() {
       <div className="navbar bg-background dark:bg-background_dark fixed z-10">
         <div className="navbar-start">
           <div className="dropdown">
-            <label
-              tabIndex={0}
-              className="btn btn-ghost lg:hidden text-black dark:text-white "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            <Atropos>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost lg:hidden text-black dark:text-white "
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </label>
+            </Atropos>
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-64"
@@ -72,12 +73,15 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <Link
-            to={"/"}
-            className="btn btn-ghost text-black dark:text-white opacity-90 normal-case text-3xl"
-          >
-            Anto
-          </Link>
+          <Atropos>
+            <Link
+              to={"/"}
+              id="anto"
+              className="text-white btn btn-ghost hover:bg-primary hover:text-black normal-case text-3xl "
+            >
+              Anto
+            </Link>
+          </Atropos>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-black dark:text-white">
@@ -98,7 +102,7 @@ export default function Navbar() {
         </div>
 
         <div className="navbar-end">
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <div className="lg:block hidden">
             {user.current ? (
               <>
@@ -108,7 +112,7 @@ export default function Navbar() {
                     className="btn btn-secondary ml-2 text-lg px-2 h-10 min-h-0"
                     onClick={() => user.logout()}
                   >
-                    Sign out
+                    Log out
                   </button>
                 </Atropos>
               </>
@@ -118,7 +122,7 @@ export default function Navbar() {
                   to="/sign-in"
                   className="btn btn-secondary ml-2 text-lg px-2 min-h-0 h-10"
                 >
-                  Sign in
+                  Log in
                 </Link>
               </Atropos>
             )}
