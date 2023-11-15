@@ -16,7 +16,7 @@ const BottomUI = ({
       <div className="flex flex-row flex-nowrap h-24">
         <button
           onClick={playPreviousSong}
-          className=" text-white rounded-full text-4xl md:text-3xl pb-1 md:hover:text-4xl duration-200"
+          className=" text-white rounded-full text-4xl md:text-3xl pb-1 duration-200"
         >
           <TbPlayerTrackPrev />
         </button>
@@ -24,7 +24,7 @@ const BottomUI = ({
         {/* Play/pause button */}
         <button
           onClick={togglePlay}
-          className=" text-white rounded-full text-5xl md:text-4xl pb-1 md:hover:text-5xl duration-200"
+          className=" text-white rounded-full text-6xl md:text-5xl  pb-1  duration-200"
         >
           {isPlaying ? <BsFillPauseFill /> : <BsFillPlayFill />}
         </button>
@@ -32,7 +32,7 @@ const BottomUI = ({
         {/* Next button */}
         <button
           onClick={playNextSong}
-          className=" text-white rounded-full text-4xl md:text-3xl pb-1 md:hover:text-4xl duration-200"
+          className=" text-white rounded-full text-4xl md:text-3xl pb-1  duration-200"
         >
           <TbPlayerTrackNext />
         </button>

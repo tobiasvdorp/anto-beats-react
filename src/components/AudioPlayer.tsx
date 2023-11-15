@@ -4,6 +4,8 @@ import Song from "./Song";
 import BottomUI from "./BottomUI";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import Atropos from "atropos/react";
+
+import SongSkeleton from "./ui/SongSkeleton";
 const AudioPlayer = ({ isHome }) => {
   const [songs, setSongs] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -187,12 +189,16 @@ const AudioPlayer = ({ isHome }) => {
     <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary_dark  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary max-h-[90vh] ">
       <div className="flex items-start justify-between w-full">
         <FaAngleLeft className="text-2xl rotate-45" />
-        <h2 className="text-white text-4xl font-main font-bold pb-4">
-          Music player
-        </h2>{" "}
+        {/* if ishome is true, show h2 */}
+        {isHome && (
+          <h2 className="text-white text-4xl font-main font-bold pb-4">
+            Music player
+          </h2>
+        )}
+
         <FaAngleRight className="text-2xl -rotate-45" />
       </div>
-      <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1  ">
+      <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1 ">
         {" "}
         {songs.map((song, index) => (
           <Song
@@ -211,9 +217,10 @@ const AudioPlayer = ({ isHome }) => {
         ))}
         {/* If there are no songs, show loader */}
         {songs.length === 0 && (
-          <div className="flex items-center justify-center h-full">
-            <span className="loading loading-lg"></span>
-          </div>
+          <>
+            <SongSkeleton /> <SongSkeleton />
+            <SongSkeleton /> <SongSkeleton />
+          </>
         )}
       </div>
       <h3 className="text-white text-xl font-normal mt-5">
