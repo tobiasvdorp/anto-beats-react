@@ -65,3 +65,26 @@ input[type="range"]::-webkit-slider-thumb {
 #title {
   text-shadow: 10px 20px #8256f0, 20px 30px #40d4b1;
 }
+
+@layer components {
+  .depth-transform {
+    @apply transform;
+    transform: perspective(2000px) rotateY(35deg);
+    transition: all 1s ease;
+  }
+  .depth-transform-2 {
+    @apply transform;
+    transform: perspective(2000px) rotateY(-35deg);
+    transition: all 1s ease;
+  }
+  /* Normal on hover */
+  .depth-transform:hover {
+    @apply transform;
+    transform: perspective(600px) rotateY(0deg);
+    transition: all 0.9s ease;
+  }
+}
+
+.atropos-shadow {
+  display: none !important;
+}

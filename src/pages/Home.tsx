@@ -6,7 +6,7 @@ import AboutMe from "@/components/AboutMe";
 const Home = () => {
   const isHome = true;
   return (
-    <div className="max-w-7xl">
+    <div className="max-w-7xl flex">
       <Parallax pages={5} className="dark:bg-background_dark bg-background">
         {/* <ParallaxLayer className="z-100" offset={0} factor={5}>
           <RandomDots className="z-100" />
@@ -27,7 +27,7 @@ const Home = () => {
           style={{
             backgroundImage: `url(/waves.svg)`,
             backgroundSize: "contain",
-            backgroundRepeat: "repeat",
+            backgroundRepeat: "repeat-x",
           }}
         />
 
@@ -45,7 +45,7 @@ const Home = () => {
         <ParallaxLayer
           offset={1.2}
           speed={1.8}
-          factor={1.3}
+          factor={2.5}
           style={{
             backgroundImage: `url(/waves2.svg)`,
             backgroundSize: "contain",
