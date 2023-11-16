@@ -4,7 +4,11 @@ import { database, account } from "@/lib/appwrite/config";
 const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
 const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
 
-export async function getSong(databaseId, songsCollectionId, songId) {
+export async function getSong(
+  databaseId: string,
+  songsCollectionId: string,
+  songId: string
+) {
   try {
     const song = await database.getDocument(
       databaseId,
@@ -18,7 +22,7 @@ export async function getSong(databaseId, songsCollectionId, songId) {
   }
 }
 
-export async function likeSong(userId, songId) {
+export async function likeSong(userId: string, songId: string) {
   try {
     const song = await database.getDocument(
       databaseId,
@@ -71,3 +75,28 @@ export const checkIfUserIsAdmin = async () => {
     return false;
   }
 };
+
+const contentCollectionId = import.meta.env.VITE_APPWRITE_CONTENT_COLLECTION_ID;
+
+// In je API functie
+export async function getAllContent() {
+  try {
+    const contentDocuments = await database.listDocuments(
+      databaseId,
+      contentCollectionId
+    );
+
+    const contentMap = {};
+    contentDocuments.documents.forEach((document) => {
+      contentMap[document.$id] = {
+        title: document.title,
+        paragraph: document.paragraph,
+      };
+    });
+
+    return contentMap;
+  } catch (error) {
+    console.error("Error fetching content:", error);
+    throw error;
+  }
+}
