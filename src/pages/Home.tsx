@@ -1,6 +1,7 @@
 import AudioPlayer from "@/components/AudioPlayer";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import CallToAction from "@/components/CallToAction";
+import AboutMe from "@/components/AboutMe";
 // import RandomDots from "@/components/RandomDots";
 const Home = () => {
   const isHome = true;
@@ -52,8 +53,11 @@ const Home = () => {
           }}
           className="flex items-center justify-center "
         ></ParallaxLayer>
-        {/* DIV */}
-        <ParallaxLayer offset={1.2} factor={0.8} speed={1}></ParallaxLayer>
+
+        {/* About me */}
+        <ParallaxLayer offset={1.6} factor={0.8} speed={1} className="mt-60">
+          <AboutMe />
+        </ParallaxLayer>
       </Parallax>
     </div>
   );

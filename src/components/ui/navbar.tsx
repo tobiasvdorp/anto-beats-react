@@ -77,7 +77,7 @@ export default function Navbar() {
             <Link
               to={"/"}
               id="anto"
-              className="text-white btn btn-ghost hover:bg-primary hover:text-black normal-case text-3xl "
+              className="font-vtc text-white btn btn-ghost hover:bg-primary hover:text-black normal-case text-3xl "
             >
               Anto
             </Link>

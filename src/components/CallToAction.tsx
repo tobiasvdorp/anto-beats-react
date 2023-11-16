@@ -9,7 +9,7 @@ function CallToAction() {
           <div className="ml-10 lg:ml-0 overflow-visible">
             {/* Text */}
             <h1
-              className="font-semibold text-4xl md:text-5xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp"
+              className="font-semibold font-vtc text-4xl md:text-5xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp"
               id="title"
             >
               <span id="title1">Prod. by </span>

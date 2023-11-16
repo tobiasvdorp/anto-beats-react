@@ -18,9 +18,7 @@
   src: url("/src/VTC-BadDrip.ttf") format("woff2");
 }
 
-h1,
-h2,
-#anto {
+.font-vtc {
   font-family: VTC;
 }
 
