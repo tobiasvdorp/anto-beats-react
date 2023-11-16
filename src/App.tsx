@@ -3,7 +3,7 @@ import "./globals.css";
 import SigninForm from "./_auth/forms/SigninForm";
 import SignupForm from "./_auth/forms/SignupForm";
 import AuthLayout from "./_auth/AuthLayout";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import Navbar from "@/components/ui/navbar";
 import AccountCreated from "./_auth/forms/AccountCreated";
 import Home from "@/pages/Home";
