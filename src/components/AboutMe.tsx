@@ -5,22 +5,18 @@ import AboutMeCard from "./ui/aboutmecard";
 const AboutMe = () => {
   const content = useContext(ContentContext);
 
-  const aboutMeContent = content["about_me"];
-
+  const aboutMeSections = content["about_me"] || [];
   return (
-    <div className="w-full flex flex-col items-center justify-center p-2 md:p-4">
-      <h2 className="text-5xl font-vtc">Who is Anto?</h2>
-      {/* Card */}
-      <AboutMeCard
-        title={aboutMeContent?.title}
-        paragraph={aboutMeContent?.paragraph}
-        position="left"
-      />
-      <AboutMeCard
-        title={aboutMeContent?.title}
-        paragraph={aboutMeContent?.paragraph}
-        position="right"
-      />
+    <div className="w-full flex flex-col items-center justify-center">
+      <h2 className="text-5xl">Who is Anto?</h2>
+      {aboutMeSections.map((section, index) => (
+        <AboutMeCard
+          key={index}
+          title={section.title}
+          paragraph={section.paragraph}
+          position={index % 2 === 0 ? "left" : "right"}
+        />
+      ))}
     </div>
   );
 };

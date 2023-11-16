@@ -76,23 +76,23 @@ export const checkIfUserIsAdmin = async () => {
   }
 };
 
-const contentCollectionId = import.meta.env.VITE_APPWRITE_CONTENT_COLLECTION_ID;
+const aboutmeCollectionId = import.meta.env.VITE_APPWRITE_ABOUTME_COLLECTION_ID;
 
-// In je API functie
 export async function getAllContent() {
   try {
-    const contentDocuments = await database.listDocuments(
+    const contentMap = {};
+
+    // Ophalen van 'About Me' secties
+    const aboutMeSections = await database.listDocuments(
       databaseId,
-      contentCollectionId
+      aboutmeCollectionId
     );
 
-    const contentMap = {};
-    contentDocuments.documents.forEach((document) => {
-      contentMap[document.$id] = {
-        title: document.title,
-        paragraph: document.paragraph,
-      };
-    });
+    // Voeg de 'About Me' secties toe aan de contentMap
+    contentMap["about_me"] = aboutMeSections.documents.map((doc) => ({
+      title: doc.title,
+      paragraph: doc.paragraph,
+    }));
 
     return contentMap;
   } catch (error) {
