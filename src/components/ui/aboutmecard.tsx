@@ -21,20 +21,24 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
-    if (cardTitle === title && cardParagraph === paragraph) {
+    // Controleer of er daadwerkelijk wijzigingen zijn
+    if (cardTitle === title && value === paragraph) {
       setFormActive(false);
       setLoading(false);
+
       return;
     }
+
     try {
+      setLoading(true);
       const updatedCard = await updateAboutMeCard(cardId, cardTitle, value);
 
-      setCardParagraph(updatedCard.paragraph);
-      setCardTitle(updatedCard.title);
+      // Gebruik de bijgewerkte waarden van de server of de waarden die je hebt verzonden
+      setCardParagraph(updatedCard.paragraph || value);
+      setCardTitle(updatedCard.title || cardTitle);
       setFormActive(false);
-      setError("");
+      setError(""); // Wis foutmeldingen
     } catch (error) {
       console.error("Failed to update card:", error);
       setError("Error updating card. Please try again later.");
@@ -55,11 +59,11 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
     `}
         data-atropos-offset="0"
       >
-        <div>
+        <div className="">
           {/* Title that can be changed */}
           <h2
             data-atropos-offset="1"
-            className={`font-main font-vtc tracking-widest capitalize text-2xl absolute -top-8 left-5   bg-primary_dark p-2 rounded-xl ${
+            className={`flex flex-row items-start gap-8 font-main font-vtc tracking-widest capitalize text-2xl absolute -top-8 left-5   bg-primary_dark p-2 rounded-xl ${
               formActive ? "hidden" : ""
             }`}
           >
