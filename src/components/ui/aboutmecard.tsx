@@ -12,10 +12,17 @@ const AboutMeCard = ({ title, paragraph, position }) => {
 
   const { isAdmin } = useUser();
   const [formActive, setFormActive] = useState(false);
+  const [value, setValue] = useState(paragraph);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+  };
 
   return (
     <Atropos
-      className={`${positionClass}  bg-transparent`}
+      className={`${positionClass}  bg-transparent w-full`}
       shadow={false}
       highlight={false}
     >
@@ -31,14 +38,46 @@ const AboutMeCard = ({ title, paragraph, position }) => {
         >
           {title}
         </h3>
-        <p data-atropos-offset="2" className="font-main">
+        {/* If form is active, hide text */}
+        <p
+          data-atropos-offset="2"
+          className={`font-main ${formActive ? "hidden" : ""}`}
+        >
           {paragraph}
           {isAdmin && (
-            <button className="pl-2">
+            <button className="pl-2" onClick={() => setFormActive(true)}>
               <FaEdit className="hover:text-accent duration-200" />
             </button>
           )}
         </p>
+        {formActive && (
+          <form className="w-full">
+            <textarea
+              defaultValue={value}
+              className="font-main bg-primary_dark p-1 border-2 border-primary w-full h-52 rounded-md"
+              onChange={(e) => setValue(e.target.value)}
+            />
+            <br />
+            <div className="flex items-center gap-1">
+              <button
+                className="btn-secondary btn"
+                onClick={() => setFormActive(false)}
+              >
+                Cancel
+              </button>
+              {loading ? (
+                <button className="btn btn-secondary" disabled>
+                  <span className="loading loading-spinner loading-sm"></span>{" "}
+                  Loading...
+                </button>
+              ) : (
+                <button className="btn btn-secondary" onClick={handleSubmit}>
+                  Save
+                </button>
+              )}
+            </div>
+          </form>
+        )}
       </div>
     </Atropos>
   );
