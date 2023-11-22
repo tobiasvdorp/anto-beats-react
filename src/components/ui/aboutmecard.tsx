@@ -18,23 +18,25 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
   const [cardTitle, setCardTitle] = useState(title); // Nu is het een string
   const [cardParagraph, setCardParagraph] = useState(paragraph);
   const [error, setError] = useState(""); // Error state voor het formulier
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await updateAboutMeCard(
-        cardId,
-        title, // Of een state die de titel beheert als deze ook aangepast kan worden
-        value
-      );
-      setFormActive(false); // Verberg het formulier na succesvolle update
+      const updatedCard = await updateAboutMeCard(cardId, cardTitle, value);
+
+      // Bijwerken van de lokale state na een succesvolle update
+      setCardParagraph(updatedCard.paragraph); // of value
+      setCardTitle(updatedCard.title); // of cardTitle
+      setFormActive(false); // Sluit het formulier alleen als de update succesvol is
+      setError(""); // Wis foutmeldingen
     } catch (error) {
       console.error("Failed to update card:", error);
       setError("Error updating card. Please try again later.");
+      // Hier niet sluiten van het formulier en niet bijwerken van de lokale state
     } finally {
       setLoading(false);
-      setCardParagraph(value);
     }
   };
 

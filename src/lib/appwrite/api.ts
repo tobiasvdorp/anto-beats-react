@@ -100,8 +100,8 @@ export async function updateAboutMeCard(
       aboutmeCollectionId,
       cardId,
       {
-        // title,
-        // paragraph,
+        title,
+        paragraph,
       }
     );
 
