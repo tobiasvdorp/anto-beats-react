@@ -58,6 +58,7 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
 
+.text-shadow,
 #title1 {
   text-shadow: 3px 5px #8256f0, 3px 8px #40d4b1;
 }
@@ -87,4 +88,9 @@ input[type="range"]::-webkit-slider-thumb {
 
 .atropos-shadow {
   display: none !important;
+}
+
+.audioplayer:hover {
+  box-shadow: 0 0 20px 3px #8256f0;
+  transition: all 0.5s ease;
 }

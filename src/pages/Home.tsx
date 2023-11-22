@@ -48,8 +48,9 @@ const Home = () => {
           factor={2.5}
           style={{
             backgroundImage: `url(/waves2.svg)`,
+
             backgroundSize: "contain",
-            backgroundRepeat: "repeat",
+            backgroundRepeat: "repeat-x",
           }}
           className="flex items-center justify-center "
         ></ParallaxLayer>

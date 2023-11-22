@@ -8,7 +8,7 @@ const AboutMe = () => {
   const aboutMeSections = content["about_me"] || [];
   return (
     <div className="flex flex-col md:flex-row justify-center px-2 md:px-10 duration-200">
-      <h2 className="text-5xl font-vtc text-white lg:pr-10 pl-3">
+      <h2 className="text-5xl font-vtc text-white lg:pr-10 pl-3 text-shadow">
         Who is Anto?
       </h2>
 

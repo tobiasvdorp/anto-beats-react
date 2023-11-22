@@ -8,6 +8,7 @@ function CallToAction() {
         <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between lg:m-10 justify-center flex-nowrap flex-shrink">
           <div className="ml-10 lg:ml-0 overflow-visible">
             {/* Text */}
+
             <h1
               className="font-semibold font-vtc text-4xl md:text-5xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp"
               id="title"
