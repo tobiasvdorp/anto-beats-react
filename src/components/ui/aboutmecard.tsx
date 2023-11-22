@@ -100,11 +100,6 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
           className={`font-main ${formActive ? "hidden" : ""}`}
         >
           {cardParagraph}
-          {isAdmin && (
-            <button className="pl-2" onClick={() => setFormActive(true)}>
-              <FaEdit className="hover:text-accent duration-200" />
-            </button>
-          )}
         </p>
         {formActive && (
           <form className="w-full">

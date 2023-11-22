@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { database, storage, account } from "@/lib/appwrite/config";
 import Song from "./Song";
 import BottomUI from "./BottomUI";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import Atropos from "atropos/react";
+import { SlSizeFullscreen } from "react-icons/sl";
+import { BsFullscreenExit } from "react-icons/bs";
 
 import SongSkeleton from "./ui/SongSkeleton";
 const AudioPlayer = ({ isHome }) => {
@@ -14,7 +14,7 @@ const AudioPlayer = ({ isHome }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [songDurations, setSongDurations] = useState({});
   const [userId, setUserId] = useState(null);
-
+  const [isFullscreen, setIsFullscreen] = useState(false);
   useEffect(() => {
     const fetchUser = async () => {
       const user = await account.get();
@@ -185,18 +185,32 @@ const AudioPlayer = ({ isHome }) => {
     }
   };
 
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    }
+  };
+
   return (
     <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary_dark  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary max-h-[90vh] ">
-      <div className="flex items-start justify-between w-full">
-        <FaAngleLeft className="text-2xl rotate-45" />
-        {/* if ishome is true, show h2 */}
-        {isHome && (
-          <h2 className="text-white text-4xl font-main font-bold pb-4">
-            Music player
-          </h2>
-        )}
+      <div className="flex items-start justify-between w-full relative">
+        <h2 className="text-white text-4xl font-main font-bold pb-4 text-center w-full">
+          Music player
+        </h2>
 
-        <FaAngleRight className="text-2xl -rotate-45" />
+        <button onClick={toggleFullscreen} className="absolute right-1 top-2">
+          {isFullscreen ? (
+            <BsFullscreenExit className="text-2xl font-bold text-accent" />
+          ) : (
+            <SlSizeFullscreen className="text-2xl text-accent" />
+          )}
+        </button>
       </div>
       <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1 ">
         {" "}

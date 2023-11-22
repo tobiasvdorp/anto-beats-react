@@ -102,7 +102,9 @@ const Song = ({
           onLoad={() => setIsImageLoaded(true)} // Zet de state op true wanneer de afbeelding geladen is
         />
 
-        <span className="text-black dark:text-white ">{song.title}</span>
+        <span className="text-black dark:text-white pl-2 text-left w-full ">
+          {song.title}
+        </span>
         <div className="flex flex-col items-center justify-center">
           <span className="text-black dark:text-white">
             {songDurations[song.id] && formatTime(songDurations[song.id])}
