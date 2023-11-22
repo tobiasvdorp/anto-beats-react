@@ -54,7 +54,7 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
       highlight={false}
     >
       <div
-        className={`flex flex-col gap-2 relative border-background_dark border-4 my-10 bg-primary_dark p-4 text-black animate__animated max-w-2xl rounded-xl depth-transform 
+        className={`flex flex-col gap-2 relative border-background_dark border-4 my-10 bg-primary_dark p-4 pt-2 text-black animate__animated max-w-2xl rounded-xl depth-transform 
     ${position === "left" ? "depth-transform" : "depth-transform-2"}
     `}
         data-atropos-offset="0"
@@ -63,7 +63,7 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
           {/* Title that can be changed */}
           <h2
             data-atropos-offset="1"
-            className={`flex flex-row items-start gap-8 font-main font-vtc tracking-widest capitalize text-2xl absolute -top-8 left-5   bg-primary_dark p-2 rounded-xl ${
+            className={`flex flex-row items-start gap-8 font-main font-vtc tracking-widest capitalize text-2xl absolute -top-8 left-5   bg-primary_dark p-2 pb-0 rounded-xl ${
               formActive ? "hidden" : ""
             }`}
           >
@@ -86,6 +86,14 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
             </form>
           )}
         </div>
+        <hr
+          className="h-px border-t-0  opacity-70"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, transparent, transparent 0%, #16053D 5%, #16053D 95%, transparent 100%, transparent)",
+          }}
+        />
+
         {/* Paragraph that can be changed */}
         <p
           data-atropos-offset="2"
