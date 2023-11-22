@@ -12,10 +12,11 @@ const AboutMe = () => {
         Who is Anto?
       </h2>
 
-      <div className="gap-2 w-full flex flex-col items-center justify-center max-w-6xl lg:max-w-4xl -ml-3">
+      <div className="gap-3 w-full flex flex-col items-center justify-center max-w-6xl lg:max-w-4xl -ml-3">
         {aboutMeSections.map((section, index) => (
           <AboutMeCard
             key={index}
+            cardId={section.$id}
             title={section.title}
             paragraph={section.paragraph}
             position={index % 2 === 0 ? "left" : "right"}
