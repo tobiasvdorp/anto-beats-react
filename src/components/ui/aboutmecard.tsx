@@ -1,6 +1,8 @@
 import Atropos from "atropos/react";
 import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
 import "atropos/atropos.css";
+import { useUser } from "@/lib/appwrite/user";
 
 const AboutMeCard = ({ title, paragraph, position }) => {
   const positionClass =
@@ -8,7 +10,8 @@ const AboutMeCard = ({ title, paragraph, position }) => {
       ? "self-start animate__backInRight"
       : "self-end animate__backInLeft";
 
-  const [text, setText] = useState({ paragraph });
+  const { isAdmin } = useUser();
+  const [formActive, setFormActive] = useState(false);
 
   return (
     <Atropos
@@ -30,6 +33,11 @@ const AboutMeCard = ({ title, paragraph, position }) => {
         </h3>
         <p data-atropos-offset="2" className="font-main">
           {paragraph}
+          {isAdmin && (
+            <button className="pl-2">
+              <FaEdit className="hover:text-accent duration-200" />
+            </button>
+          )}
         </p>
       </div>
     </Atropos>

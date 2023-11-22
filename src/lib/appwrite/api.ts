@@ -65,17 +65,6 @@ export async function likeSong(userId: string, songId: string) {
   }
 }
 
-export const checkIfUserIsAdmin = async () => {
-  try {
-    const user = await account.get();
-
-    // Controleer of de gebruiker het label 'admin' heeft
-    return user.labels && user.labels.includes("admin");
-  } catch (error) {
-    return false;
-  }
-};
-
 const aboutmeCollectionId = import.meta.env.VITE_APPWRITE_ABOUTME_COLLECTION_ID;
 
 export async function getAllContent() {

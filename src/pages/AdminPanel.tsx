@@ -2,11 +2,11 @@ import AudioPlayer from "@/components/AudioPlayer";
 import AddSong from "@/components/modals/AddSong";
 import { useState, useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import { checkIfUserIsAdmin } from "@/lib/appwrite/api"; // Zorg ervoor dat dit pad klopt
+import { useUser } from "@/lib/appwrite/user";
 
 const AdminPanel = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { isAdmin } = useUser();
   const [loading, setLoading] = useState(true);
   const isHome = false;
   const openModal = () => {
@@ -16,17 +16,6 @@ const AdminPanel = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  useEffect(() => {
-    const fetchAdminStatus = async () => {
-      setLoading(true);
-      const adminStatus = await checkIfUserIsAdmin();
-      setIsAdmin(adminStatus);
-      setLoading(false);
-    };
-
-    fetchAdminStatus();
-  }, []);
 
   if (loading) {
     return (

@@ -9,6 +9,7 @@ export function useUser() {
 
 export function UserProvider(props) {
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false); // Admin status state
 
   async function login(email: string, password: string) {
     const loggedIn = await account.createEmailSession(email, password);
@@ -27,19 +28,33 @@ export function UserProvider(props) {
 
   async function init() {
     try {
-      const loggedIn = await account.get();
-      setUser(loggedIn);
+      const loggedInUser = await account.get();
+      setUser(loggedInUser);
+      checkIfUserIsAdmin();
     } catch (err) {
       setUser(null);
+      setIsAdmin(false);
     }
   }
+
+  const checkIfUserIsAdmin = async () => {
+    try {
+      const user = await account.get();
+      const isAdmin = user.labels && user.labels.includes("admin");
+      setIsAdmin(isAdmin); // Update admin status in state
+    } catch (error) {
+      setIsAdmin(false);
+    }
+  };
 
   useEffect(() => {
     init();
   }, []);
 
   return (
-    <UserContext.Provider value={{ current: user, login, logout, register }}>
+    <UserContext.Provider
+      value={{ current: user, isAdmin, login, logout, register }}
+    >
       {props.children}
     </UserContext.Provider>
   );
