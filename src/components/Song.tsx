@@ -106,25 +106,30 @@ const Song = ({
         <span className="text-black dark:text-white pl-2 text-left w-full ">
           {song.title}
         </span>
-        {/* YouTube and Spotify icons */}
-        <div className="flex gap-2 mr-3 ">
-          <a
-            href={song.spotify}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent_dark text-xl "
-          >
-            <FaSpotify />
-          </a>
-          <a
-            href={song.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#CD201F] text-xl "
-          >
-            <FaYoutube />
-          </a>
+        {/* If there is no URL, dont show icons */}
+        <div className="flex gap-2 mr-3">
+          {song.spotify && (
+            <a
+              href={song.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent_dark text-xl"
+            >
+              <FaSpotify />
+            </a>
+          )}
+          {song.youtube && (
+            <a
+              href={song.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#CD201F] text-xl"
+            >
+              <FaYoutube />
+            </a>
+          )}
         </div>
+
         <div className="flex flex-col items-center justify-center">
           <span className="text-black dark:text-white">
             {songDurations[song.id] && formatTime(songDurations[song.id])}
