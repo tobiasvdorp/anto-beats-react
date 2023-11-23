@@ -8,7 +8,7 @@ const AdminPanel = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const { isAdmin } = useUser();
   const [loading, setLoading] = useState(true);
-  const isHome = false;
+
   const openModal = () => {
     setModalOpen(true);
   };
@@ -48,7 +48,7 @@ const AdminPanel = () => {
           <AiOutlinePlus className="text-lg" /> Add song
         </button>
 
-        <AudioPlayer isHome={isHome} />
+        <AudioPlayer isAdmin={isAdmin} />
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const Song = ({
   formatTime,
   songDurations,
   deleteSong,
-  isHome,
+  isAdmin,
 }) => {
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
@@ -128,20 +128,17 @@ const Song = ({
           </div>
         </div>
       </button>
-      {
-        // Als de pagina de home pagina niet is, toon dan de verwijder knop
-        !isHome && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
-              deleteSong(song.id);
-            }}
-            className="btn btn-secondary p-0 mr-1 w-12"
-          >
-            <AiOutlineDelete className="text-3xl" />
-          </button>
-        )
-      }
+      {isAdmin && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
+            deleteSong(song.id);
+          }}
+          className="btn btn-secondary p-0 mr-1 w-12"
+        >
+          <AiOutlineDelete className="text-3xl" />
+        </button>
+      )}
     </div>
   );
 };

@@ -4,9 +4,11 @@ import Song from "./Song";
 import BottomUI from "./BottomUI";
 import { SlSizeFullscreen } from "react-icons/sl";
 import { BsFullscreenExit } from "react-icons/bs";
-
+import AddSong from "./modals/AddSong";
 import SongSkeleton from "./ui/SongSkeleton";
-const AudioPlayer = ({ isHome }) => {
+import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
+
+const AudioPlayer = ({ isAdmin }) => {
   const [songs, setSongs] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -197,12 +199,47 @@ const AudioPlayer = ({ isHome }) => {
     }
   };
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary_dark  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary max-h-[90vh] ">
+      {/* {modalOpen && <AddSong closeModal={closeModal} />} */}
+
       <div className="flex items-start justify-between w-full relative">
-        <h2 className="text-white text-4xl font-main font-bold pb-4 text-center w-full">
-          Music player
-        </h2>
+        {/* If modal is open, show "add song". Else, show "Music player" */}
+        {modalOpen ? (
+          <h2 className="text-white text-4xl font-main font-bold pb-4 text-center w-full">
+            Add song
+          </h2>
+        ) : (
+          <h2 className="text-white text-4xl font-main font-bold pb-4 text-center w-full">
+            Music player
+          </h2>
+        )}
+
+        {modalOpen ? (
+          <button
+            className="btn btn-secondary text-md py-0 px-3 min-h-0 h-10 absolute right-10 top-0 "
+            onClick={closeModal}
+          >
+            <AiOutlineClose className="text-lg" />
+          </button>
+        ) : (
+          <button
+            className="btn btn-secondary text-md py-0 px-3 min-h-0 h-10 absolute right-10 top-0 "
+            onClick={openModal}
+          >
+            <AiOutlinePlus className="text-lg" />
+          </button>
+        )}
 
         <button onClick={toggleFullscreen} className="absolute right-1 top-2">
           {isFullscreen ? (
@@ -212,50 +249,61 @@ const AudioPlayer = ({ isHome }) => {
           )}
         </button>
       </div>
-      <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1 ">
-        {" "}
-        {songs.map((song, index) => (
-          <Song
-            key={song.id}
-            song={song}
-            index={index}
-            changeSong={setCurrentSongIndex}
+
+      {/* If modalOpen is true, show AddSong. Else, show h1 */}
+      {modalOpen ? (
+        <AddSong closeModal={closeModal} />
+      ) : (
+        <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1 ">
+          {" "}
+          {songs.map((song, index) => (
+            <Song
+              key={song.id}
+              song={song}
+              index={index}
+              changeSong={setCurrentSongIndex}
+              isPlaying={isPlaying}
+              currentSongIndex={currentSongIndex}
+              formatTime={formatTime}
+              songDurations={songDurations}
+              deleteSong={deleteSong}
+              userId={userId}
+              isAdmin={isAdmin}
+            />
+          ))}
+          {/* If there are no songs, show loader */}
+          {songs.length === 0 && (
+            <>
+              <SongSkeleton /> <SongSkeleton />
+              <SongSkeleton /> <SongSkeleton />
+            </>
+          )}
+        </div>
+      )}
+      {!modalOpen && (
+        <>
+          {" "}
+          <h3 className="text-white text-xl font-normal mt-5">
+            {songs.length > 0 ? (
+              `${songs[currentSongIndex].title}`
+            ) : (
+              <>
+                <span className="loading loading-spinner loading-xs"></span>
+              </>
+            )}
+          </h3>
+          <BottomUI
+            togglePlay={togglePlay}
             isPlaying={isPlaying}
-            currentSongIndex={currentSongIndex}
+            playPreviousSong={playPreviousSong}
+            playNextSong={playNextSong}
+            duration={duration}
+            currentTime={currentTime}
+            setAudioTime={setAudioTime}
             formatTime={formatTime}
-            songDurations={songDurations}
-            deleteSong={deleteSong}
-            userId={userId}
-            isHome={isHome}
           />
-        ))}
-        {/* If there are no songs, show loader */}
-        {songs.length === 0 && (
-          <>
-            <SongSkeleton /> <SongSkeleton />
-            <SongSkeleton /> <SongSkeleton />
-          </>
-        )}
-      </div>
-      <h3 className="text-white text-xl font-normal mt-5">
-        {songs.length > 0 ? (
-          `${songs[currentSongIndex].title}`
-        ) : (
-          <>
-            <span className="loading loading-spinner loading-xs"></span>
-          </>
-        )}
-      </h3>
-      <BottomUI
-        togglePlay={togglePlay}
-        isPlaying={isPlaying}
-        playPreviousSong={playPreviousSong}
-        playNextSong={playNextSong}
-        duration={duration}
-        currentTime={currentTime}
-        setAudioTime={setAudioTime}
-        formatTime={formatTime}
-      />
+        </>
+      )}
     </div>
     // </Atropos>
     // </div>

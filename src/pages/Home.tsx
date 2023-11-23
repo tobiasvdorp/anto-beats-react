@@ -3,8 +3,10 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import CallToAction from "@/components/CallToAction";
 import AboutMe from "@/components/AboutMe";
 // import RandomDots from "@/components/RandomDots";
+import { useUser } from "@/lib/appwrite/user";
 const Home = () => {
-  const isHome = true;
+  const { isAdmin } = useUser();
+
   return (
     <div className="max-w-7xl flex">
       <Parallax pages={5} className="dark:bg-background_dark bg-background">
@@ -38,7 +40,7 @@ const Home = () => {
           factor={0.8}
           className="flex items-center justify-center mt-60"
         >
-          <AudioPlayer isHome={isHome} />
+          <AudioPlayer isAdmin={isAdmin} />
         </ParallaxLayer>
 
         {/* Waves */}
@@ -48,7 +50,6 @@ const Home = () => {
           factor={2.5}
           style={{
             backgroundImage: `url(/waves2.svg)`,
-
             backgroundSize: "contain",
             backgroundRepeat: "repeat-x",
           }}

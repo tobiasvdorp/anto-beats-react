@@ -5,7 +5,6 @@ import { VoidFunction, ChangeEventHandler } from "@/types";
 import Alert from "@/components/ui/alert";
 
 function AddSong({ closeModal }: { closeModal: VoidFunction }) {
-  const [title, setTitle] = useState("[song title] - Anto");
   const [image, setImage] = useState<File | null>(null);
   const [audio, setAudio] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -86,33 +85,22 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
 
   return (
     <>
-      <form className="flex flex-col justify-center items-center gap-4 fixed bg_background dark:bg-background_dark z-10 shadow-lg shadow-primary border-2 rounded-lg p-5 animate__fadeIn animate__animated animate__faster">
+      <form className="border-primary_dark w-full h-full flex flex-col justify-center items-between  bg_background dark:bg-background_dark z-10 shadow-lg  border-2 rounded-lg p-8 animate__fadeIn animate__animated animate__faster">
         {" "}
-        <div className="flex justify-between w-full">
-          <h2 className="text-center dark:text-white text-black text-3xl font-bold font-main pb-5">
-            Add song
-          </h2>{" "}
-          <button
-            onClick={closeModal}
-            className="bg-primary text-black btn btn-secondary p-2 min-h-0 h-8"
-          >
-            <AiOutlineClose />
-          </button>
-        </div>
         <div className="w-full">
-          <label className="text-white">
+          <label className="text-white font-main">
             Title: <br />
             <input
               type="text"
-              value={title}
+              placeholder="Song title - Artist name"
               onChange={(e) => setTitle(e.target.value)}
               required
               className="inputform"
             />
           </label>
         </div>
-        <div>
-          <label className="text-white">
+        <div className="w-full">
+          <label className="text-white font-main">
             Image:
             <br />
             <input
@@ -120,12 +108,12 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
               onChange={handleImageChange}
               accept="image/*"
               required
-              className="bg-secondary p-2 text-white rounded-md"
+              className="bg-secondary px-3  inputform py-2 w-full text-white rounded-md "
             />
           </label>
         </div>
-        <div>
-          <label className="text-white">
+        <div className="w-full">
+          <label className="text-white font-main">
             Audio:
             <br />
             <input
@@ -133,7 +121,7 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
               onChange={handleAudioChange}
               accept="audio/*"
               required
-              className="bg-secondary p-2 text-white rounded-md"
+              className="bg-secondary px-3 py-2 inputform text-white rounded-md"
             />
           </label>
         </div>
