@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { database, storage } from "@/lib/appwrite/config";
 import { CiImageOn } from "react-icons/ci";
 import { VoidFunction, ChangeEventHandler } from "@/types";
-import Alert from "@/components/ui/alert";
+
 import { PiFileAudioFill } from "react-icons/pi";
 
 function AddSong({ closeModal }: { closeModal: VoidFunction }) {
@@ -14,6 +14,9 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
   const [audioFileName, setAudioFileName] = useState("");
   const [imageFileName, setImageFileName] = useState("");
   const [title, setTitle] = useState("");
+  const [spotifyUrl, setSpotifyUrl] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
+
   const imageInputRef = useRef(null);
   const audioInputRef = useRef(null);
 
@@ -61,7 +64,13 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
   }
 
   // Aangepaste addSong functie
-  async function addSong(title: string, imageFile: File, audioFile: File) {
+  async function addSong(
+    title: string,
+    imageFile: File,
+    audioFile: File,
+    spotifyUrl: string,
+    youtubeUrl: string
+  ) {
     setLoading(true);
     try {
       const imageId = await uploadImage(imageFile);
@@ -75,6 +84,8 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
           title: title,
           "image-id": imageId,
           "audiofile-id": audiofileId,
+          spotify_url: spotifyUrl,
+          youtube_url: youtubeUrl,
         },
         []
       );
@@ -100,13 +111,36 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
         {" "}
         <div className="w-full">
           <label className="text-white font-main">
-            Title: <br />
+            Title*: <br />
             <input
               type="text"
               placeholder="Song title - Artist name"
               onChange={(e) => setTitle(e.target.value)}
               className="inputform"
             />
+          </label>
+        </div>
+        {/* Spotify and youtube urls */}
+        <div className="w-full flex flex-col gap-2 ">
+          <label className="text-white font-main">
+            Spotify URL (optional): <br />
+            <input
+              type="text"
+              placeholder="https://open.spotify.com/track/..."
+              onChange={(e) => setSpotifyUrl(e.target.value)}
+              className="inputform"
+            />
+          </label>
+
+          <label className="text-white font-main">
+            Youtube URL (optional):
+            <br />
+            <input
+              type="text"
+              placeholder="https://www.youtube.com/watch?v=..."
+              onChange={(e) => setYoutubeUrl(e.target.value)}
+              className="inputform"
+            ></input>
           </label>
         </div>
         <div className="flex gap-4 flex-wrap justify-center">
@@ -136,8 +170,8 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
               </button>
             </label>
           </div>
-          <div className="">
-            <label className="text-white font-main">
+          <div className=" h-fit">
+            <label className="text-white font-main ">
               <br />
               <input
                 type="file"
@@ -185,7 +219,7 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
             }
 
             // Voer addSong uit als alle velden ingevuld zijn
-            addSong(title, image, audio);
+            addSong(title, image, audio, spotifyUrl, youtubeUrl);
           }}
         >
           {loading ? (

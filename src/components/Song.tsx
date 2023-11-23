@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AiOutlineDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai"; // Importeer het harticoon voor de like-knop
 import { likeSong, getSong } from "@/lib/appwrite/api"; // Zorg ervoor dat je een functie hebt om een nummer op te halen
-
+import { FaSpotify, FaYoutube } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 const Song = ({
   song,
@@ -21,6 +21,7 @@ const Song = ({
   const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
   const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchSongData = async () => {
       try {
@@ -105,6 +106,25 @@ const Song = ({
         <span className="text-black dark:text-white pl-2 text-left w-full ">
           {song.title}
         </span>
+        {/* YouTube and Spotify icons */}
+        <div className="flex gap-2 mr-3 ">
+          <a
+            href={song.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent_dark text-xl "
+          >
+            <FaSpotify />
+          </a>
+          <a
+            href={song.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#CD201F] text-xl "
+          >
+            <FaYoutube />
+          </a>
+        </div>
         <div className="flex flex-col items-center justify-center">
           <span className="text-black dark:text-white">
             {songDurations[song.id] && formatTime(songDurations[song.id])}

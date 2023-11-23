@@ -58,10 +58,13 @@ const AudioPlayer = ({ isAdmin }) => {
         const fetchedSongs = result.documents.map((doc) => ({
           id: doc.$id,
           title: doc.title,
+          // Youtube en spotify urls
+          youtube: doc.youtube_url,
+          spotify: doc.spotify_url,
           src: getAudioFileURL(doc["audiofile-id"]),
           image: doc["image-id"]
             ? getDownloadableFileURL(imageBucketId, doc["image-id"])
-            : "defaultImageURL", // Voeg een default image URL toe als fallback
+            : "defaultImageURL",
         }));
 
         setSongs(fetchedSongs);
