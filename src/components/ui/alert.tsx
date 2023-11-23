@@ -1,7 +1,7 @@
 export default function Alert({ alertMessage }) {
   return (
     <>
-      <div className="alert alert-success fixed z-20 bottom-2 w-fit animate__animated animate__bounceInUp">
+      <div className="alert alert-success fixed z-50 top-0  w-fit animate__animated animate__bounceInUp">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="stroke-current shrink-0 h-6 w-6"

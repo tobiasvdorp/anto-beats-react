@@ -210,7 +210,11 @@ const AudioPlayer = ({ isAdmin }) => {
   };
 
   return (
-    <div className="w-full mt-4 rounded-lg max-w-3xl bg-secondary_dark  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary max-h-[90vh] ">
+    <div
+      className={`w-full mt-4 rounded-lg  bg-secondary_dark  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary max-h-[90vh]
+    ${isFullscreen ? "mx-4 max-w-8xl" : "max-w-3xl"}
+     `}
+    >
       {/* {modalOpen && <AddSong closeModal={closeModal} />} */}
 
       <div className="flex items-start justify-between w-full relative">
