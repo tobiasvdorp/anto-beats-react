@@ -28,6 +28,10 @@ module.exports = {
         second: ["Open Sans", "sans-serif", "Arial", "Helvetica"], // Fallback fonts toegevoegd
         para: ["Hind Madurai", "sans-serif", "Georgia", "Times New Roman"], // Fallback fonts toegevoegd
       },
+
+      screens: {
+        xs: "500px",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("daisyui")],

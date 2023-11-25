@@ -5,17 +5,17 @@ function CallToAction() {
     <>
       <div className="cta-container flex justify-center h-screen bg-background_dark_secondary ">
         {/* Row container */}
-        <div className="w-full max-w-5xl my-auto overflow-auto flex flex-row items-center lg:justify-between lg:m-10 justify-center flex-nowrap flex-shrink">
-          <div className="ml-10 lg:ml-0 overflow-visible">
+        <div className="w-full max-w-5xl my-auto overflow-hidden flex flex-row items-center lg:justify-between lg:m-10 justify-center flex-nowrap flex-shrink">
+          <div className=" lg:ml-0 mx-10 overflow-visible">
             {/* Text */}
 
             <h1
-              className="font-semibold font-vtc text-4xl md:text-5xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp"
+              className="font-semibold font-vtc text-3xl md:text-5xl text-black dark:text-white mb-8 animate__animated animate__fadeInUp"
               id="title"
             >
               <span id="title1">Prod. by </span>
               <br />
-              <span className="font-extrabold text-9xl sm:text-[10rem]">
+              <span className="font-extrabold text-8xl md:text-[10rem]">
                 ANTO
               </span>
             </h1>
@@ -25,13 +25,16 @@ function CallToAction() {
               <Atropos className="">
                 <a
                   href="#"
-                  className="btn-secondary btn px-8 text-lg first-btn"
+                  className="btn-secondary btn md:px-8 px-6 md:text-lg min-h-0 md:h-12 h-10 first-btn"
                 >
                   Contact
                 </a>
               </Atropos>
               <Atropos>
-                <a href="#" className="btn-secondary btn px-10 text-lg">
+                <a
+                  href="#"
+                  className="btn-secondary btn md:px-10 px-8 md:text-lg min-h-0 md:h-12 h-10"
+                >
                   Listen
                 </a>
               </Atropos>
@@ -41,7 +44,7 @@ function CallToAction() {
           <img
             src="/astronaut.png"
             alt="astronaut"
-            className="hidden md:block w-[40vw] ml-10 max-w-[400px]  "
+            className="hidden xs:block w-[40vw] sm:ml-10 md:max-w-[400px] max-w-[300px] "
           />
         </div>
       </div>

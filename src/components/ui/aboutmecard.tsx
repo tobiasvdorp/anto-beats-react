@@ -49,7 +49,7 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
 
   return (
     <Atropos
-      className={`${positionClass}  bg-transparent w-full flex`}
+      className={`${positionClass}  bg-transparent w-fit flex`}
       shadow={false}
       highlight={false}
     >

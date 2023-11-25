@@ -4,6 +4,7 @@ import CallToAction from "@/components/CallToAction";
 import AboutMe from "@/components/AboutMe";
 // import RandomDots from "@/components/RandomDots";
 import { useUser } from "@/lib/appwrite/user";
+import Gallery from "@/components/Gallery";
 const Home = () => {
   const { isAdmin } = useUser();
 
@@ -47,7 +48,7 @@ const Home = () => {
         <ParallaxLayer
           offset={1.2}
           speed={1.8}
-          factor={3}
+          factor={3.5}
           style={{
             backgroundImage: `url(/waves4.svg)`,
             backgroundSize: "contain",
@@ -60,6 +61,22 @@ const Home = () => {
         <ParallaxLayer offset={1.6} factor={0.8} speed={1} className="mt-60">
           <AboutMe />
         </ParallaxLayer>
+
+        {/* Waves */}
+        <ParallaxLayer
+          offset={2.7}
+          speed={2.2}
+          factor={3}
+          style={{
+            backgroundImage: `url(/waves5.svg)`,
+            backgroundSize: "contain",
+            backgroundRepeat: "repeat-x",
+          }}
+          className="flex items-center justify-center "
+        ></ParallaxLayer>
+        {/* Gallery */}
+
+        <Gallery />
       </Parallax>
     </div>
   );
