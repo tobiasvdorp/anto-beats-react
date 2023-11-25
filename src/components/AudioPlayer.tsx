@@ -231,28 +231,34 @@ const AudioPlayer = ({ isAdmin }) => {
             Music player
           </h2>
         )}
-
-        {modalOpen ? (
-          <button
-            className="btn btn-secondary text-md py-0 px-3 min-h-0 h-10 absolute right-10 top-0 "
-            onClick={closeModal}
-          >
-            <AiOutlineClose className="text-lg" />
-          </button>
-        ) : (
-          <button
-            className="btn btn-secondary text-md py-0 px-3 min-h-0 h-10 absolute right-10 top-0 "
-            onClick={openModal}
-          >
-            <AiOutlinePlus className="text-lg" />
-          </button>
+        {isAdmin && (
+          <>
+            {modalOpen ? (
+              <button
+                className="btn btn-secondary text-md py-0 px-3 min-h-0 h-10 w-fit absolute sm:right-10 -left-2 sm:top-0 -top-10"
+                onClick={closeModal}
+              >
+                <AiOutlineClose className="text-lg" />
+              </button>
+            ) : (
+              <button
+                className="btn btn-secondary text-md py-0 px-3 min-h-0 h-10 w-fit absolute sm:right-10 -left-2 sm:top-0 -top-10"
+                onClick={openModal}
+              >
+                <AiOutlinePlus className="text-lg" />
+              </button>
+            )}
+          </>
         )}
 
-        <button onClick={toggleFullscreen} className="absolute right-1 top-2">
+        <button
+          onClick={toggleFullscreen}
+          className="absolute sm:right-0 -right-2 sm:top-0 -top-10 p-2 bg-accent_dark rounded-md text-black"
+        >
           {isFullscreen ? (
-            <BsFullscreenExit className="text-2xl font-bold text-accent" />
+            <BsFullscreenExit className="sm:text-2xl text-xl text-black" />
           ) : (
-            <SlSizeFullscreen className="text-2xl text-accent" />
+            <SlSizeFullscreen className="sm:text-2xl  text-xl text-black" />
           )}
         </button>
       </div>
