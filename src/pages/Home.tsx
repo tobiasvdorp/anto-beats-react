@@ -47,9 +47,9 @@ const Home = () => {
         <ParallaxLayer
           offset={1.2}
           speed={1.8}
-          factor={2.5}
+          factor={3}
           style={{
-            backgroundImage: `url(/waves2.svg)`,
+            backgroundImage: `url(/waves4.svg)`,
             backgroundSize: "contain",
             backgroundRepeat: "repeat-x",
           }}

@@ -49,12 +49,12 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
 
   return (
     <Atropos
-      className={`${positionClass}  bg-transparent w-full`}
+      className={`${positionClass}  bg-transparent w-full flex`}
       shadow={false}
       highlight={false}
     >
       <div
-        className={`flex flex-col gap-2 relative border-background_dark border-4 my-10 bg-primary_dark p-4 pt-2 text-black animate__animated max-w-2xl rounded-xl depth-transform 
+        className={`flex flex-col gap-2 border-background_dark border-4 my-10 bg-primary_dark p-4 pt-2 text-black animate__animated max-w-2xl rounded-xl depth-transform 
     ${position === "left" ? "depth-transform" : "depth-transform-2"}
     `}
         data-atropos-offset="0"
@@ -63,13 +63,13 @@ const AboutMeCard = ({ cardId, title, paragraph, position }) => {
           {/* Title that can be changed */}
           <h2
             data-atropos-offset="1"
-            className={`flex flex-row items-start gap-8 font-main font-vtc tracking-widest capitalize text-2xl absolute -top-8 left-5   bg-primary_dark p-2 pb-0 rounded-xl ${
+            className={`w-fit flex flex-row items-start gap-3 font-main font-vtc tracking-widest capitalize text-2xl  -top-8 left-5   bg-primary_dark p-2 pb-0 rounded-xl ${
               formActive ? "hidden" : ""
             }`}
           >
             {cardTitle}
             {isAdmin && (
-              <button className="pl-2" onClick={() => setFormActive(true)}>
+              <button className="" onClick={() => setFormActive(true)}>
                 <FaEdit className="hover:text-accent duration-200" />
               </button>
             )}
