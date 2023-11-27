@@ -4,7 +4,7 @@ const Gallery = () => {
   return (
     <>
       {/* Background */}
-      <ParallaxLayer offset={2.2} speed={2}>
+      <ParallaxLayer offset={2.4} speed={2}>
         <svg viewBox="0.795 0 500 100" xmlns="http://www.w3.org/2000/svg">
           <path
             className="bg-new_green stroke-white"
@@ -15,72 +15,79 @@ const Gallery = () => {
         </svg>
         <div className="h-[300vh] bg-new_green 0 z-0"></div>
       </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.0}
-        factor={0.1}
-        speed={1}
-        className="ml-[30vw] mt-52"
-      >
-        <img src="/placeholder.png" className="w-40"></img>
-      </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.05}
-        factor={0.1}
-        speed={1.3}
-        className="ml-[10vw]"
-      >
-        <img src="/placeholder.png"></img>
-      </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.1}
-        factor={0.1}
-        speed={1.6}
-        className="ml-[60vw]"
-      >
-        <Atropos className="w-fit">
-          <img src="/placeholder.png" className="w-64"></img>
-        </Atropos>
-      </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.15}
-        factor={0.1}
-        speed={1.9}
-        className="ml-[50vw] mt-[40vh]"
-      >
-        <img src="/placeholder.png" className="w-64"></img>
-      </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.2}
-        factor={0.1}
-        speed={2.2}
-        className="ml-[20vw] mt-[80vh]"
-      >
-        <img src="/placeholder.png" className="w-64"></img>
-      </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.25}
-        factor={0.1}
-        speed={2.5}
-        className="ml-[70vw] mt-[40vh]"
-      >
-        <img src="/placeholder.png" className="w-64"></img>
-      </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.3}
-        factor={0.1}
-        speed={2.8}
-        className="ml-[15vw] mt-[60vh] "
-      >
-        <img src="/placeholder.png" className="w-64"></img>
-      </ParallaxLayer>
-      <ParallaxLayer
-        offset={3.35}
-        factor={0.1}
-        speed={3.1}
-        className="ml-[50vw] mt-[10vh]"
-      >
-        <img src="/placeholder.png" className="w-64"></img>
-      </ParallaxLayer>
+
+      <div className="w-full flex items-center">
+        {/* Top layer images */}
+        {/* <ParallaxLayer
+          offset={2.95}
+          speed={0.95}
+          className="flex items-center justify-between max-w-4xl mx-auto z-20"
+        >
+          <img
+            src="/placeholder.png"
+            className="w-[40vw] md:w-[30vw] max-w-[350px] border-2 border-primary_dark"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className=" w-[40vw] md:w-[30vw] max-w-[350px] mt-[800px] border-2 border-red-200"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[40vw] md:w-[30vw] max-w-[350px] border-2 border-green-950"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[40vw] md:w-[30vw] max-w-[350px] border-2 border-yellow-200 mt-96 -mb-40 "
+          ></img>
+        </ParallaxLayer>
+
+        {/* Middle layer images */}
+        {/* <ParallaxLayer
+          offset={2.99}
+          speed={0.6}
+          className="flex items-center justify-between max-w-4xl mx-auto z-10"
+        >
+          <img
+            src="/placeholder.png"
+            className="m-auto w-[26vw] max-w-[270px] border-2 border-white mr-20"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[27vw] max-w-[280px] mb-auto border-2 border-red-700 mr-52"
+          ></img>
+        </ParallaxLayer> */}
+
+        {/* Bottom layer images */}
+        {/* <ParallaxLayer
+          offset={3.01}
+          speed={0.3}
+          className="flex items-center justify-between max-w-4xl mx-auto z-0"
+        >
+          <img
+            src="/placeholder.png"
+            className="  m-auto w-[26vw] max-w-[250px] border-2 border-gray-400"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[27vw] max-w-[250px] border-2 border-blue-600 mb-96 "
+          ></img>
+        </ParallaxLayer>  */}
+
+        <ParallaxLayer
+          offset={3.01}
+          speed={0.3}
+          className="flex items-center justify-between max-w-4xl mx-auto z-0"
+        >
+          <img
+            src="/placeholder.png"
+            className="  m-auto w-[26vw] max-w-[250px] border-2 border-gray-400"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[27vw] max-w-[250px] border-2 border-blue-600 mb-96 "
+          ></img>
+        </ParallaxLayer>
+      </div>
     </>
   );
 };
