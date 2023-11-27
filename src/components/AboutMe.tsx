@@ -23,7 +23,7 @@ const AboutMe = () => {
           />
         </svg>
 
-        <div className="h-[300vh] bg-secondary_dark z-0"></div>
+        <div className="h-[400vh] bg-secondary_dark z-0"></div>
       </ParallaxLayer>
       <ParallaxLayer offset={1.8} factor={0.8} speed={1} className="">
         <div className="flex flex-col md:flex-row justify-center px-2 md:px-10 duration-200 ">

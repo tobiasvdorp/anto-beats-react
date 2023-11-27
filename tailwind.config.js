@@ -15,6 +15,7 @@ module.exports = {
         primary_dark: "#8256F0", // light purple
         secondary_dark: "#15053D", // Dark purple
         accent_dark: "#40D4B1", // Light green
+        new_green: "#426a5a" /* Dark green */,
 
         primary: "#5B17D2", // lighter purple
         secondary: "#072640", // dark blue
