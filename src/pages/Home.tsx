@@ -16,12 +16,10 @@ const Home = () => {
         </ParallaxLayer> */}
         {/* Background */}
         <ParallaxLayer offset={0} speed={0} factor={5} />
-
         {/* Call to action */}
         <ParallaxLayer offset={0} speed={0.3} factor={0.5}>
           <CallToAction />
         </ParallaxLayer>
-
         {/* Waves */}
         <ParallaxLayer
           offset={0.9}
@@ -33,7 +31,6 @@ const Home = () => {
             backgroundRepeat: "repeat-x",
           }}
         />
-
         {/* Audioplayer */}
         <ParallaxLayer
           offset={0.9}
@@ -43,7 +40,6 @@ const Home = () => {
         >
           <AudioPlayer isAdmin={isAdmin} />
         </ParallaxLayer>
-
         {/* Waves */}
         <ParallaxLayer
           offset={1.2}
@@ -54,17 +50,14 @@ const Home = () => {
             backgroundSize: "contain",
             backgroundRepeat: "repeat-x",
           }}
-          className="flex items-center justify-center "
         ></ParallaxLayer>
-
         {/* About me */}
         <ParallaxLayer offset={1.6} factor={0.8} speed={1} className="mt-60">
           <AboutMe />
         </ParallaxLayer>
-
         {/* Waves */}
         <ParallaxLayer
-          offset={2.7}
+          offset={3}
           speed={2.2}
           factor={3}
           style={{
@@ -72,11 +65,11 @@ const Home = () => {
             backgroundSize: "contain",
             backgroundRepeat: "repeat-x",
           }}
-          className="flex items-center justify-center "
+          className="mt-60"
         ></ParallaxLayer>
         {/* Gallery */}
-
         <Gallery />
+        ha
       </Parallax>
     </div>
   );

@@ -5,17 +5,10 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useUser } from "@/lib/appwrite/user";
 
 const AdminPanel = () => {
-  const [modalOpen, setModalOpen] = useState(false);
   const { isAdmin } = useUser();
   const [loading, setLoading] = useState(true);
 
-  const openModal = () => {
-    setModalOpen(true);
-  };
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   if (loading) {
     return (
