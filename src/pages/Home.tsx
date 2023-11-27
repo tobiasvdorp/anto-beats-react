@@ -1,5 +1,5 @@
 import AudioPlayer from "@/components/AudioPlayer";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { Parallax } from "@react-spring/parallax";
 import CallToAction from "@/components/CallToAction";
 import AboutMe from "@/components/AboutMe";
 // import RandomDots from "@/components/RandomDots";
@@ -11,46 +11,10 @@ const Home = () => {
   return (
     <div className="max-w-7xl flex">
       <Parallax pages={5} className="dark:bg-background_dark bg-background">
-        {/* Background */}
-        <ParallaxLayer offset={0} speed={0} factor={5} />
-        {/* Call to action */}
-        <ParallaxLayer offset={0} speed={0.3} factor={0.5}>
-          <CallToAction />
-        </ParallaxLayer>
-        {/* Waves */}
-        {/* <ParallaxLayer
-          offset={0.9}
-          speed={1.4}
-          factor={1.3}
-          style={{
-            backgroundImage: `url(/waves.svg)`,
-            backgroundSize: "contain",
-            backgroundRepeat: "repeat-x",
-          }}
-        /> */}
-        {/* Audioplayer */}
-        {/* <ParallaxLayer
-          offset={0.9}
-          speed={0.9}
-          factor={0.8}
-          className="flex items-center justify-center mt-60"
-        ></ParallaxLayer> */}
+        <CallToAction />
+
         <AudioPlayer isAdmin={isAdmin} />
         <AboutMe />
-
-        {/* Waves */}
-        {/* <ParallaxLayer
-          offset={3}
-          speed={2.2}
-          factor={3}
-          style={{
-            backgroundImage: `url(/waves5.svg)`,
-            backgroundSize: "contain",
-            backgroundRepeat: "repeat-x",
-          }}
-          className="mt-60"
-        ></ParallaxLayer> */}
-        {/* Gallery */}
         <Gallery />
       </Parallax>
     </div>
