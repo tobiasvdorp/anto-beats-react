@@ -18,7 +18,7 @@ const Home = () => {
           <CallToAction />
         </ParallaxLayer>
         {/* Waves */}
-        <ParallaxLayer
+        {/* <ParallaxLayer
           offset={0.9}
           speed={1.4}
           factor={1.3}
@@ -27,29 +27,15 @@ const Home = () => {
             backgroundSize: "contain",
             backgroundRepeat: "repeat-x",
           }}
-        />
+        /> */}
         {/* Audioplayer */}
-        <ParallaxLayer
+        {/* <ParallaxLayer
           offset={0.9}
           speed={0.9}
           factor={0.8}
           className="flex items-center justify-center mt-60"
-        >
-          <AudioPlayer isAdmin={isAdmin} />
-        </ParallaxLayer>
-        {/* Waves */}
-        {/* <ParallaxLayer
-          offset={1.2}
-          speed={1.8}
-          factor={3.5}
-          style={{
-            backgroundImage: `url(/waves4.svg)`,
-            backgroundSize: "contain",
-            backgroundRepeat: "repeat-x",
-          }}
         ></ParallaxLayer> */}
-        {/* About me */}
-
+        <AudioPlayer isAdmin={isAdmin} />
         <AboutMe />
 
         {/* Waves */}

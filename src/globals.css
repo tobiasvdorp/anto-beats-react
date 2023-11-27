@@ -4,10 +4,16 @@
 @tailwind utilities;
 
 :root {
+  --background_dark: #000010; /* Blackish */
+
   --background_dark_secondary: #15053d; /* CTA purple */
 }
 .bg-background_dark_secondary {
   fill: var(--background_dark_secondary);
+}
+
+.bg-background_dark {
+  fill: var(--background_dark);
 }
 @layer base {
   /* body,
