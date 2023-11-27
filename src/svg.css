@@ -23,3 +23,7 @@
 .stroke-accent {
   stroke: var(--accent_dark);
 }
+
+.stroke-primary_dark {
+  stroke: var(--primary_dark);
+}
