@@ -1,4 +1,4 @@
-import { ParallaxLayer } from "@react-spring/parallax";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Atropos from "atropos/react";
 const Gallery = () => {
   return (
@@ -57,35 +57,38 @@ const Gallery = () => {
           ></img>
         </ParallaxLayer> */}
 
-        {/* Bottom layer images */}
-        {/* <ParallaxLayer
-          offset={3.01}
-          speed={0.3}
-          className="flex items-center justify-between max-w-4xl mx-auto z-0"
-        >
-          <img
-            src="/placeholder.png"
-            className="  m-auto w-[26vw] max-w-[250px] border-2 border-gray-400"
-          ></img>
-          <img
-            src="/placeholder.png"
-            className="w-[27vw] max-w-[250px] border-2 border-blue-600 mb-96 "
-          ></img>
-        </ParallaxLayer>  */}
-
         <ParallaxLayer
-          offset={3.01}
+          offset={2.4}
           speed={0.3}
-          className="flex items-center justify-between max-w-4xl mx-auto z-0"
+          className="flex items-center justify-between max-w-4xl mx-auto z-20"
+        >
+          <h2 className="text-7xl font-vtc text-white lg:pr-10 pl-3 text-shadow z-20">
+            Image gallery
+          </h2>
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={2.7}
+          speed={0.3}
+          className="flex items-center justify-between max-w-4xl mx-auto z-20"
         >
           <img
             src="/placeholder.png"
-            className="  m-auto w-[26vw] max-w-[250px] border-2 border-gray-400"
+            className="w-[26vw] max-w-[250px] border-2 border-gray-400"
           ></img>
           <img
             src="/placeholder.png"
-            className="w-[27vw] max-w-[250px] border-2 border-blue-600 mb-96 "
+            className="w-[27vw] max-w-[250px] border-2 border-blue-600 mb-40 "
           ></img>
+        </ParallaxLayer>
+
+        {/* Images moving shadows */}
+        <ParallaxLayer
+          offset={2.7}
+          speed={0.4}
+          className="flex items-center justify-between max-w-4xl mx-auto z-10"
+        >
+          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 ml-12"></div>
+          <div className="w-[27vw] max-w-[250px] bg-blue-600 h-52 mb-40 mr-12"></div>
         </ParallaxLayer>
       </div>
     </>
