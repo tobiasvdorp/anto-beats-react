@@ -1,0 +1,25 @@
+:root {
+  --background_dark: #000010; /* Blackish */
+  --background_dark_secondary: #15053d; /* CTA purple */
+  --background_dark_4: #1f69b2; /* Blueish for gradient */
+  --primary_dark: #8256f0; /* light purple */
+  --secondary_dark: #15053d; /* Dark purple */
+  --accent_dark: #40d4b1; /* Light green */
+
+  --primary: #5b17d2; /* lighter purple */
+  --secondary: #072640; /* dark blue */
+  --black: #00000f;
+  --white: #f6fafe;
+}
+
+.bg-background_dark_secondary {
+  fill: var(--background_dark_secondary);
+}
+
+.bg-background_dark {
+  fill: var(--background_dark);
+}
+
+.stroke-accent {
+  stroke: var(--accent_dark);
+}
