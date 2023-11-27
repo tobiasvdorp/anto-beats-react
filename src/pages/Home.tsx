@@ -11,9 +11,6 @@ const Home = () => {
   return (
     <div className="max-w-7xl flex">
       <Parallax pages={5} className="dark:bg-background_dark bg-background">
-        {/* <ParallaxLayer className="z-100" offset={0} factor={5}>
-          <RandomDots className="z-100" />
-        </ParallaxLayer> */}
         {/* Background */}
         <ParallaxLayer offset={0} speed={0} factor={5} />
         {/* Call to action */}
@@ -41,7 +38,7 @@ const Home = () => {
           <AudioPlayer isAdmin={isAdmin} />
         </ParallaxLayer>
         {/* Waves */}
-        <ParallaxLayer
+        {/* <ParallaxLayer
           offset={1.2}
           speed={1.8}
           factor={3.5}
@@ -50,13 +47,13 @@ const Home = () => {
             backgroundSize: "contain",
             backgroundRepeat: "repeat-x",
           }}
-        ></ParallaxLayer>
+        ></ParallaxLayer> */}
         {/* About me */}
-        <ParallaxLayer offset={1.6} factor={0.8} speed={1} className="mt-60">
-          <AboutMe />
-        </ParallaxLayer>
+
+        <AboutMe />
+
         {/* Waves */}
-        <ParallaxLayer
+        {/* <ParallaxLayer
           offset={3}
           speed={2.2}
           factor={3}
@@ -66,10 +63,9 @@ const Home = () => {
             backgroundRepeat: "repeat-x",
           }}
           className="mt-60"
-        ></ParallaxLayer>
+        ></ParallaxLayer> */}
         {/* Gallery */}
         <Gallery />
-        ha
       </Parallax>
     </div>
   );

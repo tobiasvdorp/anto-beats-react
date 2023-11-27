@@ -1,29 +1,49 @@
 import { useContext } from "react";
 import { ContentContext } from "@/lib/appwrite/ContentContext";
 import AboutMeCard from "./ui/aboutmecard";
+import { ParallaxLayer } from "@react-spring/parallax";
 
 const AboutMe = () => {
   const content = useContext(ContentContext);
 
   const aboutMeSections = content["about_me"] || [];
   return (
-    <div className="flex flex-col md:flex-row justify-center px-2 md:px-10 duration-200">
-      <h2 className="text-5xl font-vtc text-white lg:pr-10 pl-3 text-shadow">
-        Who is Anto?
-      </h2>
+    <>
+      <ParallaxLayer offset={1} speed={2}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          className="mt-2 -z-10"
+        >
+          <path
+            className="bg-background_dark_secondary"
+            fill-opacity="1"
+            d="M0,224L6.2,229.3C12.3,235,25,245,37,208C49.2,171,62,85,74,69.3C86.2,53,98,107,111,154.7C123.1,203,135,245,148,261.3C160,277,172,267,185,240C196.9,213,209,171,222,176C233.8,181,246,235,258,256C270.8,277,283,267,295,256C307.7,245,320,235,332,197.3C344.6,160,357,96,369,106.7C381.5,117,394,203,406,218.7C418.5,235,431,181,443,138.7C455.4,96,468,64,480,48C492.3,32,505,32,517,53.3C529.2,75,542,117,554,133.3C566.2,149,578,139,591,117.3C603.1,96,615,64,628,80C640,96,652,160,665,202.7C676.9,245,689,267,702,277.3C713.8,288,726,288,738,288C750.8,288,763,288,775,272C787.7,256,800,224,812,218.7C824.6,213,837,235,849,250.7C861.5,267,874,277,886,234.7C898.5,192,911,96,923,90.7C935.4,85,948,171,960,176C972.3,181,985,107,997,85.3C1009.2,64,1022,96,1034,112C1046.2,128,1058,128,1071,112C1083.1,96,1095,64,1108,80C1120,96,1132,160,1145,154.7C1156.9,149,1169,75,1182,69.3C1193.8,64,1206,128,1218,154.7C1230.8,181,1243,171,1255,154.7C1267.7,139,1280,117,1292,128C1304.6,139,1317,181,1329,202.7C1341.5,224,1354,224,1366,224C1378.5,224,1391,224,1403,224C1415.4,224,1428,224,1434,224L1440,224L1440,320L1433.8,320C1427.7,320,1415,320,1403,320C1390.8,320,1378,320,1366,320C1353.8,320,1342,320,1329,320C1316.9,320,1305,320,1292,320C1280,320,1268,320,1255,320C1243.1,320,1231,320,1218,320C1206.2,320,1194,320,1182,320C1169.2,320,1157,320,1145,320C1132.3,320,1120,320,1108,320C1095.4,320,1083,320,1071,320C1058.5,320,1046,320,1034,320C1021.5,320,1009,320,997,320C984.6,320,972,320,960,320C947.7,320,935,320,923,320C910.8,320,898,320,886,320C873.8,320,862,320,849,320C836.9,320,825,320,812,320C800,320,788,320,775,320C763.1,320,751,320,738,320C726.2,320,714,320,702,320C689.2,320,677,320,665,320C652.3,320,640,320,628,320C615.4,320,603,320,591,320C578.5,320,566,320,554,320C541.5,320,529,320,517,320C504.6,320,492,320,480,320C467.7,320,455,320,443,320C430.8,320,418,320,406,320C393.8,320,382,320,369,320C356.9,320,345,320,332,320C320,320,308,320,295,320C283.1,320,271,320,258,320C246.2,320,234,320,222,320C209.2,320,197,320,185,320C172.3,320,160,320,148,320C135.4,320,123,320,111,320C98.5,320,86,320,74,320C61.5,320,49,320,37,320C24.6,320,12,320,6,320L0,320Z"
+          ></path>
+        </svg>
 
-      <div className="gap-3 w-full flex flex-col items-center justify-center max-w-6xl lg:max-w-4xl -ml-3">
-        {aboutMeSections.map((section, index) => (
-          <AboutMeCard
-            key={index}
-            cardId={section.$id}
-            title={section.title}
-            paragraph={section.paragraph}
-            position={index % 2 === 0 ? "left" : "right"}
-          />
-        ))}
-      </div>
-    </div>
+        <div className="h-[300vh] bg-secondary_dark z-0"></div>
+      </ParallaxLayer>
+      <ParallaxLayer offset={1.8} factor={0.8} speed={1} className="">
+        <div className="flex flex-col md:flex-row justify-center px-2 md:px-10 duration-200 ">
+          <h2 className="text-5xl font-vtc text-white lg:pr-10 pl-3 text-shadow">
+            Who is Anto?
+          </h2>
+
+          <div className="gap-3 w-full flex flex-col items-center justify-center max-w-6xl lg:max-w-4xl -ml-3">
+            {aboutMeSections.map((section, index) => (
+              <AboutMeCard
+                key={index}
+                cardId={section.$id}
+                title={section.title}
+                paragraph={section.paragraph}
+                position={index % 2 === 0 ? "left" : "right"}
+              />
+            ))}
+          </div>
+        </div>
+      </ParallaxLayer>
+    </>
   );
 };
 

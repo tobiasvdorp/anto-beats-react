@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background_dark_secondary: #15053d; /* CTA purple */
+}
+.bg-background_dark_secondary {
+  fill: var(--background_dark_secondary);
+}
 @layer base {
   /* body,
   html {
