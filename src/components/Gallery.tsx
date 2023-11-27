@@ -17,71 +17,61 @@ const Gallery = () => {
       </ParallaxLayer>
 
       <div className="w-full flex items-center">
-        {/* Top layer images */}
-        {/* <ParallaxLayer
-          offset={2.95}
-          speed={0.95}
-          className="flex items-center justify-between max-w-4xl mx-auto z-20"
-        >
-          <img
-            src="/placeholder.png"
-            className="w-[40vw] md:w-[30vw] max-w-[350px] border-2 border-primary_dark"
-          ></img>
-          <img
-            src="/placeholder.png"
-            className=" w-[40vw] md:w-[30vw] max-w-[350px] mt-[800px] border-2 border-red-200"
-          ></img>
-          <img
-            src="/placeholder.png"
-            className="w-[40vw] md:w-[30vw] max-w-[350px] border-2 border-green-950"
-          ></img>
-          <img
-            src="/placeholder.png"
-            className="w-[40vw] md:w-[30vw] max-w-[350px] border-2 border-yellow-200 mt-96 -mb-40 "
-          ></img>
-        </ParallaxLayer>
-
-        {/* Middle layer images */}
-        {/* <ParallaxLayer
-          offset={2.99}
-          speed={0.6}
-          className="flex items-center justify-between max-w-4xl mx-auto z-10"
-        >
-          <img
-            src="/placeholder.png"
-            className="m-auto w-[26vw] max-w-[270px] border-2 border-white mr-20"
-          ></img>
-          <img
-            src="/placeholder.png"
-            className="w-[27vw] max-w-[280px] mb-auto border-2 border-red-700 mr-52"
-          ></img>
-        </ParallaxLayer> */}
-
+        {/* title */}
         <ParallaxLayer
-          offset={2.4}
+          offset={2.9}
           speed={0.3}
-          className="flex items-center justify-between max-w-4xl mx-auto z-20"
+          factor={0.3}
+          className=" ml-20 mx-auto z-20"
         >
-          <h2 className="text-7xl font-vtc text-white lg:pr-10 pl-3 text-shadow z-20">
+          <h2 className="text-7xl font-vtc text-white lg:pr-10 pl-3 text-shadow z-20 mb-20">
             Image gallery
           </h2>
         </ParallaxLayer>
+
+        {/* First row of images */}
         <ParallaxLayer
           offset={2.7}
           speed={0.3}
           className="flex items-center justify-between max-w-4xl mx-auto z-20"
         >
-          <img
-            src="/placeholder.png"
-            className="w-[26vw] max-w-[250px] border-2 border-gray-400"
-          ></img>
+          <Atropos>
+            <img
+              src="/placeholder.png"
+              className="w-[26vw] max-w-[250px] border-2 border-gray-400 "
+            ></img>
+          </Atropos>
           <img
             src="/placeholder.png"
             className="w-[27vw] max-w-[250px] border-2 border-blue-600 mb-40 "
           ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[27vw] max-w-[250px] border-2 border-gray-400"
+          ></img>
         </ParallaxLayer>
 
-        {/* Images moving shadows */}
+        {/* Second row of images */}
+        <ParallaxLayer
+          offset={2.95}
+          speed={0.4}
+          className="flex items-center justify-between max-w-4xl mx-auto z-20 mt-36"
+        >
+          <img
+            src="/placeholder.png"
+            className="w-[27vw] max-w-[250px] border-2 border-gray-400"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[27vw] max-w-[250px] border-2 mb-40 border-gray-400"
+          ></img>
+          <img
+            src="/placeholder.png"
+            className="w-[27vw] max-w-[250px] border-2 border-gray-400"
+          ></img>
+        </ParallaxLayer>
+
+        {/* Images moving shadows (first row) */}
         <ParallaxLayer
           offset={2.7}
           speed={0.4}
@@ -89,6 +79,18 @@ const Gallery = () => {
         >
           <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 ml-12"></div>
           <div className="w-[27vw] max-w-[250px] bg-blue-600 h-52 mb-40 mr-12"></div>
+          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 mr-12"></div>
+        </ParallaxLayer>
+
+        {/* Images moving shadows (second row) */}
+        <ParallaxLayer
+          offset={2.95}
+          speed={0.3}
+          className="flex items-center justify-between max-w-4xl mx-auto z-10 mt-36"
+        >
+          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 ml-10"></div>
+          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 mb-40 mr-12"></div>
+          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 mr-12"></div>
         </ParallaxLayer>
       </div>
     </>
