@@ -5,7 +5,7 @@
   --primary_dark: #8256f0; /* light purple */
   --secondary_dark: #15053d; /* Dark purple */
   --accent_dark: #40d4b1; /* Light green */
-  --new_green: #426a5a; /* Dark green */
+  --new_green: #023020; /* Dark green */
 
   --primary: #5b17d2; /* lighter purple */
   --secondary: #072640; /* dark blue */
@@ -42,32 +42,40 @@
 
 /* Arrows */
 .splide__arrow svg {
-  fill: var(--accent_dark) !important;
+  @apply fill-accent_dark !important;
 }
 
 /* Pagination */
 .splide__pagination__page.is-active {
-  background-color: var(--accent_dark) !important;
+  @apply bg-accent_dark !important;
 }
 
 .splide__pagination__page {
-  background-color: var(--background_dark) !important;
+  @apply bg-background_dark !important;
 }
 
 /* Active bottom slide */
 #splide02 .is-active {
-  border: 3px solid var(--accent_dark) !important;
+  @apply border-2 border-solid border-accent_dark !important;
 }
 
-/* .splide__slide.is-active {
-  transform: scale(1);
-  transition: transform 0.1s ease-in-out;
+#splide01 {
+  @apply pt-5;
 }
 
-.splide__slide {
-  transform: scale(0.8);
-  transition: transform 0.1s ease-in-out;
-} */
+/* Small screens */
+.splide__arrow--prev {
+  @apply -left-4  !important;
+}
 
-#splide02-track {
+.splide__arrow--next {
+  @apply -right-4 !important;
+}
+
+#splide01 {
+  @apply mx-3;
+}
+
+.splide__pagination {
+  @apply static my-3 !important;
 }

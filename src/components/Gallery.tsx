@@ -18,7 +18,6 @@ const Gallery = () => {
     type: "loop",
     perPage: 3,
     focus: "center",
-
     height: "16rem",
     autoWidth: true,
     width: "100%",
@@ -79,14 +78,16 @@ const Gallery = () => {
             strokeWidth="0.8"
           />
         </svg>
-        <div className="h-[300vh] bg-new_green 0 z-0"></div>
+        <div className="h-[500vh] bg-new_green 0 z-0"></div>
       </ParallaxLayer>
-      {/* First row of images */}
-      <ParallaxLayer offset={3} speed={0.3} className="z-1">
+      <ParallaxLayer offset={3} speed={0.3} factor={2} className="z-1">
         <div className="w-full max-w-2xl flex flex-col items-center justify-center mx-auto">
-          <h2 className="text-5xl font-vtc text-white lg:pr-10 pl-3 text-shadow text-center">
+          <h2 className="text-5xl font-vtc text-white  text-shadow text-center">
             Image Gallery
           </h2>
+          <p className="text-white text-center font-main font-semibold">
+            Pictures we have taken over the years.
+          </p>
           <Splide
             options={mainSliderOptions}
             ref={mainSliderRef}
