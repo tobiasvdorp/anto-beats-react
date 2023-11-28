@@ -30,6 +30,10 @@
 .splide__track {
   margin: 0 20px;
 }
+
+.splide__slide {
+  padding: 0;
+}
 /* Bottom track */
 #splide02 {
   padding: 0 15px;
@@ -55,7 +59,7 @@
   border: 3px solid var(--accent_dark) !important;
 }
 
-.splide__slide.is-active {
+/* .splide__slide.is-active {
   transform: scale(1);
   transition: transform 0.1s ease-in-out;
 }
@@ -63,4 +67,7 @@
 .splide__slide {
   transform: scale(0.8);
   transition: transform 0.1s ease-in-out;
+} */
+
+#splide02-track {
 }

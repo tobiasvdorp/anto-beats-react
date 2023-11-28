@@ -15,29 +15,34 @@ const Gallery = () => {
   }, []);
 
   const mainSliderOptions = {
-    height: "14rem",
-    focus: "center",
-    autoWidth: true,
-    autoplay: true,
+    type: "loop",
     perPage: 3,
+    focus: "center",
+
+    height: "16rem",
+    autoWidth: true,
+    width: "100%",
+    autoplay: true,
     lazyLoad: "nearby",
-    pagination: false,
-    snap: true,
+    pagination: true,
   };
 
   const thumbnailSliderOptions = {
-    fixedWidth: 40,
-    fixedHeight: 55,
-    isNavigation: true,
-    gap: 10,
+    type: "slide",
     focus: "center",
-    pagination: true,
     arrows: false,
-    cover: true,
+    perPage: 5,
+    fixedWidth: 90,
+    height: 60,
+    autoWidth: true,
+    gap: 10,
+    rewind: true,
+    pagination: false,
+    isNavigation: true,
     breakpoints: {
       600: {
-        fixedWidth: 66,
-        fixedHeight: 40,
+        fixedWidth: 60,
+        fixedHeight: 44,
       },
     },
     sync: mainSliderRef.current,
@@ -59,6 +64,7 @@ const Gallery = () => {
     "/placeholder.png",
     "/placeholder.png",
     "/placeholder.png",
+    "/placeholder.png",
   ];
   return (
     <>
@@ -77,8 +83,8 @@ const Gallery = () => {
       </ParallaxLayer>
       {/* First row of images */}
       <ParallaxLayer offset={3} speed={0.3} className="z-1">
-        <div className="bg-secondary_dark py-10">
-          <h2 className="text-7xl font-vtc text-white lg:pr-10 pl-3 text-shadow text-center">
+        <div className="w-full max-w-2xl flex flex-col items-center justify-center mx-auto">
+          <h2 className="text-5xl font-vtc text-white lg:pr-10 pl-3 text-shadow text-center">
             Image Gallery
           </h2>
           <Splide
@@ -91,7 +97,7 @@ const Gallery = () => {
                 <img
                   src={image}
                   alt={`Image ${index}`}
-                  className="w-full h-full"
+                  className=" h-full w-full object-cover"
                 />
               </SplideSlide>
             ))}
