@@ -1,10 +1,14 @@
-import { database, account } from "@/lib/appwrite/config";
+import { database, account, storage } from "@/lib/appwrite/config";
 
 // Zorg ervoor dat je de juiste environment variabelen hebt geïmporteerd
 const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
 const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
 const aboutmeCollectionId = import.meta.env.VITE_APPWRITE_ABOUTME_COLLECTION_ID;
 const galleryCollectionId = import.meta.env.VITE_APPWRITE_GALLERY_COLLECTION_ID;
+const galleryBucketId = import.meta.env.VITE_APPWRITE_GALLERY_BUCKET_ID;
+const projectId = import.meta.env.VITE_APP_APPWRITE_PROJECT_ID;
+
+console.log("projectId", projectId);
 
 export async function getSong(
   databaseId: string,
@@ -123,5 +127,31 @@ export const fetchGalleryImages = async () => {
   } catch (error) {
     console.error("Fout bij het ophalen van afbeeldingen:", error);
     return [];
+  }
+};
+export const addGalleryImage = async (file: File) => {
+  try {
+    const uploadResult = await storage.createFile(
+      galleryBucketId,
+      "unique()",
+      file
+    );
+
+    // Update de URL om de project-ID en toegangsmodus te bevatten
+    const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${galleryBucketId}/files/${uploadResult.$id}/view?project=${projectId}&mode=admin`;
+
+    await database.createDocument(
+      databaseId,
+      galleryCollectionId,
+      "unique()", // Unieke document ID
+      {
+        id: "unique()", // Zorg ervoor dat dit overeenkomt met de structuur van je collectie
+        imageurl: imageUrl,
+      }
+    );
+    return uploadResult.$id;
+  } catch (error) {
+    console.error("Error adding gallery image:", error);
+    throw error;
   }
 };

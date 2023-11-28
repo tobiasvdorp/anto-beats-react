@@ -65,15 +65,15 @@
 
 /* Small screens */
 .splide__arrow--prev {
-  @apply -left-4  !important;
+  @apply -left-4 top-[43%]  !important;
 }
 
 .splide__arrow--next {
-  @apply -right-4 !important;
+  @apply -right-4 top-[43%] !important;
 }
 
 .main-slider {
-  @apply mx-3 pb-0 !important;
+  @apply mx-3 py-2 !important;
 }
 
 .splide__pagination {
