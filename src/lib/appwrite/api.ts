@@ -8,8 +8,6 @@ const galleryCollectionId = import.meta.env.VITE_APPWRITE_GALLERY_COLLECTION_ID;
 const galleryBucketId = import.meta.env.VITE_APPWRITE_GALLERY_BUCKET_ID;
 const projectId = import.meta.env.VITE_APP_APPWRITE_PROJECT_ID;
 
-console.log("projectId", projectId);
-
 export async function getSong(
   databaseId: string,
   songsCollectionId: string,
@@ -129,6 +127,7 @@ export const fetchGalleryImages = async () => {
     return [];
   }
 };
+
 export const addGalleryImage = async (file: File) => {
   try {
     const uploadResult = await storage.createFile(
@@ -152,6 +151,25 @@ export const addGalleryImage = async (file: File) => {
     return uploadResult.$id;
   } catch (error) {
     console.error("Error adding gallery image:", error);
+    throw error;
+  }
+};
+
+export const deleteGalleryImage = async (
+  documentId: string,
+  fileId: string
+) => {
+  try {
+    console.log("Deleting document", documentId, "and file", fileId);
+    // Verwijder eerst het document uit de database
+    await database.deleteDocument(databaseId, galleryCollectionId, documentId);
+
+    // Verwijder vervolgens het bestand uit de opslag
+    await storage.deleteFile(galleryBucketId, fileId);
+
+    alert("Afbeelding verwijderd");
+  } catch (error) {
+    console.error("Error deleting gallery image:", error);
     throw error;
   }
 };
