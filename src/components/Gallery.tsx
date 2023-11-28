@@ -10,16 +10,24 @@ const Gallery = ({ parallaxRef }) => {
     const handleScroll = () => {
       if (parallaxRef.current) {
         const offset = parallaxRef.current.container.current.scrollTop;
-        const shadowOffset = offset * 0.1; // Pas deze factor aan voor het gewenste effect
-        const shadow = `rgba(0, 98, 90, 0.4) 10px ${5 + shadowOffset}px, 
-                          rgba(0, 98, 90, 0.3) 15px ${10 + shadowOffset}px, 
-                          rgba(0, 98, 90, 0.2) 20px ${15 + shadowOffset}px, 
-                          rgba(0, 98, 90, 0.1) 25px ${20 + shadowOffset}px, 
-                          rgba(0, 98, 90, 0.05) 30px ${25 + shadowOffset}px`;
+        const shadowOffset = offset * 0.02; // Pas deze factor aan voor het gewenste effect
+        const shadow = `rgba(0, 98, 90, 0.4) 10px ${(shadowOffset - 15) * 5}px, 
+                          rgba(0, 98, 90, 0.3) 20px ${
+                            (shadowOffset - 20) * 7
+                          }px, 
+                          rgba(0, 98, 90, 0.2) 30px ${
+                            (shadowOffset - 25) * 9
+                          }px, 
+                          rgba(0, 98, 90, 0.1) 40px ${
+                            (shadowOffset - 30) * 11
+                          }px, 
+                          rgba(0, 98, 90, 0.05) 50px ${
+                            (shadowOffset - 35) * 13
+                          }px`;
         setDynamicShadow(shadow);
+        console.log(shadowOffset);
       }
     };
-
     const parallaxContainer = parallaxRef.current.container.current;
     parallaxContainer.addEventListener("scroll", handleScroll);
 
