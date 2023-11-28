@@ -1,5 +1,5 @@
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Atropos from "atropos/react";
+import { ParallaxLayer } from "@react-spring/parallax";
+
 const Gallery = () => {
   return (
     <>
@@ -16,83 +16,66 @@ const Gallery = () => {
         <div className="h-[300vh] bg-new_green 0 z-0"></div>
       </ParallaxLayer>
 
-      <div className="w-full flex items-center">
-        {/* title */}
-        <ParallaxLayer
-          offset={2.9}
-          speed={0.3}
-          factor={0.3}
-          className=" ml-20 mx-auto z-20"
-        >
-          <h2 className="text-7xl font-vtc text-white lg:pr-10 pl-3 text-shadow z-20 mb-20">
-            Image gallery
-          </h2>
-        </ParallaxLayer>
+      {/* <ParallaxLayer offset={2.9} speed={0.3} factor={0.3} className="  z-20"></ParallaxLayer> */}
 
-        {/* First row of images */}
-        <ParallaxLayer
-          offset={2.7}
-          speed={0.3}
-          className="flex items-center justify-between max-w-4xl mx-auto z-20"
-        >
-          <Atropos>
-            <img
-              src="/placeholder.png"
-              className="w-[26vw] max-w-[250px] border-2 border-gray-400 "
-            ></img>
-          </Atropos>
-          <img
-            src="/placeholder.png"
-            className="w-[27vw] max-w-[250px] border-2 border-blue-600 mb-40 "
-          ></img>
-          <img
-            src="/placeholder.png"
-            className="w-[27vw] max-w-[250px] border-2 border-gray-400"
-          ></img>
-        </ParallaxLayer>
+      {/* First row of images */}
+      <ParallaxLayer offset={2.99} speed={0.3} className="z-20 mt-20">
+        {" "}
+        <h2 className="text-7xl font-vtc text-white lg:pr-10 pl-3 text-shadow z-20 ">
+          Image gallery
+        </h2>
+        <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
+          <img src="/placeholder.png" className="w-[27vw] max-w-[340px]"></img>
 
-        {/* Second row of images */}
-        <ParallaxLayer
-          offset={2.95}
-          speed={0.4}
-          className="flex items-center justify-between max-w-4xl mx-auto z-20 mt-36"
-        >
           <img
             src="/placeholder.png"
-            className="w-[27vw] max-w-[250px] border-2 border-gray-400"
+            className="w-[27vw] max-w-[330px] mb-40"
           ></img>
-          <img
-            src="/placeholder.png"
-            className="w-[27vw] max-w-[250px] border-2 mb-40 border-gray-400"
-          ></img>
-          <img
-            src="/placeholder.png"
-            className="w-[27vw] max-w-[250px] border-2 border-gray-400"
-          ></img>
-        </ParallaxLayer>
+          <img src="/placeholder.png" className="w-[27vw] max-w-[330px] "></img>
+        </div>
+      </ParallaxLayer>
 
-        {/* Images moving shadows (first row) */}
-        <ParallaxLayer
-          offset={2.7}
-          speed={0.4}
-          className="flex items-center justify-between max-w-4xl mx-auto z-10"
-        >
-          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 ml-12"></div>
-          <div className="w-[27vw] max-w-[250px] bg-blue-600 h-52 mb-40 mr-12"></div>
-          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 mr-12"></div>
-        </ParallaxLayer>
+      {/* Second row of images */}
+      <ParallaxLayer
+        offset={3}
+        speed={0.5}
+        className="flex items-center justify-between max-w-7xl mx-auto z-20 "
+      >
+        <img
+          src="/placeholder.png"
+          className="w-[27vw] max-w-[330px] border-2 border-gray-400"
+        ></img>
+        <img
+          src="/placeholder.png"
+          className="w-[27vw] max-w-[330px] border-2 mb-40 border-gray-400"
+        ></img>
+        <img
+          src="/placeholder.png"
+          className="w-[27vw] max-w-[350px] border-2 border-gray-400"
+        ></img>
+      </ParallaxLayer>
 
-        {/* Images moving shadows (second row) */}
-        <ParallaxLayer
-          offset={2.95}
-          speed={0.3}
-          className="flex items-center justify-between max-w-4xl mx-auto z-10 mt-36"
-        >
-          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 ml-10"></div>
-          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 mb-40 mr-12"></div>
-          <div className="w-[27vw] max-w-[250px] bg-gray-400 h-52 mr-12"></div>
-        </ParallaxLayer>
-      </div>
+      {/* Images moving shadows (first row) */}
+      <ParallaxLayer
+        offset={2.99}
+        speed={0.4}
+        className="flex items-center justify-between max-w-7xl mx-auto z-10 mt-20"
+      >
+        <div className="w-[27vw] max-w-[330px] bg-gray-400 h-52 ml-5 mb-40"></div>
+        <div className="w-[27vw] max-w-[330px] bg-blue-600 h-52 mb-80 ml-12"></div>
+        <div className="w-[27vw] max-w-[330px] bg-gray-400 h-52 mr-10 mb-40"></div>
+      </ParallaxLayer>
+
+      {/* Images moving shadows (second row) */}
+      <ParallaxLayer
+        offset={2.9}
+        speed={0.3}
+        className="flex items-center justify-between max-w-7xl mx-auto z-10 mt-96"
+      >
+        <div className="w-[27vw] max-w-[330px] bg-gray-400 h-52 ml-10"></div>
+        <div className="w-[27vw] max-w-[330px] bg-gray-400 h-52 mb-40 mr-12"></div>
+        <div className="w-[27vw] max-w-[350px] bg-gray-400 h-52 mr-12"></div>
+      </ParallaxLayer>
     </>
   );
 };
