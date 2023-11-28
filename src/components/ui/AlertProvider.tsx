@@ -47,14 +47,16 @@ export const AlertProvider = ({ children }) => {
             fixed bottom-2 mx-2 w-fit flex-nowrap flex justify-center  max-w-xl py-2 sm:py-3 sm:px-3 px-2  gap-3 animate__animated ${animation} `}
           >
             {alert.type === "success" && (
-              <FaRegCircleCheck className="text-xl" />
+              <FaRegCircleCheck className="text-xl w-8" />
             )}
 
             {alert.type === "warning" && (
-              <IoWarningOutline className="text-xl" />
+              <IoWarningOutline className="text-xl w-8" />
             )}
 
-            {alert.type === "error" && <MdErrorOutline className="text-xl" />}
+            {alert.type === "error" && (
+              <MdErrorOutline className="text-xl w-8" />
+            )}
 
             <span>{alert.message}</span>
             <button

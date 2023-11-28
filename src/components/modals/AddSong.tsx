@@ -91,7 +91,10 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
         []
       );
 
-      showAlert("Song added successfully!", "success");
+      showAlert(
+        "Song added successfully! Reload the page to see it.",
+        "success"
+      );
     } catch (error) {
       if (error instanceof Error) {
         showAlert(error.message, "error");
