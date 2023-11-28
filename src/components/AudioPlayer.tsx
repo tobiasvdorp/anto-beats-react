@@ -223,7 +223,7 @@ const AudioPlayer = ({ isAdmin }) => {
 
   return (
     <>
-      <ParallaxLayer offset={0.7} speed={2}>
+      <ParallaxLayer offset={0.7} speed={2} id="listen">
         <svg viewBox="0.795 0 500 100" xmlns="http://www.w3.org/2000/svg">
           <path
             className="bg-background_dark stroke-accent"

@@ -29,27 +29,17 @@ function CallToAction() {
               {/* Buttons */}
               <div className="flex flex-row gap-2 p-1">
                 <Atropos className="">
-                  <button
-                    onClick={() => {
-                      showAlert("Something went wrong.", "error");
-                    }}
+                  <a
+                    href="#"
                     className="btn-secondary btn md:px-8 px-6 md:text-lg min-h-0 md:h-12 h-10 first-btn"
                   >
                     Contact
-                  </button>
+                  </a>
                 </Atropos>
                 <Atropos>
-                  <button
-                    className="btn-secondary btn md:px-10 px-8 md:text-lg min-h-0 md:h-12 h-10"
-                    onClick={() => {
-                      showAlert(
-                        "This feature is not available yet!",
-                        "success"
-                      );
-                    }}
-                  >
+                  <a className="btn-secondary btn md:px-10 px-8 md:text-lg min-h-0 md:h-12 h-10">
                     Listen
-                  </button>
+                  </a>
                 </Atropos>
               </div>
             </div>
