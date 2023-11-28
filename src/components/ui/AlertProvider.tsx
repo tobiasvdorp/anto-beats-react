@@ -40,7 +40,11 @@ export const AlertProvider = ({ children }) => {
         <div className="w-screen flex justify-center items-center">
           <div
             role="alert"
-            className={`alert alert-${alert.type} fixed bottom-2 mx-2 w-fit flex-nowrap flex justify-center  max-w-xl py-2 sm:py-3 sm:px-3 px-2  gap-3 animate__animated ${animation} `}
+            className={`alert alert-${alert.type} ${
+              alert.type === "warning" && "bg-yellow-500 text-black"
+            } 
+
+            fixed bottom-2 mx-2 w-fit flex-nowrap flex justify-center  max-w-xl py-2 sm:py-3 sm:px-3 px-2  gap-3 animate__animated ${animation} `}
           >
             {alert.type === "success" && (
               <FaRegCircleCheck className="text-xl" />

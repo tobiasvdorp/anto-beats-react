@@ -1,15 +1,14 @@
 import { useState, useRef } from "react";
 import { database, storage } from "@/lib/appwrite/config";
 import { CiImageOn } from "react-icons/ci";
-import { VoidFunction, ChangeEventHandler } from "@/types";
-
+import { useAlert } from "../ui/AlertProvider";
 import { PiFileAudioFill } from "react-icons/pi";
 
 function AddSong({ closeModal }: { closeModal: VoidFunction }) {
   const [image, setImage] = useState<File | null>(null);
   const [audio, setAudio] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(true);
+
   const [alertMessage, setAlertMessage] = useState("");
   const [audioFileName, setAudioFileName] = useState("");
   const [imageFileName, setImageFileName] = useState("");
@@ -24,6 +23,8 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
   const collectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
   const audioBucketId = import.meta.env.VITE_APPWRITE_AUDIOFILES_BUCKET_ID;
   const imageBucketId = import.meta.env.VITE_APPWRITE_IMAGES_BUCKET_ID;
+
+  const { showAlert } = useAlert();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -90,15 +91,10 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
         []
       );
 
-      setShowAlert(true);
-      setAlertMessage("Song added successfully! Reload the page to see it.");
-      // hide alert after 3 seconds
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 5000);
+      showAlert("Song added successfully!", "success");
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        showAlert(error.message, "error");
       }
     } finally {
       setLoading(false);
@@ -206,15 +202,15 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
             if (loading) return;
 
             if (!title) {
-              alert("Please enter a title for the song.");
+              showAlert("Please enter a title.", "warning");
               return;
             }
             if (!image) {
-              alert("Please select an image file.");
+              showAlert("Please select an image.", "warning");
               return;
             }
             if (!audio) {
-              alert("Please select an audio file.");
+              showAlert("Please select an audio file.", "warning");
               return;
             }
 
@@ -231,12 +227,7 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
             "Add song"
           )}
         </button>
-        {showAlert && (
-          <p className="text-center text-accent pb-0">{alertMessage}</p>
-        )}
       </form>
-
-      {/* {showAlert && <Alert alertMessage={alertMessage} />} */}
     </>
   );
 }
