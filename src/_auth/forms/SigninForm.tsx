@@ -41,6 +41,13 @@ const SigninForm = () => {
     return re.test(String(email).toLowerCase());
   }
 
+  // Enter key to submit (always listening)
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  });
+
   return (
     <>
       <form className="h-full flex flex-col gap-4 items-center justify-center px-5 w-96 max-w-full ">

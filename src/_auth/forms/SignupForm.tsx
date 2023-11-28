@@ -55,7 +55,12 @@ const SignupForm = () => {
       }
     }
   };
-
+  // Enter key to submit (always listening)
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      handleSignup();
+    }
+  });
   // Email validation function
   function validateEmail(email: string) {
     const re =
