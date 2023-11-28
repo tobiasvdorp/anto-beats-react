@@ -10,11 +10,7 @@ const Home = () => {
 
   return (
     <div className="max-w-7xl flex">
-      <Parallax
-        pages={5}
-        className="dark:bg-background_dark bg-background"
-        ref={parallaxRef}
-      >
+      <Parallax pages={5} className="dark:bg-background_dark bg-background">
         <CallToAction />
         <AudioPlayer isAdmin={isAdmin} />
         <AboutMe />
