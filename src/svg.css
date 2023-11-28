@@ -24,3 +24,43 @@
 .bg-new_green {
   fill: var(--new_green);
 }
+
+/* Splide image slider */
+/* Both tracks */
+.splide__track {
+  margin: 0 20px;
+}
+/* Bottom track */
+#splide02 {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+/* Arrows */
+.splide__arrow svg {
+  fill: var(--accent_dark) !important;
+}
+
+/* Pagination */
+.splide__pagination__page.is-active {
+  background-color: var(--accent_dark) !important;
+}
+
+.splide__pagination__page {
+  background-color: var(--background_dark) !important;
+}
+
+/* Active bottom slide */
+#splide02 .is-active {
+  border: 3px solid var(--accent_dark) !important;
+}
+
+.splide__slide.is-active {
+  transform: scale(1);
+  transition: transform 0.1s ease-in-out;
+}
+
+.splide__slide {
+  transform: scale(0.8);
+  transition: transform 0.1s ease-in-out;
+}
