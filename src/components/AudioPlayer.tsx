@@ -191,15 +191,32 @@ const AudioPlayer = ({ isAdmin }) => {
     }
   };
 
+  // const toggleFullscreen = () => {
+  //   if (!document.fullscreenElement) {
+  //     document.documentElement.requestFullscreen();
+  //     setIsFullscreen(true);
+  //   } else {
+  //     if (document.exitFullscreen) {
+  //       document.exitFullscreen();
+  //       setIsFullscreen(false);
+  //     }
+  //   }
+  // };
+
   const toggleFullscreen = () => {
+    if (!document.fullscreenEnabled) {
+      alert("Fullscreen mode is not supported on this device.");
+      return;
+    }
+
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
+      document.documentElement.requestFullscreen().catch(() => {
+        alert("Cannot enable fullscreen mode.");
+      });
       setIsFullscreen(true);
     } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-        setIsFullscreen(false);
-      }
+      document.exitFullscreen();
+      setIsFullscreen(false);
     }
   };
 
@@ -233,7 +250,7 @@ const AudioPlayer = ({ isAdmin }) => {
         className="w-full flex items-center justify-center"
       >
         <div
-          className={`w-full  rounded-lg mt-40  bg-secondary_dark  items-center justify-center flex flex-col p-5 mx-2 border-2 border-primary max-h-[90vh]
+          className={`w-full  rounded-lg mt-40  bg-secondary_dark  items-center justify-center flex flex-col p-3 sm:p-5 mx-1 sm:mx-2 border-2 border-primary max-h-[90vh]
     ${isFullscreen ? "mx-4 max-w-8xl" : "max-w-3xl"}
      `}
         >
@@ -272,7 +289,7 @@ const AudioPlayer = ({ isAdmin }) => {
 
             <button
               onClick={toggleFullscreen}
-              className="absolute sm:right-0 -right-2 sm:top-0 -top-10 p-2 bg-accent_dark rounded-md text-black"
+              className="absolute right-0 sm:top-0 -top-8 p-2 bg-accent_dark rounded-md text-black"
             >
               {isFullscreen ? (
                 <BsFullscreenExit className="sm:text-2xl text-xl text-black" />
