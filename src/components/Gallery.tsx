@@ -17,14 +17,14 @@ const Gallery = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const loadImages = async () => {
-      const galleryImages = await fetchGalleryImages();
-      setImages(galleryImages);
-    };
+  // useEffect(() => {
+  //   const loadImages = async () => {
+  //     const galleryImages = await fetchGalleryImages();
+  //     setImages(galleryImages);
+  //   };
 
-    loadImages();
-  }, []);
+  //   loadImages();
+  // }, []);
 
   const mainSliderOptions = {
     type: "loop",
@@ -33,7 +33,9 @@ const Gallery = () => {
     height: "16rem",
     autoWidth: true,
     width: "100%",
-    autoplay: true,
+
+    // If there are no images, disable autoplay
+    autoplay: images.length === 0 ? false : true,
     lazyLoad: "nearby",
     pagination: true,
   };
@@ -87,6 +89,19 @@ const Gallery = () => {
             ref={mainSliderRef}
             aria-label="My Favorite Images"
           >
+            {/* If there are no images, show placeholder */}
+            {images.length === 0 &&
+              // Map 3 times to show 3 placeholders
+              Array.from(Array(3).keys()).map((_, index) => (
+                <SplideSlide key={index} className="relative w-full h-full">
+                  <img
+                    src="/placeholder.png"
+                    alt={`Placeholder ${index}`}
+                    className="h-full w-full object-cover opacity-20 "
+                  />
+                  <span className="loading loading-spinner loading-lg absolute top-[45%] left-[48%] "></span>
+                </SplideSlide>
+              ))}
             {images.map((image, index) => (
               <SplideSlide key={index}>
                 <img
@@ -103,6 +118,18 @@ const Gallery = () => {
             ref={thumbnailSliderRef}
             aria-label="Thumbnail Navigation"
           >
+            {/* If there are no images, show placeholder */}
+            {images.length === 0 &&
+              // Map 3 times to show 3 placeholders
+              Array.from(Array(3).keys()).map((_, index) => (
+                <SplideSlide key={index} className="relative ">
+                  <img
+                    src="/placeholder.png"
+                    alt={`Placeholder ${index}`}
+                    className="h-full w-full opacity-20 animate-pulse "
+                  />
+                </SplideSlide>
+              ))}
             {images.map((image, index) => (
               <SplideSlide key={index}>
                 <img
