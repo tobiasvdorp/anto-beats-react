@@ -17,14 +17,14 @@ const Gallery = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const loadImages = async () => {
-  //     const galleryImages = await fetchGalleryImages();
-  //     setImages(galleryImages);
-  //   };
+  useEffect(() => {
+    const loadImages = async () => {
+      const galleryImages = await fetchGalleryImages();
+      setImages(galleryImages);
+    };
 
-  //   loadImages();
-  // }, []);
+    loadImages();
+  }, []);
 
   const mainSliderOptions = {
     type: "loop",
@@ -88,6 +88,7 @@ const Gallery = () => {
             options={mainSliderOptions}
             ref={mainSliderRef}
             aria-label="My Favorite Images"
+            className="main-slider"
           >
             {/* If there are no images, show placeholder */}
             {images.length === 0 &&
@@ -117,6 +118,7 @@ const Gallery = () => {
             options={thumbnailSliderOptions}
             ref={thumbnailSliderRef}
             aria-label="Thumbnail Navigation"
+            className="thumbnail-slider"
           >
             {/* If there are no images, show placeholder */}
             {images.length === 0 &&

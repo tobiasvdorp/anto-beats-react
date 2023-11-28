@@ -35,7 +35,7 @@
   padding: 0;
 }
 /* Bottom track */
-#splide02 {
+.thumbnail-slider {
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -55,11 +55,11 @@
 }
 
 /* Active bottom slide */
-#splide02 .is-active {
+.thumbnail-slider .is-active {
   @apply border-2 border-solid border-accent_dark !important;
 }
 
-#splide01 {
+.main-slider {
   @apply pt-5;
 }
 
@@ -72,10 +72,14 @@
   @apply -right-4 !important;
 }
 
-#splide01 {
-  @apply mx-3;
+.main-slider {
+  @apply mx-3 pb-0 !important;
 }
 
 .splide__pagination {
   @apply static my-3 !important;
+}
+
+.thumbnail-slider {
+  @apply py-0 !important;
 }
