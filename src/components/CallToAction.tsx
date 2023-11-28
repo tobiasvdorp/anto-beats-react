@@ -1,7 +1,8 @@
 import { ParallaxLayer } from "@react-spring/parallax";
 import Atropos from "atropos/react";
-
+import { useAlert } from "./ui/AlertProvider";
 function CallToAction() {
+  const { showAlert } = useAlert();
   return (
     <>
       <ParallaxLayer offset={0} speed={0.3} factor={1}>
@@ -28,20 +29,27 @@ function CallToAction() {
               {/* Buttons */}
               <div className="flex flex-row gap-2 p-1">
                 <Atropos className="">
-                  <a
-                    href="#"
+                  <button
+                    onClick={() => {
+                      showAlert("Something went wrong.", "error");
+                    }}
                     className="btn-secondary btn md:px-8 px-6 md:text-lg min-h-0 md:h-12 h-10 first-btn"
                   >
                     Contact
-                  </a>
+                  </button>
                 </Atropos>
                 <Atropos>
-                  <a
-                    href="#"
+                  <button
                     className="btn-secondary btn md:px-10 px-8 md:text-lg min-h-0 md:h-12 h-10"
+                    onClick={() => {
+                      showAlert(
+                        "This feature is not available yet!",
+                        "success"
+                      );
+                    }}
                   >
                     Listen
-                  </a>
+                  </button>
                 </Atropos>
               </div>
             </div>

@@ -14,33 +14,39 @@ import AdminPanel from "./pages/AdminPanel";
 import "animate.css";
 import "atropos/atropos.css";
 import { ContentProvider } from "@/lib/appwrite/ContentContext";
+import { AlertProvider } from "./components/ui/AlertProvider";
 
 const App = () => {
   return (
     <>
-      <ContentProvider>
-        <UserProvider>
-          <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-            <Navbar />
-            <main className="">
-              <Routes>
-                {/* Public routes */}
-                <Route element={<AuthLayout />}>
-                  <Route path="/sign-in" element={<SigninForm />} />
-                  <Route path="/sign-up" element={<SignupForm />} />
-                  <Route path="/account-created" element={<AccountCreated />} />
-                </Route>
+      <AlertProvider>
+        <ContentProvider>
+          <UserProvider>
+            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+              <Navbar />
+              <main className="">
+                <Routes>
+                  {/* Public routes */}
+                  <Route element={<AuthLayout />}>
+                    <Route path="/sign-in" element={<SigninForm />} />
+                    <Route path="/sign-up" element={<SignupForm />} />
+                    <Route
+                      path="/account-created"
+                      element={<AccountCreated />}
+                    />
+                  </Route>
 
-                <Route path="/" element={<Home />}></Route>
+                  <Route path="/" element={<Home />}></Route>
 
-                {/* Private routes */}
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/admin" element={<AdminPanel />} />
-              </Routes>
-            </main>
-          </ThemeProvider>
-        </UserProvider>
-      </ContentProvider>
+                  {/* Private routes */}
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/admin" element={<AdminPanel />} />
+                </Routes>
+              </main>
+            </ThemeProvider>
+          </UserProvider>
+        </ContentProvider>
+      </AlertProvider>
     </>
   );
 };

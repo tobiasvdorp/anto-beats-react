@@ -8,6 +8,7 @@ import AddSong from "./modals/AddSong";
 import SongSkeleton from "./ui/SongSkeleton";
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
 import { ParallaxLayer } from "@react-spring/parallax";
+import { useAlert } from "./ui/AlertProvider";
 
 const AudioPlayer = ({ isAdmin }) => {
   const [songs, setSongs] = useState([]);
@@ -18,6 +19,8 @@ const AudioPlayer = ({ isAdmin }) => {
   const [songDurations, setSongDurations] = useState({});
   const [userId, setUserId] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const { showAlert } = useAlert();
+
   useEffect(() => {
     const fetchUser = async () => {
       const user = await account.get();
@@ -191,21 +194,9 @@ const AudioPlayer = ({ isAdmin }) => {
     }
   };
 
-  // const toggleFullscreen = () => {
-  //   if (!document.fullscreenElement) {
-  //     document.documentElement.requestFullscreen();
-  //     setIsFullscreen(true);
-  //   } else {
-  //     if (document.exitFullscreen) {
-  //       document.exitFullscreen();
-  //       setIsFullscreen(false);
-  //     }
-  //   }
-  // };
-
   const toggleFullscreen = () => {
     if (!document.fullscreenEnabled) {
-      alert("Fullscreen mode is not supported on this device.");
+      showAlert("Fullscreen mode is not supported on this device.", "warning");
       return;
     }
 
