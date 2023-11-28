@@ -136,7 +136,6 @@ export const addGalleryImage = async (file: File) => {
       file
     );
 
-    // Update de URL om de project-ID en toegangsmodus te bevatten
     const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${galleryBucketId}/files/${uploadResult.$id}/view?project=${projectId}&mode=admin`;
 
     await database.createDocument(
@@ -144,7 +143,6 @@ export const addGalleryImage = async (file: File) => {
       galleryCollectionId,
       "unique()", // Unieke document ID
       {
-        id: "unique()", // Zorg ervoor dat dit overeenkomt met de structuur van je collectie
         imageurl: imageUrl,
       }
     );
@@ -159,15 +157,16 @@ export const deleteGalleryImage = async (
   documentId: string,
   fileId: string
 ) => {
+  console.log(
+    "Deleting image with documentId:",
+    documentId,
+    "and fileId:",
+    fileId
+  );
   try {
-    console.log("Deleting document", documentId, "and file", fileId);
-    // Verwijder eerst het document uit de database
     await database.deleteDocument(databaseId, galleryCollectionId, documentId);
-
-    // Verwijder vervolgens het bestand uit de opslag
     await storage.deleteFile(galleryBucketId, fileId);
-
-    alert("Afbeelding verwijderd");
+    console.log("Afbeelding verwijderd");
   } catch (error) {
     console.error("Error deleting gallery image:", error);
     throw error;

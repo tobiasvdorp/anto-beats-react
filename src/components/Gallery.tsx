@@ -71,8 +71,13 @@ const Gallery = () => {
     },
     // sync: mainSliderRef.current,
   };
-
   const handleDelete = async (documentId, fileId) => {
+    console.log(
+      "handleDelete called with documentId:",
+      documentId,
+      "and fileId:",
+      fileId
+    );
     try {
       await deleteGalleryImage(documentId, fileId);
     } catch (error) {
@@ -131,7 +136,10 @@ const Gallery = () => {
                   className=" h-full w-full object-cover"
                 />
                 <button
-                  onClick={() => handleDelete(image.$id, image.fileId)} // Vermoedelijk heb je een fileId veld in je document
+                  onClick={() => {
+                    console.log("Verwijderknop clicked. Image object:", image);
+                    handleDelete(image.$id, image.fileId); // Gebruik image.fileId
+                  }}
                   className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600"
                 >
                   Delete
