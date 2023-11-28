@@ -4,6 +4,7 @@ import { database, account } from "@/lib/appwrite/config";
 const songsCollectionId = import.meta.env.VITE_APPWRITE_SONGS_COLLECTION_ID;
 const databaseId = import.meta.env.VITE_APPWRITE_SONGS_DATABASE_ID;
 const aboutmeCollectionId = import.meta.env.VITE_APPWRITE_ABOUTME_COLLECTION_ID;
+const galleryCollectionId = import.meta.env.VITE_APPWRITE_GALLERY_COLLECTION_ID;
 
 export async function getSong(
   databaseId: string,
@@ -111,3 +112,16 @@ export async function updateAboutMeCard(
     throw error;
   }
 }
+
+export const fetchGalleryImages = async () => {
+  try {
+    const response = await database.listDocuments(
+      databaseId,
+      galleryCollectionId
+    );
+    return response.documents;
+  } catch (error) {
+    console.error("Fout bij het ophalen van afbeeldingen:", error);
+    return [];
+  }
+};
