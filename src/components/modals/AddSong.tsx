@@ -162,10 +162,10 @@ function AddSong({
                 onClick={() =>
                   imageInputRef.current && imageInputRef.current.click()
                 }
-                className={`bg-secondary px-3 py-2  duration-200  ring-primary_dark  rounded-md flex items-center  gap-2 ${
-                  image
-                    ? "bg-green-500 text-black ring-0 hover:text-black"
-                    : "text-white ring-2 hover:text-primary_dark"
+                className={` px-3 py-2  duration-200  ring-primary_dark  rounded-md flex items-center  gap-2 ${
+                  image && imageFileName
+                    ? "text-black ring-0  bg-accent_dark hover:ring-2"
+                    : "bg-secondary ring-2 text-white hover:text-primary_dark"
                 }`}
               >
                 <CiImageOn className="text-xl" />{" "}
@@ -188,10 +188,10 @@ function AddSong({
                 onClick={() =>
                   audioInputRef.current && audioInputRef.current.click()
                 }
-                className={`bg-secondary px-3 py-2  duration-200  ring-primary_dark  rounded-md flex items-center  gap-2 ${
-                  audio
-                    ? "bg-green-500 text-black ring-0 hover:text-black"
-                    : "text-white ring-2 hover:text-primary_dark"
+                className={` px-3 py-2  duration-200  ring-primary_dark  rounded-md flex items-center  gap-2 ${
+                  audio && audioFileName
+                    ? "text-black ring-0  bg-accent_dark hover:ring-2"
+                    : "bg-secondary ring-2 text-white hover:text-primary_dark"
                 }`}
               >
                 {" "}
