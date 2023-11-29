@@ -323,37 +323,38 @@ const AudioPlayer = ({ isAdmin }) => {
               )}
             </button>
           </div>
-
-          {/* If modalOpen is true, show AddSong. Else, show h1 */}
-          {modalOpen ? (
-            <AddSong closeModal={closeModal} updateSongs={updateSongs} />
-          ) : (
-            <div className=" bg-black w-full overflow-y-scroll min-h-[20vh]  border-2 border-primary px-1 ">
-              {" "}
-              {songs.map((song, index) => (
-                <Song
-                  key={song.id}
-                  song={song}
-                  index={index}
-                  changeSong={setCurrentSongIndex}
-                  isPlaying={isPlaying}
-                  currentSongIndex={currentSongIndex}
-                  formatTime={formatTime}
-                  songDurations={songDurations}
-                  deleteSong={deleteSong}
-                  userId={userId}
-                  isAdmin={isAdmin}
-                />
-              ))}
-              {/* If there are no songs, show loader */}
-              {songs.length === 0 && (
-                <>
-                  <SongSkeleton /> <SongSkeleton />
-                  <SongSkeleton /> <SongSkeleton />
-                </>
-              )}
-            </div>
-          )}
+          <div className="h-full w-full">
+            {/* If modalOpen is true, show AddSong. Else, show h1 */}
+            {modalOpen ? (
+              <AddSong closeModal={closeModal} updateSongs={updateSongs} />
+            ) : (
+              <div className=" bg-black w-full overflow-y-scroll h-full border-2 border-primary px-1 ">
+                {" "}
+                {songs.map((song, index) => (
+                  <Song
+                    key={song.id}
+                    song={song}
+                    index={index}
+                    changeSong={setCurrentSongIndex}
+                    isPlaying={isPlaying}
+                    currentSongIndex={currentSongIndex}
+                    formatTime={formatTime}
+                    songDurations={songDurations}
+                    deleteSong={deleteSong}
+                    userId={userId}
+                    isAdmin={isAdmin}
+                  />
+                ))}
+                {/* If there are no songs, show loader */}
+                {songs.length === 0 && (
+                  <>
+                    <SongSkeleton /> <SongSkeleton />
+                    <SongSkeleton /> <SongSkeleton />
+                  </>
+                )}
+              </div>
+            )}
+          </div>
           {!modalOpen && (
             <>
               {" "}
