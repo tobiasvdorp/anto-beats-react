@@ -189,6 +189,7 @@ const AudioPlayer = ({ isAdmin }) => {
       audio.removeEventListener("ended", playNextSong);
     };
   }, [currentSongIndex, songs.length]);
+
   const deleteSong = async (songId) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this song?"
@@ -196,10 +197,35 @@ const AudioPlayer = ({ isAdmin }) => {
     if (!confirmed) return;
 
     try {
+      // Haal eerst het document op om de ID's van de bestanden te krijgen
+      const songDocument = await database.getDocument(
+        databaseId,
+        collectionId,
+        songId
+      );
+      const audiofileId = songDocument["audiofile-id"];
+      const imageId = songDocument["image-id"];
+
+      // Verwijder het audiobestand uit de bucket
+      if (audiofileId) {
+        await storage.deleteFile(audioBucketId, audiofileId);
+      }
+
+      // Verwijder de afbeelding uit de bucket
+      if (imageId) {
+        await storage.deleteFile(imageBucketId, imageId);
+      }
+
+      // Verwijder nu het document uit de database
       await database.deleteDocument(databaseId, collectionId, songId);
+
+      // Update de UI
       setSongs(songs.filter((song) => song.id !== songId));
-    } catch (err) {
-      console.error("Error deleting song:", err.message);
+
+      showAlert("Song deleted successfully!", "success");
+    } catch (error) {
+      console.error("Error deleting song:", error);
+      showAlert("Failed to delete the song.", "error");
     }
   };
 
@@ -208,7 +234,6 @@ const AudioPlayer = ({ isAdmin }) => {
       showAlert("Fullscreen mode is not supported on this device.", "warning");
       return;
     }
-
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(() => {
         alert("Cannot enable fullscreen mode.");
