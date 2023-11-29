@@ -153,19 +153,12 @@ export const addGalleryImage = async (file: File) => {
   }
 };
 
-export const deleteGalleryImage = async (
-  documentId: string,
-  fileId: string
-) => {
-  console.log(
-    "Deleting image with documentId:",
-    documentId,
-    "and fileId:",
-    fileId
-  );
+export const deleteGalleryImage = async (documentId: string) => {
   try {
     await database.deleteDocument(databaseId, galleryCollectionId, documentId);
-    await storage.deleteFile(galleryBucketId, fileId);
+    console.log(documentId);
+    await storage.deleteFile(galleryBucketId, documentId);
+    console.log(documentId);
     console.log("Afbeelding verwijderd");
   } catch (error) {
     console.error("Error deleting gallery image:", error);
