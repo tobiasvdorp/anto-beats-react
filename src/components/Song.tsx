@@ -74,7 +74,7 @@ const Song = ({
       <button
         key={song.id}
         onClick={() => changeSong(index)}
-        className={`flex flex-row items-center my-1 text-white justify-between w-full xs:px-4 px-2 py-3 hover:ring-2 ring-0 ring-transparent hover:ring-primary hover:bg-primary/30 duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold shadow-primary ${
+        className={`flex flex-row items-center my-1 text-white justify-between w-full xs:px-4 px-1 py-3 hover:ring-2 ring-0 ring-transparent hover:ring-primary hover:bg-primary/30 duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold shadow-primary ${
           currentSongIndex === index && isPlaying ? "playing" : ""
         }`}
       >
