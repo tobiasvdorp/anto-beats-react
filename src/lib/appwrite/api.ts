@@ -137,7 +137,6 @@ export const addGalleryImage = async (file: File) => {
       file
     );
 
-    console.log("Afbeelding toegevoegd aan bucket:", uploadResult.$id);
     return uploadResult.$id; // Geef het file ID terug voor verdere referentie
   } catch (error) {
     console.error("Error adding gallery image:", error);
@@ -148,9 +147,7 @@ export const addGalleryImage = async (file: File) => {
 export const deleteGalleryImage = async (fileId: string) => {
   try {
     await storage.deleteFile(galleryBucketId, fileId);
-    console.log("Afbeelding verwijderd:", fileId);
   } catch (error) {
-    console.error("Error deleting gallery image:", error);
     throw error;
   }
 };

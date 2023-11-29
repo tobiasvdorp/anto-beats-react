@@ -7,7 +7,11 @@ import { FaCheck } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { addGalleryImage } from "@/lib/appwrite/api";
 
-export const AddImage = () => {
+export default function AddImage({
+  updateGallery,
+}: {
+  updateGallery: () => void;
+}) {
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -34,6 +38,7 @@ export const AddImage = () => {
       try {
         await addGalleryImage(image);
         showAlert("Image successfully uploaded", "success");
+        updateGallery();
         setImage(null);
         setImageFileName("");
         setOpen(false);
@@ -116,4 +121,4 @@ export const AddImage = () => {
       )}{" "}
     </>
   );
-};
+}
