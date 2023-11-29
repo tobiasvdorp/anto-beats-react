@@ -110,7 +110,7 @@ function AddSong({
 
   return (
     <>
-      <form className="border-primary_dark w-full h-full flex flex-col justify-center items-between  bg_background dark:bg-background_dark z-10 shadow-lg  border-2 rounded-lg p-8 animate__fadeIn animate__animated animate__faster gap-2">
+      <form className="border-primary_dark w-full h-full  flex flex-col justify-center items-between  bg_background dark:bg-background_dark z-10 shadow-lg  border-2 rounded-lg p-8 animate__fadeIn animate__animated animate__faster gap-2">
         {" "}
         <div className="w-full">
           <label className="text-white font-main">

@@ -250,7 +250,7 @@ const AudioPlayer = ({ isAdmin }) => {
         className="w-full flex items-center justify-center"
       >
         <div
-          className={`w-full  rounded-lg mt-40  bg-secondary_dark  items-center justify-center flex flex-col p-3 sm:p-5 mx-1 sm:mx-2 border-2 border-primary max-h-[90vh]
+          className={`w-full h-[80vh] max-h-[750px]  rounded-lg mt-40  bg-secondary_dark items-center justify-center flex flex-col p-3 sm:p-5 mx-1 sm:mx-2 border-2 border-primary 
     ${isFullscreen ? "mx-4 max-w-8xl" : "max-w-3xl"}
      `}
         >
@@ -303,7 +303,7 @@ const AudioPlayer = ({ isAdmin }) => {
           {modalOpen ? (
             <AddSong closeModal={closeModal} updateSongs={updateSongs} />
           ) : (
-            <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1 ">
+            <div className=" bg-black w-full overflow-y-scroll min-h-[20vh]  border-2 border-primary px-1 ">
               {" "}
               {songs.map((song, index) => (
                 <Song
