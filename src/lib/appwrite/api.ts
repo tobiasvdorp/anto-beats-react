@@ -117,11 +117,11 @@ export async function updateAboutMeCard(
 
 export const fetchGalleryImages = async () => {
   try {
-    const response = await database.listDocuments(
-      databaseId,
-      galleryCollectionId
-    );
-    return response.documents;
+    const response = await storage.listFiles(galleryBucketId);
+    return response.files.map((file) => ({
+      $id: file.$id,
+      imageurl: `https://cloud.appwrite.io/v1/storage/buckets/${galleryBucketId}/files/${file.$id}/view?project=${projectId}&mode=admin`,
+    }));
   } catch (error) {
     console.error("Fout bij het ophalen van afbeeldingen:", error);
     return [];
@@ -130,36 +130,25 @@ export const fetchGalleryImages = async () => {
 
 export const addGalleryImage = async (file: File) => {
   try {
+    // Upload de foto naar de bucket
     const uploadResult = await storage.createFile(
       galleryBucketId,
-      "unique()",
+      "unique()", // Laat Appwrite een unieke file ID genereren
       file
     );
 
-    const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${galleryBucketId}/files/${uploadResult.$id}/view?project=${projectId}&mode=admin`;
-
-    await database.createDocument(
-      databaseId,
-      galleryCollectionId,
-      "unique()", // Unieke document ID
-      {
-        imageurl: imageUrl,
-      }
-    );
-    return uploadResult.$id;
+    console.log("Afbeelding toegevoegd aan bucket:", uploadResult.$id);
+    return uploadResult.$id; // Geef het file ID terug voor verdere referentie
   } catch (error) {
     console.error("Error adding gallery image:", error);
     throw error;
   }
 };
 
-export const deleteGalleryImage = async (documentId: string) => {
+export const deleteGalleryImage = async (fileId: string) => {
   try {
-    await database.deleteDocument(databaseId, galleryCollectionId, documentId);
-    console.log(documentId);
-    await storage.deleteFile(galleryBucketId, documentId);
-    console.log(documentId);
-    console.log("Afbeelding verwijderd");
+    await storage.deleteFile(galleryBucketId, fileId);
+    console.log("Afbeelding verwijderd:", fileId);
   } catch (error) {
     console.error("Error deleting gallery image:", error);
     throw error;

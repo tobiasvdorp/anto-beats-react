@@ -71,10 +71,10 @@ const Gallery = () => {
     },
     // sync: mainSliderRef.current,
   };
-  const handleDelete = async (documentId) => {
-    console.log("handleDelete called with documentId:", documentId);
+  const handleDelete = async (fileId) => {
+    console.log("handleDelete called with fileId:", fileId);
     try {
-      await deleteGalleryImage(documentId);
+      await deleteGalleryImage(fileId);
     } catch (error) {
       console.log(error);
     }
