@@ -4,7 +4,13 @@ import { CiImageOn } from "react-icons/ci";
 import { useAlert } from "../ui/AlertProvider";
 import { PiFileAudioFill } from "react-icons/pi";
 
-function AddSong({ closeModal }: { closeModal: VoidFunction }) {
+function AddSong({
+  closeModal,
+  updateSongs,
+}: {
+  closeModal: VoidFunction;
+  updateSongs: () => void;
+}) {
   const [image, setImage] = useState<File | null>(null);
   const [audio, setAudio] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -90,11 +96,9 @@ function AddSong({ closeModal }: { closeModal: VoidFunction }) {
         },
         []
       );
-
-      showAlert(
-        "Song added successfully! Reload the page to see it.",
-        "success"
-      );
+      closeModal();
+      updateSongs();
+      showAlert("Song added successfully!", "success");
     } catch (error) {
       if (error instanceof Error) {
         showAlert(error.message, "error");

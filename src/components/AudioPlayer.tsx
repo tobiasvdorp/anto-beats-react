@@ -21,6 +21,7 @@ const AudioPlayer = ({ isAdmin }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const { showAlert } = useAlert();
 
+  // Fetch user data
   useEffect(() => {
     const fetchUser = async () => {
       const user = await account.get();
@@ -53,52 +54,60 @@ const AudioPlayer = ({ isAdmin }) => {
     audio.currentTime = time;
     setCurrentTime(audio.currentTime);
   };
+  // Update songs
+  const updateSongs = () => {
+    fetchSongs().then((newSongs) => {
+      if (Array.isArray(newSongs)) {
+        setSongs(newSongs);
+      }
+    });
+  };
+  const fetchSongs = async () => {
+    try {
+      const result = await database.listDocuments(databaseId, collectionId);
+      const fetchedSongs = result.documents.map((doc) => ({
+        id: doc.$id,
+        title: doc.title,
+        // Youtube en spotify urls
+        youtube: doc.youtube_url,
+        spotify: doc.spotify_url,
+        src: getAudioFileURL(doc["audiofile-id"]),
+        image: doc["image-id"]
+          ? getDownloadableFileURL(imageBucketId, doc["image-id"])
+          : "defaultImageURL",
+      }));
+
+      setSongs(fetchedSongs);
+
+      Promise.all(
+        fetchedSongs.map((song) => {
+          return new Promise((resolve) => {
+            const audio = new Audio();
+            audio.src = song.src;
+            audio.addEventListener("loadedmetadata", () => {
+              resolve({ id: song.id, duration: audio.duration });
+            });
+          });
+        })
+      )
+        .then((durations) => {
+          const newSongDurations = {};
+          durations.forEach((songDuration) => {
+            newSongDurations[songDuration.id] = songDuration.duration;
+          });
+          setSongDurations(newSongDurations);
+        })
+        .catch((error) => {
+          console.error("Error loading song durations:", error);
+        });
+    } catch (error) {
+      console.error("Error fetching songs:", error);
+      return [];
+    }
+  };
 
   // Haal nummers op uit de Appwrite-database
   useEffect(() => {
-    const fetchSongs = async () => {
-      try {
-        const result = await database.listDocuments(databaseId, collectionId);
-        const fetchedSongs = result.documents.map((doc) => ({
-          id: doc.$id,
-          title: doc.title,
-          // Youtube en spotify urls
-          youtube: doc.youtube_url,
-          spotify: doc.spotify_url,
-          src: getAudioFileURL(doc["audiofile-id"]),
-          image: doc["image-id"]
-            ? getDownloadableFileURL(imageBucketId, doc["image-id"])
-            : "defaultImageURL",
-        }));
-
-        setSongs(fetchedSongs);
-
-        Promise.all(
-          fetchedSongs.map((song) => {
-            return new Promise((resolve) => {
-              const audio = new Audio();
-              audio.src = song.src;
-              audio.addEventListener("loadedmetadata", () => {
-                resolve({ id: song.id, duration: audio.duration });
-              });
-            });
-          })
-        )
-          .then((durations) => {
-            const newSongDurations = {};
-            durations.forEach((songDuration) => {
-              newSongDurations[songDuration.id] = songDuration.duration;
-            });
-            setSongDurations(newSongDurations);
-          })
-          .catch((error) => {
-            console.error("Error loading song durations:", error);
-          });
-      } catch (error) {
-        console.error("Error fetching songs:", error);
-      }
-    };
-
     fetchSongs();
   }, [databaseId, collectionId, audioBucketId, imageBucketId]); // Voeg imageBucketId toe aan de dependency array
 
@@ -114,7 +123,7 @@ const AudioPlayer = ({ isAdmin }) => {
 
   // Wanneer het huidige nummer verandert, update de bron van het audio-element
   useEffect(() => {
-    if (songs.length > 0) {
+    if (songs && songs.length > 0) {
       audioRef.current.src = songs[currentSongIndex].src;
       audioRef.current
         .play()
@@ -292,7 +301,7 @@ const AudioPlayer = ({ isAdmin }) => {
 
           {/* If modalOpen is true, show AddSong. Else, show h1 */}
           {modalOpen ? (
-            <AddSong closeModal={closeModal} />
+            <AddSong closeModal={closeModal} updateSongs={updateSongs} />
           ) : (
             <div className=" bg-black w-full overflow-y-scroll min-h-[20vh] max-h-[55vh] border-2 border-primary px-1 ">
               {" "}
