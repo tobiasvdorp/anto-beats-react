@@ -62,7 +62,7 @@ export default function AddImage({
             <>
               {" "}
               <div className=" flex flex-col items-center justify-center gap-2">
-                <label className="text-white font-main">
+                <label className="text-white font-main  -mt-4">
                   <br />
                   <input
                     type="file"
@@ -100,7 +100,7 @@ export default function AddImage({
                     disabled={loading}
                   >
                     {loading ? (
-                      <span className="loading loading-spinner loading-lg  "></span>
+                      <span className="loading loading-spinner loading-sm  "></span>
                     ) : (
                       <FaCheck />
                     )}
