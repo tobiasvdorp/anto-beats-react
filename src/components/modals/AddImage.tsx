@@ -61,8 +61,16 @@ export default function AddImage({
           {open && (
             <>
               {" "}
-              <div className=" flex flex-col items-center justify-center gap-2">
-                <label className="text-white font-main  -mt-4">
+              <div className=" flex flex-row items-center justify-center gap-2 mt-1">
+                {/* Exit button */}
+                <button
+                  className="btn btn-secondary first-btn min-h-0 h-10 w-fit px-2 bg-red-500 hover:bg-red-600"
+                  onClick={closeModal}
+                >
+                  <IoCloseSharp className="text-lg" />
+                </button>
+                {/* Select image button */}
+                <label className="text-white font-main  -mt-6">
                   <br />
                   <input
                     type="file"
@@ -86,28 +94,21 @@ export default function AddImage({
                     {imageFileName || "Select image"}
                   </button>
                 </label>
-                <div className="flex gap-2 items-center justify-center">
-                  {/* Exit button */}
-                  <button
-                    className="btn btn-secondary first-btn min-h-0 h-10 w-fit px-2 bg-red-500 hover:bg-red-600"
-                    onClick={closeModal}
-                  >
-                    <IoCloseSharp className="text-lg" />
-                  </button>
-                  <button
-                    className="btn btn-secondary min-h-0 h-10 w-full px-3"
-                    onClick={uploadImage}
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <span className="loading loading-spinner loading-sm -mt-0.5 "></span>
-                    ) : (
-                      <div className="flex gap-2 w-8 items-center justify-center">
-                        <FaCheck />
-                      </div>
-                    )}
-                  </button>
-                </div>
+
+                {/* Check button */}
+                <button
+                  className="btn btn-secondary min-h-0 h-10 w-10 px-3"
+                  onClick={uploadImage}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <span className="loading loading-spinner loading-sm -mt-0.5 "></span>
+                  ) : (
+                    <div className="flex gap-2 w-8 items-center justify-center">
+                      <FaCheck />
+                    </div>
+                  )}
+                </button>
               </div>
             </>
           )}
