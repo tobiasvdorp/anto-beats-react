@@ -49,7 +49,7 @@ export default function AddImage({
         setLoading(false);
       }
     } else {
-      showAlert("No image selected", "error");
+      showAlert("No image selected", "warning");
     }
   };
 

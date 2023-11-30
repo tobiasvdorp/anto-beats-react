@@ -43,6 +43,8 @@ export const AlertProvider = ({ children }) => {
             className={`alert alert-${alert.type} ${
               alert.type === "warning" && "bg-yellow-500 text-black"
             } 
+          
+          ${alert.type === "error" && "bg-red-500 text-white"}
 
             fixed bottom-2 mx-2 w-fit flex-nowrap flex justify-center  max-w-xl py-2 sm:py-3 sm:px-3 px-2  gap-3 animate__animated ${animation} `}
           >
