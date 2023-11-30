@@ -28,7 +28,7 @@ const SigninForm = () => {
       ) {
         setError("Incorrect credentials.");
       } else if (error.message.includes("Rate limit")) {
-        setError("Server is too busy... Try again later.");
+        setError("Too many attempts. Please try again later.");
       } else {
         setError("Something went wrong. Please try again later.");
       }
