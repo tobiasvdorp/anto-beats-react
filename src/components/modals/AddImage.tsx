@@ -67,7 +67,7 @@ export default function AddImage({
                   <input
                     type="file"
                     onChange={handleImageChange}
-                    accept="image/*"
+                    accept="image/jpeg, image/png, image/gif"
                     required
                     className="hidden"
                     ref={imageInputRef}
