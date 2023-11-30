@@ -18,6 +18,15 @@ const Gallery = () => {
   const [open, setOpen] = useState(false);
   const { showAlert } = useAlert();
   const [loading, setLoading] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState({});
+
+  // Set loading for image
+  const setLoadingForImage = (imageId, isLoading) => {
+    setLoadingStatus((prevStatus) => ({
+      ...prevStatus,
+      [imageId]: isLoading,
+    }));
+  };
 
   // Open and close modal
   const openModal = () => {
@@ -79,14 +88,15 @@ const Gallery = () => {
     },
   };
   const handleDelete = async (fileId) => {
-    setLoading(true);
+    setLoadingForImage(fileId, true); // Start loading voor specifieke foto
     try {
       await deleteGalleryImage(fileId);
       showAlert("Image deleted", "success");
-      setLoading(false);
       updateGallery();
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingForImage(fileId, false); // Stop loading na verwijdering
     }
   };
 
@@ -146,18 +156,18 @@ const Gallery = () => {
                   alt={`Image ${index}`}
                   className=" h-full w-full object-cover"
                 />
-                <button
-                  onClick={() => {
-                    handleDelete(image.$id);
-                  }}
-                  className="absolute top-0 right-0 bg-red-500 text-white px-1 py-1 rounded-md hover:bg-red-600"
-                >
-                  {loading ? (
-                    <span className="loading loading-spinner loading-sm  "></span>
-                  ) : (
-                    <MdDeleteOutline className="text-xl" />
-                  )}
-                </button>
+                {isAdmin && (
+                  <button
+                    onClick={() => handleDelete(image.$id)}
+                    className="absolute top-0 right-0 bg-red-500 text-white px-1 py-1 rounded-md hover:bg-red-600"
+                  >
+                    {loadingStatus[image.$id] ? (
+                      <span className="loading loading-spinner loading-sm"></span>
+                    ) : (
+                      <MdDeleteOutline className="text-xl" />
+                    )}
+                  </button>
+                )}
               </SplideSlide>
             ))}
           </Splide>

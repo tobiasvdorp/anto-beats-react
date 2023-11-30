@@ -86,7 +86,7 @@ export default function AddImage({
                     {imageFileName || "Select image"}
                   </button>
                 </label>
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center justify-center">
                   {/* Exit button */}
                   <button
                     className="btn btn-secondary first-btn min-h-0 h-10 w-fit px-2 bg-red-500 hover:bg-red-600"
@@ -95,14 +95,16 @@ export default function AddImage({
                     <IoCloseSharp className="text-lg" />
                   </button>
                   <button
-                    className="btn btn-secondary min-h-0 h-10 w-fit px-3"
+                    className="btn btn-secondary min-h-0 h-10 w-full px-3"
                     onClick={uploadImage}
                     disabled={loading}
                   >
                     {loading ? (
-                      <span className="loading loading-spinner loading-sm  "></span>
+                      <span className="loading loading-spinner loading-sm -mt-0.5 "></span>
                     ) : (
-                      <FaCheck />
+                      <div className="flex gap-2 w-8 items-center justify-center">
+                        <FaCheck />
+                      </div>
                     )}
                   </button>
                 </div>
