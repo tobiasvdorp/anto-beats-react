@@ -137,7 +137,6 @@ export const addGalleryImage = async (file: File) => {
       file
     );
 
-    console.log("Afbeelding toegevoegd aan bucket:", uploadResult.$id);
     return uploadResult.$id; // Geef het file ID terug voor verdere referentie
   } catch (error) {
     console.error("Error adding gallery image:", error);
