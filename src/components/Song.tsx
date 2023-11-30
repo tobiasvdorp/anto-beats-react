@@ -70,11 +70,11 @@ const Song = ({
   };
 
   return (
-    <div className="flex bg-gray-400 items-center dark:bg-background_dark bg-gradient-to-l dark:from-background_dark dark:to-background_dark dark:via-background_dark_third">
+    <div className="flex bg-gray-400 group items-center dark:bg-background_dark bg-gradient-to-l dark:from-background_dark dark:to-background_dark dark:via-background_dark_third">
       <button
         key={song.id}
         onClick={() => changeSong(index)}
-        className={`flex flex-row items-center my-1 text-white justify-between w-full xs:px-4 px-1 py-3 hover:ring-2 ring-0 ring-transparent hover:ring-primary hover:bg-primary/30 duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold shadow-primary ${
+        className={`flex flex-row  items-center my-1 text-white justify-between w-full xs:px-4 px-1 py-3 hover:ring-2 ring-0 ring-transparent hover:ring-primary hover:bg-primary/30 duration-300 rounded-lg hover:-translate-y-1 hover:translate-x-1 hover:origin-top hover:font-semibold shadow-primary ${
           currentSongIndex === index && isPlaying ? "playing" : ""
         }`}
       >
@@ -154,15 +154,15 @@ const Song = ({
         </div>
       </button>
       {isAdmin && (
-        <button
+        <div
           onClick={(e) => {
             e.stopPropagation(); // Voorkom dat de changeSong functie wordt aangeroepen
             deleteSong(song.id);
           }}
-          className="btn btn-secondary p-0 mr-1 w-12"
+          className="btn btn-secondary p-0 min-h-0 h-10 mx-0 group-hover:mr-1 group-hover:ml-2  w-0 group-hover:w-10 flex  items-center justify-center duration-300"
         >
-          <AiOutlineDelete className="text-3xl" />
-        </button>
+          <AiOutlineDelete className="text-2xl" />
+        </div>
       )}
     </div>
   );

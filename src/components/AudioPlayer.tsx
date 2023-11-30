@@ -275,7 +275,7 @@ const AudioPlayer = ({ isAdmin }) => {
         className="w-full flex items-center justify-center"
       >
         <div
-          className={`w-full h-[80vh] max-h-[750px]  rounded-lg mt-40  bg-secondary_dark items-center justify-center flex flex-col p-3 sm:p-5 mx-1 sm:mx-2 border-2 border-primary 
+          className={`w-full  max-h-[750px]  rounded-lg mt-40  bg-secondary_dark items-center justify-center flex flex-col p-3 sm:p-5 mx-1 sm:mx-2 border-2 border-primary 
     ${isFullscreen ? "mx-4 max-w-8xl" : "max-w-3xl"}
      `}
         >
