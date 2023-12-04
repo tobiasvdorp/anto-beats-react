@@ -117,6 +117,23 @@ export async function updateAboutMeCard(
   }
 }
 
+export async function getAboutMeImage() {
+  const aboutMeImageBucketId = "656df524275cb779e650";
+  const aboutMeImageId = "656df53274316b0aa4a2";
+
+  try {
+    const image = await storage.getFileView(
+      aboutMeImageBucketId,
+      aboutMeImageId
+    );
+
+    return image;
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    throw error;
+  }
+}
+
 export const fetchGalleryImages = async () => {
   try {
     const response = await storage.listFiles(galleryBucketId);

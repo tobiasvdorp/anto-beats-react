@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ContentContext } from "@/lib/appwrite/ContentContext";
 import { ParallaxLayer } from "@react-spring/parallax";
 import { useUser } from "@/lib/appwrite/user";
-import { updateAboutMeCard } from "@/lib/appwrite/api";
+import { getAboutMeImage, updateAboutMeCard } from "@/lib/appwrite/api";
 import { FaEdit } from "react-icons/fa";
 import Atropos from "atropos/react";
 import "atropos/atropos.css";
@@ -15,11 +15,13 @@ const AboutMe2 = () => {
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [image, setImage] = useState("");
 
   const aboutMeSection = content?.about_me || {};
   useEffect(() => {
     setValue(aboutMeSection.paragraph);
     setTitle(aboutMeSection.title);
+    getAboutMeImage().then((image) => setImage(image));
   }, [aboutMeSection]);
 
   const handleSubmit = async (e) => {
@@ -72,6 +74,7 @@ const AboutMe2 = () => {
       {/* Voeg de bewerkingsfunctionaliteit hieronder toe */}
       <ParallaxLayer offset={1.8} factor={0.8} speed={1} className="">
         <div className="flex flex-col w-full gap-3">
+          <img src={image}></img>
           <h2 className="text-5xl font-vtc text-white text-shadow">
             Who is Anto?
           </h2>
