@@ -72,18 +72,20 @@ export async function getAllContent() {
   try {
     const contentMap = {};
 
-    // Ophalen van 'About Me' secties
+    // Ophalen van de 'About Me' sectie
     const aboutMeSections = await database.listDocuments(
       databaseId,
       aboutmeCollectionId
     );
 
-    // Voeg de 'About Me' secties toe aan de contentMap, inclusief de document ID's
-    contentMap["about_me"] = aboutMeSections.documents.map((doc) => ({
-      $id: doc.$id, // Voeg de document ID toe
-      title: doc.title,
-      paragraph: doc.paragraph,
-    }));
+    // Voeg de 'About Me' sectie toe aan de contentMap, inclusief de document ID
+    // Aannemend dat er slechts één 'About Me' sectie is
+    const aboutMeSection = aboutMeSections.documents[0] || {};
+    contentMap["about_me"] = {
+      $id: aboutMeSection.$id, // Voeg de document ID toe
+      title: aboutMeSection.title,
+      paragraph: aboutMeSection.paragraph,
+    };
 
     return contentMap;
   } catch (error) {

@@ -1,12 +1,51 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ContentContext } from "@/lib/appwrite/ContentContext";
-import AboutMeCard from "./ui/aboutmecard";
 import { ParallaxLayer } from "@react-spring/parallax";
+import { useUser } from "@/lib/appwrite/user";
+import { updateAboutMeCard } from "@/lib/appwrite/api";
+import { FaEdit } from "react-icons/fa";
+import Atropos from "atropos/react";
+import "atropos/atropos.css";
 
 const AboutMe2 = () => {
   const content = useContext(ContentContext);
+  const { isAdmin } = useUser();
+  const aboutMeSection = content["about_me"]?.[0] || {};
+  const [formActive, setFormActive] = useState(false);
+  const [value, setValue] = useState(aboutMeSection.paragraph);
+  const [title, setTitle] = useState(aboutMeSection.title);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const aboutMeSections = content["about_me"] || [];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (title === aboutMeSection.title && value === aboutMeSection.paragraph) {
+      setFormActive(false);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const updatedSection = await updateAboutMeCard(
+        aboutMeSection.$id,
+        title,
+        value
+      );
+
+      setValue(updatedSection.paragraph || value);
+      setTitle(updatedSection.title || title);
+      setFormActive(false);
+      setError("");
+    } catch (error) {
+      console.error("Failed to update section:", error);
+      setError("Error updating section. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <ParallaxLayer offset={1} speed={2}>
@@ -24,45 +63,70 @@ const AboutMe2 = () => {
         </svg>
 
         <div className="h-[200vh] bg-secondary_dark z-0"></div>
-      </ParallaxLayer>
+      </ParallaxLayer>{" "}
+      {/* Voeg de bewerkingsfunctionaliteit hieronder toe */}
       <ParallaxLayer offset={1.8} factor={0.8} speed={1} className="">
-        <div className="w-screen flex items-center justify-center ">
-          <div className="w-full max-w-4xl flex flex-row gap-6 h-full ">
-            <div className="w-1/2 mt-20">
-              <img
-                src="/placeholder.png"
-                alt="Anto"
-                className="max-h-full max-w-full"
+        <div className="flex flex-col w-full gap-3">
+          <h2 className="text-5xl font-vtc text-white text-shadow">
+            Who is Anto?
+          </h2>
+          {isAdmin && (
+            <button className="" onClick={() => setFormActive(!formActive)}>
+              <FaEdit className="hover:text-accent duration-200" />
+            </button>
+          )}
+          {formActive ? (
+            <form className="w-full">
+              <input
+                defaultValue={content["about_me"].title}
+                className="font-main bg-primary_dark p-1 border-2 border-primary w-full rounded-md"
+                onChange={(e) => setTitle(e.target.value)}
               />
-            </div>
-
-            <div className="flex flex-col w-full gap-3">
-              <h2 className="text-5xl font-vtc text-white text-shadow">
-                Who is Anto?
-              </h2>
+              <textarea
+                defaultValue={content["about_me"].paragraph}
+                className="font-main bg-primary_dark p-1 border-2 border-primary w-full h-52 rounded-md mt-2"
+                onChange={(e) => setValue(e.target.value)}
+              />
+              <div className="flex items-center gap-1 mt-2">
+                <button
+                  className="btn-secondary btn px-2 min-h-0 h-10 first-btn"
+                  onClick={() => setFormActive(false)}
+                >
+                  Annuleren
+                </button>
+                {loading ? (
+                  <button
+                    className="btn btn-secondary px-2 min-h-0 h-10"
+                    disabled
+                  >
+                    <span className="loading loading-spinner loading-sm"></span>{" "}
+                    Laden...
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-secondary px-10 min-h-0 h-10 border-none"
+                    onClick={handleSubmit}
+                  >
+                    Opslaan
+                  </button>
+                )}
+                {error && (
+                  <div className="text-black text-sm font-main font-semibold w-4/6">
+                    {error}
+                  </div>
+                )}
+              </div>
+            </form>
+          ) : (
+            <>
               <p className="text-accent font-main font-semibold uppercase">
-                Koen van der Donck <span className="text-white">• </span>
-                <span className="text-primary_dark">2003</span>{" "}
-                <span className="text-white">• </span>
-                <span className="text-bg text-accent"> The Netherlands</span>
+                {content["about_me"].title}
               </p>
               <p className="text-white font-main opacity-70">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-                dolores ipsam eligendi harum! Ratione, autem vero! Beatae
-                laudantium omnis perspiciatis! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Qui neque rerum mollitia dolor?
-                Dolorem minus, earum architecto autem voluptates temporibus.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-                dolores ipsam eligendi harum! Ratione, autem vero! Beatae
-                laudantium omnis perspiciatis! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Qui neque rerum mollitia dolor?
-                Dolorem minus, earum architecto autem voluptates temporibus.
-                laudantium omnis perspiciatis! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Qui neque rerum mollitia dolor?
-                Dolorem minus, earum architecto autem voluptates temporibus.
+                {content["about_me"].paragraph}
               </p>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </ParallaxLayer>
     </>
