@@ -17,7 +17,6 @@ const Gallery = () => {
   const { isAdmin } = useUser();
   const [open, setOpen] = useState(false);
   const { showAlert } = useAlert();
-  const [loading, setLoading] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState({});
 
   // Set loading for image
@@ -26,14 +25,6 @@ const Gallery = () => {
       ...prevStatus,
       [imageId]: isLoading,
     }));
-  };
-
-  // Open and close modal
-  const openModal = () => {
-    setOpen(true);
-  };
-  const closeModal = () => {
-    setOpen(false);
   };
 
   // Sync main and thumbnail slider
