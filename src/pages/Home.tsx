@@ -4,6 +4,7 @@ import CallToAction from "@/components/CallToAction";
 import AboutMe from "@/components/AboutMe";
 import { useUser } from "@/lib/appwrite/user";
 import Gallery from "@/components/Gallery";
+import AboutMe2 from "@/components/AboutMe2";
 
 const Home = () => {
   const { isAdmin } = useUser();
@@ -13,7 +14,8 @@ const Home = () => {
       <Parallax pages={5} className="dark:bg-background_dark bg-background">
         <CallToAction />
         <AudioPlayer isAdmin={isAdmin} />
-        <AboutMe />
+        {/* <AboutMe /> */}
+        <AboutMe2 />
         <Gallery />
       </Parallax>
     </div>

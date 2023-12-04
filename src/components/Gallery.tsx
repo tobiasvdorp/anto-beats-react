@@ -101,7 +101,7 @@ const Gallery = () => {
     <>
       {" "}
       {/* Background */}
-      <ParallaxLayer offset={2.4} speed={2}>
+      <ParallaxLayer offset={2.95} speed={2}>
         <svg viewBox="0.795 0 500 100" xmlns="http://www.w3.org/2000/svg">
           <path
             className="bg-new_green stroke-white"
