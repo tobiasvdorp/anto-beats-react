@@ -80,7 +80,7 @@ const AboutMe2 = () => {
               loading="lazy"
               className="w-52 h-52 object-cover rounded-md "
             ></img>
-            <div>
+            <div className="w-full">
               <div className="">
                 <h2 className="text-5xl font-vtc text-white text-shadow flex items-center gap-5 mb-1">
                   Who is Anto?{" "}
@@ -99,12 +99,12 @@ const AboutMe2 = () => {
                 <form className="w-full">
                   <input
                     defaultValue={title}
-                    className="font-main bg-primary_dark p-1 border-2 border-primary w-full rounded-md text-white"
+                    className="font-main bg-transparent p-2 border-2 border-primary w-full rounded-md text-accent_dark"
                     onChange={(e) => setTitle(e.target.value)}
                   />
                   <textarea
                     defaultValue={value}
-                    className="font-main bg-primary_dark p-1 border-2 border-primary w-full h-52 rounded-md mt-2 text-white"
+                    className="font-main bg-background_dark_secondary p-2 border-2 border-primary w-full h-52 rounded-md mt-2 text-white"
                     onChange={(e) => setValue(e.target.value)}
                   />
                   <div className="flex items-center gap-1 mt-2">
@@ -140,7 +140,7 @@ const AboutMe2 = () => {
               ) : (
                 <>
                   {/* If the text is not loaded yet, show placeholder */}
-                  <p className="text-accent font-main font-semibold uppercase">
+                  <p className="text-accent font-main font-semibold ">
                     {" "}
                     {title || "Loading..."}
                   </p>
