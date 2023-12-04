@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ContentContext } from "@/lib/appwrite/ContentContext";
 import { ParallaxLayer } from "@react-spring/parallax";
 import { useUser } from "@/lib/appwrite/user";
@@ -10,12 +10,17 @@ import "atropos/atropos.css";
 const AboutMe2 = () => {
   const content = useContext(ContentContext);
   const { isAdmin } = useUser();
-  const aboutMeSection = content["about_me"]?.[0] || {};
   const [formActive, setFormActive] = useState(false);
-  const [value, setValue] = useState(aboutMeSection.paragraph);
-  const [title, setTitle] = useState(aboutMeSection.title);
+  const [value, setValue] = useState("");
+  const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const aboutMeSection = content?.about_me || {};
+  useEffect(() => {
+    setValue(aboutMeSection.paragraph);
+    setTitle(aboutMeSection.title);
+  }, [aboutMeSection]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,12 +83,12 @@ const AboutMe2 = () => {
           {formActive ? (
             <form className="w-full">
               <input
-                defaultValue={content["about_me"].title}
+                defaultValue={title}
                 className="font-main bg-primary_dark p-1 border-2 border-primary w-full rounded-md"
                 onChange={(e) => setTitle(e.target.value)}
               />
               <textarea
-                defaultValue={content["about_me"].paragraph}
+                defaultValue={value}
                 className="font-main bg-primary_dark p-1 border-2 border-primary w-full h-52 rounded-md mt-2"
                 onChange={(e) => setValue(e.target.value)}
               />
@@ -120,11 +125,9 @@ const AboutMe2 = () => {
           ) : (
             <>
               <p className="text-accent font-main font-semibold uppercase">
-                {content["about_me"].title}
+                {title}
               </p>
-              <p className="text-white font-main opacity-70">
-                {content["about_me"].paragraph}
-              </p>
+              <p className="text-white font-main opacity-70">{value}</p>
             </>
           )}
         </div>
