@@ -74,7 +74,7 @@ const AboutMe2 = () => {
       {/* Voeg de bewerkingsfunctionaliteit hieronder toe */}
       <ParallaxLayer offset={1.8} factor={0.8} speed={1} className="">
         <div className="flex flex-col w-full gap-3">
-          <img src={image}></img>
+          <img src={image} loading="lazy"></img>
           <h2 className="text-5xl font-vtc text-white text-shadow">
             Who is Anto?
           </h2>

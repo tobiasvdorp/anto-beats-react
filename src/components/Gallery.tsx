@@ -146,6 +146,7 @@ const Gallery = () => {
                   src={image.imageurl}
                   alt={`Image ${index}`}
                   className=" h-full w-full object-cover"
+                  loading="lazy"
                 />
                 {isAdmin && (
                   <button
@@ -186,6 +187,7 @@ const Gallery = () => {
                   src={image.imageurl}
                   alt={`Image ${index}`}
                   className="w-full h-full"
+                  loading="lazy"
                 />
               </SplideSlide>
             ))}

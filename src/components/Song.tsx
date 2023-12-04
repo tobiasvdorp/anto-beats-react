@@ -96,6 +96,7 @@ const Song = ({
         {/* Echte afbeelding */}
         <img
           src={song.image}
+          loading="lazy"
           alt={`Cover van ${song.title}`}
           className={`xs:w-16 xs:h-16 h-12 w-12 xs:mr-4 mr-1 object-cover rounded-md ${
             !isImageLoaded ? "hidden" : ""
