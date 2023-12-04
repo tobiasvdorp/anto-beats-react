@@ -73,66 +73,86 @@ const AboutMe2 = () => {
       </ParallaxLayer>{" "}
       {/* Voeg de bewerkingsfunctionaliteit hieronder toe */}
       <ParallaxLayer offset={1.8} factor={0.8} speed={1} className="">
-        <div className="flex flex-col w-full gap-3">
-          <img src={image} loading="lazy"></img>
-          <h2 className="text-5xl font-vtc text-white text-shadow">
-            Who is Anto?
-          </h2>
-          {isAdmin && (
-            <button className="" onClick={() => setFormActive(!formActive)}>
-              <FaEdit className="hover:text-accent duration-200" />
-            </button>
-          )}
-          {formActive ? (
-            <form className="w-full">
-              <input
-                defaultValue={title}
-                className="font-main bg-primary_dark p-1 border-2 border-primary w-full rounded-md"
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <textarea
-                defaultValue={value}
-                className="font-main bg-primary_dark p-1 border-2 border-primary w-full h-52 rounded-md mt-2"
-                onChange={(e) => setValue(e.target.value)}
-              />
-              <div className="flex items-center gap-1 mt-2">
-                <button
-                  className="btn-secondary btn px-2 min-h-0 h-10 first-btn"
-                  onClick={() => setFormActive(false)}
-                >
-                  Annuleren
-                </button>
-                {loading ? (
-                  <button
-                    className="btn btn-secondary px-2 min-h-0 h-10"
-                    disabled
-                  >
-                    <span className="loading loading-spinner loading-sm"></span>{" "}
-                    Laden...
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-secondary px-10 min-h-0 h-10 border-none"
-                    onClick={handleSubmit}
-                  >
-                    Opslaan
-                  </button>
-                )}
-                {error && (
-                  <div className="text-black text-sm font-main font-semibold w-4/6">
-                    {error}
-                  </div>
-                )}
+        <div className="w-screen flex items-center justify-center">
+          <div className="flex flex-row w-full max-w-4xl gap-5 items-center">
+            <img
+              src={image}
+              loading="lazy"
+              className="w-52 h-52 object-cover rounded-md "
+            ></img>
+            <div>
+              <div className="">
+                <h2 className="text-5xl font-vtc text-white text-shadow flex items-center gap-5 mb-1">
+                  Who is Anto?{" "}
+                  {isAdmin && (
+                    <button
+                      className=""
+                      onClick={() => setFormActive(!formActive)}
+                    >
+                      <FaEdit className="hover:text-accent duration-200 text-3xl" />
+                    </button>
+                  )}
+                </h2>
               </div>
-            </form>
-          ) : (
-            <>
-              <p className="text-accent font-main font-semibold uppercase">
-                {title}
-              </p>
-              <p className="text-white font-main opacity-70">{value}</p>
-            </>
-          )}
+
+              {formActive ? (
+                <form className="w-full">
+                  <input
+                    defaultValue={title}
+                    className="font-main bg-primary_dark p-1 border-2 border-primary w-full rounded-md text-white"
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <textarea
+                    defaultValue={value}
+                    className="font-main bg-primary_dark p-1 border-2 border-primary w-full h-52 rounded-md mt-2 text-white"
+                    onChange={(e) => setValue(e.target.value)}
+                  />
+                  <div className="flex items-center gap-1 mt-2">
+                    <button
+                      className="btn-secondary btn px-2 min-h-0 h-10 first-btn"
+                      onClick={() => setFormActive(false)}
+                    >
+                      Cancel
+                    </button>
+                    {loading ? (
+                      <button
+                        className="btn btn-secondary px-2 min-h-0 h-10"
+                        disabled
+                      >
+                        <span className="loading loading-spinner loading-sm"></span>{" "}
+                        Loading...
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-secondary px-10 min-h-0 h-10  hover:border-primary_dark"
+                        onClick={handleSubmit}
+                      >
+                        Save
+                      </button>
+                    )}
+                    {error && (
+                      <div className="text-black text-sm font-main font-semibold w-4/6">
+                        {error}
+                      </div>
+                    )}
+                  </div>
+                </form>
+              ) : (
+                <>
+                  {/* If the text is not loaded yet, show placeholder */}
+                  <p className="text-accent font-main font-semibold uppercase">
+                    {" "}
+                    {title || "Loading..."}
+                  </p>
+
+                  {/* If the text is not loaded yet, show placeholder */}
+                  <p className="text-white font-main opacity-70">
+                    {value || "Loading..."}
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </ParallaxLayer>
     </>
