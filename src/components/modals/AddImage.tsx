@@ -114,7 +114,7 @@ export default function AddImage({
           )}
           {!open && (
             <button
-              className="btn btn-secondary text-md py-0 px-3 min-h-0 h-10 w-fit flex items-center"
+              className=" btn-secondary text-md py-0 px-3 min-h-0 h-10 w-fit flex items-center font-main font-normal gap-2"
               onClick={openModal}
             >
               <AiOutlinePlus className="text-lg" /> Add image

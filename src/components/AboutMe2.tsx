@@ -73,13 +73,8 @@ const AboutMe2 = () => {
       </ParallaxLayer>{" "}
       {/* Voeg de bewerkingsfunctionaliteit hieronder toe */}
       <ParallaxLayer offset={1.8} factor={0.8} speed={1} className="">
-        <div className="w-screen flex items-center justify-center">
-          <div className="flex flex-row w-full max-w-4xl gap-5 items-center">
-            <img
-              src={image}
-              loading="lazy"
-              className="w-52 h-52 object-cover rounded-md "
-            ></img>
+        <div className="w-screen flex items-center justify-center ">
+          <div className="flex md:flex-row-reverse flex-col w-full max-w-4xl gap-7 items-center mx-3">
             <div className="w-full">
               <div className="">
                 <h2 className="text-5xl font-vtc text-white text-shadow flex items-center gap-5 mb-1">
@@ -99,7 +94,7 @@ const AboutMe2 = () => {
                 <form className="w-full">
                   <input
                     defaultValue={title}
-                    className="font-main bg-transparent p-2 border-2 border-primary w-full rounded-md text-accent_dark"
+                    className="font-main bg-transparent p-2 border-2 border-primary w-full rounded-md text-accent_dark font-semibold"
                     onChange={(e) => setTitle(e.target.value)}
                   />
                   <textarea
@@ -140,7 +135,7 @@ const AboutMe2 = () => {
               ) : (
                 <>
                   {/* If the text is not loaded yet, show placeholder */}
-                  <p className="text-accent font-main font-semibold ">
+                  <p className="text-accent font-main font-semibold text-lg">
                     {" "}
                     {title || "Loading..."}
                   </p>
@@ -152,6 +147,11 @@ const AboutMe2 = () => {
                 </>
               )}
             </div>
+            <img
+              src={image}
+              loading="lazy"
+              className="w-64 h-64 object-cover rounded-md  "
+            ></img>
           </div>
         </div>
       </ParallaxLayer>
